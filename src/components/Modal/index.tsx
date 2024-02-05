@@ -1,23 +1,25 @@
 'use client';
-
-import * as Dialog from '@radix-ui/react-dialog';
-import Input from '@/components/Input';
+//libs
 import React from 'react';
-import InputLabel from '../Input/InputLabel';
-import { PersonIcon } from '@radix-ui/react-icons';
+import * as Dialog from '@radix-ui/react-dialog';
 import { FaPhoneAlt, FaRegAddressCard } from 'react-icons/fa';
+import { PersonIcon } from '@radix-ui/react-icons';
 import { MdOutlineMailOutline } from 'react-icons/md';
-import SelectComponent from '../Select';
 import { TbDeviceMobileMessage } from 'react-icons/tb';
+
+//components
+import InputLabel from '../Input/InputLabel';
+import SelectComponent from '../Select';
+import RadioGroupComponent from '../Radio';
 
 const ModalComponent = () => {
   return (
     <Dialog.Portal>
       <Dialog.Overlay className='bg-black/60 inset-0 fixed ' />
-      <Dialog.Content className='fixed bg-zinc-300 h-full p-8 text-white top-0 right-0 w-64 px-3 shadow-lg shadow-black/25'>
+      <Dialog.Content className='fixed bg-zinc-300 h-full p-8 text-white top-0 right-0 w-1/3 px-3 shadow-lg shadow-black/25'>
         <div>
           <InputLabel
-            id='nome'
+            id='name'
             placeholder='Nome completo do usuário'
             label='Nome Completo'
             icon={<PersonIcon className='w-8' />}
@@ -28,6 +30,7 @@ const ModalComponent = () => {
             placeholder='000.000.000-00'
             label='CPF'
             icon={<FaRegAddressCard className='w-8' />}
+            mask='999.999.999-99'
             required
           />
           <InputLabel
@@ -43,16 +46,27 @@ const ModalComponent = () => {
             label='Telefone'
             icon={<FaPhoneAlt className='w-8' />}
             required
+            mask='(99) 99999-9999'
           />
         </div>
-        <div>
+        <div className='flex flex-col gap-5'>
           <SelectComponent
-            label='Forma de contato*'
+            label='Forma de contato'
             icon={<TbDeviceMobileMessage className='w-8 h-5  text-white' />}
-            placeholder='Selecione uma opção*'
+            placeholder='Selecione uma opção'
             title='Forma de contato'
             value={['onlyCall', 'callAndWhatsapp']}
             options={['Somente Ligação', 'Ligação e Whatsapp']}
+          />
+          <RadioGroupComponent
+            title='Nível de acesso'
+            value={['Administrador', 'Colaborador']}
+            id={['Administrador', 'Colaborador']}
+            label={['Administrador', 'Colaborador']}
+            subLabel={[
+              'Pode adicionar, editar e excluir os dados de qualquer usuário.',
+              'Pode editar os próprios dados, exceto nome, e-mail e nível de acesso.',
+            ]}
           />
         </div>
         <Dialog.Close />

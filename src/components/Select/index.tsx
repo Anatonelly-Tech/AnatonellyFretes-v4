@@ -24,14 +24,16 @@ const SelectComponent = ({
   label,
 }: SelectProps) => {
   return (
-    <div className='rounded' >
-      <label className='text-xs text-black font-medium'> {label}</label>
+    <div className='rounded'>
+      <label className='text-sm text-black font-medium'> {label}*</label>
       <Select.Root required>
         <Select.Trigger className=' rounded w-full flex items-center justify-start  gap-3 data-[placeholder]:text-zinc-500  bg-zinc-900 shadow-md shadow-black/30 text-sm text-zinc-300'>
-          <div className='flex py-2 rounded-l bg-gray-500 justify-center items-start'>{icon}</div>
-          <div className='flex  items-center justify-center'>
-            <Select.Value placeholder={placeholder}  />
-            <Select.Icon className=''>
+          <div className='flex py-2 rounded-l bg-gray-500 justify-center items-start'>
+            {icon}
+          </div>
+          <div className='flex w-full pr-2 items-center justify-between'>
+            <Select.Value placeholder={`${placeholder}*`} />
+            <Select.Icon className='text-zinc-500'>
               <ChevronDownIcon />
             </Select.Icon>
           </div>
@@ -43,11 +45,15 @@ const SelectComponent = ({
             </Select.ScrollUpButton>
             <Select.Viewport className='p-1'>
               <Select.Group>
-                <Select.Label className='px-[25px]  leading-[25px] text-mauve11'>
+                <Select.Label className='px-[25px]  leading-[25px] select-none '>
                   {title}
                 </Select.Label>
-                {options.map((option,index) => (
-                  <Select.Item key={index} value={value[index]} className='rounded hover:border p-1 data-[highlighted]:bg-gray-200 text-sm'>
+                {options.map((option, index) => (
+                  <Select.Item
+                    key={index}
+                    value={value[index]}
+                    className='rounded hover:border p-1 select-none data-[highlighted]:bg-gray-200 text-sm'
+                  >
                     <Select.ItemText>{option}</Select.ItemText>
                     <Select.ItemIndicator className='absolute right-0 w-[25px] inline-flex items-center justify-center translate-y-1 text-green-500'>
                       <CheckIcon />
