@@ -11,18 +11,24 @@ interface PageProps {
 export function CreatedPages({ name, AllPages, icon }: PageProps) {
   return (
     <NavigationMenu.Item>
-      <NavigationMenu.Trigger className=" text-purple-100 font-bold gap-3 bg-purple-700 hover:bg-purple-800 focus:shadow-purple7 group flex select-none items-center justify-between rounded-[4px] px-3 py-2 text-[15px] leading-none outline-none    ">
+      <NavigationMenu.Trigger className="  text-violet-100 font-bold gap-3 bg-violet-700 hover:bg-violet-800 focus:shadow-violet-700 group flex select-none items-center justify-between rounded-full px-3 py-3 text-[15px] leading-none outline-none shadow-especial shadow-violet-950 hover:shadow-zinc-800 border-2 border-violet-500  ">
         {icon}
-        {name}{" "}
-        <CaretDownIcon
-          className=" text-purple-100 relative top-[1px] transition-transform duration-[300] ease-in group-data-[state=open]:-rotate-180"
-          aria-hidden
-        />
+        {/* {name} */}{" "}
+        {/* {name === "Home" ? null : (
+          // <CaretDownIcon
+          //   className=" text-violet-100 relative top-[1px] transition-transform duration-[300] ease-in group-data-[state=open]:-rotate-180"
+          //   aria-hidden
+          // />
+        )} */}
       </NavigationMenu.Trigger>
-      <NavigationMenu.Content className="data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight absolute w-full sm:w-auto bg-purple-700  text-white font-bold flex flex-col items-center justify-between">
+
+      <NavigationMenu.Content className="animate-enterFromLeft data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight absolute w-full sm:w-auto text-white font-bold flex flex-col items-center justify-between gap-1 -translate-x-1/3 mt-2 ">
         {AllPages.map((page, index) => (
-          <div key={index} className="hover:bg-purple-800 p-2 w-full h-full">
-            {page.title}
+          <div
+            key={index}
+            className="hover:bg-violet-800 p-2 min-w-60 h-full bg-violet-700 rounded-lg "
+          >
+            <p className="text-center">{page.title}</p>
 
             <NavigationMenu.Link />
           </div>

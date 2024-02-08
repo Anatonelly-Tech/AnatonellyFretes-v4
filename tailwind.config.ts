@@ -1,4 +1,3 @@
-// tailwind.config.ts
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -9,27 +8,38 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        especial: "rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       keyframes: {
+        fadeIn: {
+          from: { opacity: "0", transform: "translateY(-200px) " },
+          to: { opacity: "1", transform: "translateY(0) " },
+        },
+        fadeOut: {
+          from: { opacity: "1", transform: "translateY(0) " },
+          to: { opacity: "0", transform: "translateY(-200px) " },
+        },
         enterFromRight: {
-          from: { opacity: "0", transform: "translateX(200px)" },
-          to: { opacity: "1", transform: "translateX(0)" },
+          from: { opacity: "0", transform: "translateY(200px) " },
+          to: { opacity: "1", transform: "translateY(0) -translate-x-1/3" },
         },
         enterFromLeft: {
-          from: { opacity: "0", transform: "translateX(-200px)" },
-          to: { opacity: "1", transform: "translateX(0)" },
+          from: { opacity: "0", transform: "translateY(200px)  " },
+          to: { opacity: "1", transform: "translateY(0) -translate-x-1/3" },
         },
         exitToRight: {
-          from: { opacity: "1", transform: "translateX(0)" },
-          to: { opacity: "0", transform: "translateX(200px)" },
+          from: { opacity: "1", transform: "translateY(0) -translate-x-1/3" },
+          to: { opacity: "0", transform: "translateY(200px) " },
         },
         exitToLeft: {
-          from: { opacity: "1", transform: "translateX(0)" },
-          to: { opacity: "0", transform: "translateX(-200px)" },
+          from: { opacity: "1", transform: "translateY(0) -translate-x-1/3" },
+          to: { opacity: "0", transform: "translateY(200px) " },
         },
         scaleIn: {
           from: { opacity: "0", transform: "rotateX(-10deg) scale(0.9)" },
@@ -39,21 +49,19 @@ const config: Config = {
           from: { opacity: "1", transform: "rotateX(0deg) scale(1)" },
           to: { opacity: "0", transform: "rotateX(-10deg) scale(0.95)" },
         },
-        fadeIn: {
-          from: { opacity: "0" },
-          to: { opacity: "1" },
-        },
-        fadeOut: {
-          from: { opacity: "1" },
-          to: { opacity: "0" },
+
+        apperContent: {
+          from: { opacity: "0", transform: "translateY(200px) " },
+          to: { opacity: "1", transform: "translateY(0) " },
         },
       },
     },
     animation: {
+      fadeIn: "fadeIn 300ms ease",
+      fadeOut: "fadeOut 300ms ease",
       scaleIn: "scaleIn 200ms ease",
       scaleOut: "scaleOut 200ms ease",
-      fadeIn: "fadeIn 200ms ease",
-      fadeOut: "fadeOut 200ms ease",
+
       enterFromLeft: "enterFromLeft 250ms ease",
       enterFromRight: "enterFromRight 250ms ease",
       exitToLeft: "exitToLeft 250ms ease",

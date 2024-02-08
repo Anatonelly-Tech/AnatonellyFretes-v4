@@ -1,4 +1,6 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import * as Dialog from "@radix-ui/react-dialog";
+
 import { AiFillHome } from "react-icons/ai";
 import { FaBox, FaUser } from "react-icons/fa";
 import { MdHomeFilled } from "react-icons/md";
@@ -6,12 +8,19 @@ import { CreatedPages } from "./CreatedPages";
 import { title } from "process";
 import { LuSearch } from "react-icons/lu";
 import { IoDocumentText, IoShieldCheckmark } from "react-icons/io5";
+import { useState } from "react";
 
 export function NavBar() {
+  const [navBarActive, setNavBarActive] = useState(false);
+  const [animationRoot, setAnimationRoot] = useState(false);
+
   const PagesNavBar = [
     {
       name: "Home",
-      AllPages: [{ title: "Home", path: "./home" }],
+      AllPages: [
+        { title: "Home", path: "./home" },
+        { title: "Rastreamento de carga", path: "./home" },
+      ],
       icon: <MdHomeFilled size={30} className="text-white" />,
     },
     {
@@ -63,18 +72,61 @@ export function NavBar() {
     },
   ];
 
+  function HandleClickOpenNav() {
+    setTimeout(() => {
+      setNavBarActive(!navBarActive);
+    }, 150);
+  }
+  function HadleAddAnimation() {
+    HandleClickOpenNav();
+    setAnimationRoot(!animationRoot);
+  }
+
   return (
-    <NavigationMenu.Root className="fixed w-full h-full top-20 left-52 right-52  rounded-xl ">
-      <NavigationMenu.List className="flex gap-2 fixed items-center justify-center w-9/12 h-16 bg-zinc-500">
-        {PagesNavBar.map((page, index) => (
-          <CreatedPages
-            key={index}
-            name={page.name}
-            AllPages={page.AllPages}
-            icon={page.icon}
+    <div className="">
+      <Dialog.Root>
+        <Dialog.Trigger
+          className="fixed top-0 left-1/2 -translate-x-1/2 w-60 h-10 bg-violet-600 text-white font-bold text-3xl rounded-b-xl border-x-2 border-b-2 border-violet-500 shadow-especial shadow-violet-950 hover:shadow-zinc-800"
+          onClick={HadleAddAnimation}
+        >
+          MENU
+        </Dialog.Trigger>
+        <Dialog.Portal>
+          <button
+            className="fixed top-0 left-1/2 -translate-x-1/2 w-60 h-10 bg-violet-600 text-white font-bold text-3xl rounded-b-xl border-x-2 border-b-2 border-violet-500 shadow-especial shadow-violet-950 hover:shadow-zinc-800"
+            onClick={HadleAddAnimation}
+          >
+            MENU
+          </button>
+          <Dialog.Overlay
+            className={`${
+              navBarActive ? "fixed inset-0 bg-black opacity-50" : "hidden"
+            }`}
+            onClick={HadleAddAnimation}
           />
-        ))}
-      </NavigationMenu.List>
-    </NavigationMenu.Root>
+          <NavigationMenu.Root
+            data-state={navBarActive ? "open" : "closed"}
+            className={`w-auto h-auto ${
+              navBarActive ? "visible animate-fadeIn" : "invisible"
+            }
+              ${animationRoot ? "" : "animate-fadeOut"}
+            `}
+          >
+            <NavigationMenu.List
+              className={` flex gap-3 fixed top-16 left-1/2 -translate-x-1/2  items-center justify-center w-auto h-16 `}
+            >
+              {PagesNavBar.map((page, index) => (
+                <CreatedPages
+                  key={index}
+                  name={page.name}
+                  AllPages={page.AllPages}
+                  icon={page.icon}
+                />
+              ))}
+            </NavigationMenu.List>
+          </NavigationMenu.Root>
+        </Dialog.Portal>
+      </Dialog.Root>
+    </div>
   );
 }
