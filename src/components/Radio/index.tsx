@@ -25,7 +25,7 @@ const RadioGroupComponent = ({
             <RadioGroup.Item
               value={item}
               id={id[index]}
-              className='bg-black w-6 h-6 rounded-full shadow-sm shadow-black hover:bg-black/65 outline-none cursor-default'
+              className='bg-gray-500 w-6 h-6 rounded-full shadow-sm shadow-black hover:bg-black/65 outline-none cursor-default'
             >
               <RadioGroup.Indicator className='flex items-center justify-center w-full h-full relative after:content-[""] after:block after:w-[11px] after:h-[11px] after:rounded-[50%] after:bg-white' />
             </RadioGroup.Item>

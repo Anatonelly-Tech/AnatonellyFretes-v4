@@ -1,31 +1,56 @@
-import React from 'react';
-import InputMask from 'react-input-mask';
-import { InputHTMLAttributes } from 'react';
+import React, { InputHTMLAttributes } from 'react';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputLabelProps extends InputHTMLAttributes<HTMLInputElement> {
+  label: string;
+  icon?: React.ReactNode;
   mask?: string;
+  register: any;
 }
 
-const Input: React.FC<InputProps> = ({ mask, ...props }) => {
-  if (mask) {
+const InputLabel = ({
+  label,
+  icon,
+  mask,
+  register,
+  ...props
+}: InputLabelProps) => {
+  if (props.required === true) {
     return (
-      <InputMask mask={mask} {...props}>
-        {(inputProps: any) => (
+      <div>
+        <label className='text-sm font-medium text-black' htmlFor={props.id}>
+          {label}*
+        </label>
+        <div className='flex rounded shadow-md shadow-black/30'>
+          <div className='flex py-2 rounded-l bg-gray-500 items-center justify-center'>
+            {icon}
+          </div>
           <input
-            {...inputProps}
+            {...register(`${props.name}`)}
+            {...props}
             className='bg-zinc-900 py-2 px-2 rounded-r w-full text-sm placeholder:text-zinc-500 text-zinc-300'
           />
-        )}
-      </InputMask>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <label className='text-sm font-medium text-black' htmlFor={props.id}>
+          {label}
+        </label>
+        <div className='flex rounded shadow-md shadow-black/30'>
+          <div className='flex py-2 rounded-l bg-gray-500 items-center justify-center'>
+            {icon}
+          </div>
+          <input
+            {...register(`${props.name}`)}
+            {...props}
+            className='bg-zinc-900 py-2 px-2 rounded-r w-full text-sm placeholder:text-zinc-500 text-zinc-300'
+          />
+        </div>
+      </div>
     );
   }
-
-  return (
-    <input
-      {...props}
-      className='bg-zinc-900 py-2 px-2 rounded-r w-full text-sm placeholder:text-zinc-500 text-zinc-300'
-    />
-  );
 };
 
-export default Input;
+export default InputLabel;
