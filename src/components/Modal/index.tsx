@@ -13,6 +13,7 @@ import { useForm } from 'react-hook-form';
 import InputLabel from '../Input';
 import SelectComponent from '../Select';
 import RadioGroupComponent from '../Radio';
+import InputRadio from '../Radio';
 
 const ModalComponent = () => {
   const form = useForm();
@@ -87,9 +88,11 @@ const ModalComponent = () => {
               <hr className='border-zinc-400 ' />
             </div>
 
-            <RadioGroupComponent
+            <InputRadio
               title='Nível de acesso'
               value={['Administrador', 'Colaborador']}
+              register={register}
+              name='isAdmin'
               id={['Administrador', 'Colaborador']}
               label={['Administrador', 'Colaborador']}
               subLabel={[

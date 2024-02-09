@@ -1,46 +1,54 @@
 import React from 'react';
-import * as RadioGroup from '@radix-ui/react-radio-group';
 
-interface RadioGroupProps {
-  title: string;
-  value: string[];
+interface RadioProps {
   id: string[];
   label: string[];
   subLabel: string[];
+  register: any;
+  name?: string;
+  value: string[];
+  title: string;
 }
 
-const RadioGroupComponent = ({
+const InputRadio = ({
   title,
   value,
   id,
   label,
   subLabel,
-}: RadioGroupProps) => {
+  register,
+  name,
+}: RadioProps) => {
   return (
-    <div className='text-black flex flex-col items-start justify-center'>
+    <div className='text-black flex flex-col items-start justify-center gap-1'>
       <span className='text-sm text-black font-medium'>{title}*</span>
-      <RadioGroup.Root required className=' flex flex-col gap-2  items-start'>
-        {value.map((item, index) => (
-          <div className='flex  justify-center items-center gap-2' key={index}>
-            <RadioGroup.Item
-              value={item}
+      {value.map((item, index) => (
+        <div
+          className='flex items-center justify-center '
+          title={subLabel[index]}
+        >
+          <div className='flex items-center h-5'>
+            <input
+              {...register(name)}
               id={id[index]}
-              className='bg-gray-500 w-6 h-6 rounded-full shadow-sm shadow-black hover:bg-black/65 outline-none cursor-default'
-            >
-              <RadioGroup.Indicator className='flex items-center justify-center w-full h-full relative after:content-[""] after:block after:w-[11px] after:h-[11px] after:rounded-[50%] after:bg-white' />
-            </RadioGroup.Item>
-            <div className='flex flex-col'>
-              <label htmlFor={id[index]}> {label[index]}</label>
-              <label className='text-xs text-zinc-500' htmlFor={id[index]}>
-                {' '}
-                {subLabel[index]}
-              </label>
-            </div>
+              type='radio'
+              value={item}
+              className='w-5 h-5 text-blue-600 bg-gray-800 border-gray-800 focus:ring-blue-500 focus:ring-2'
+            />
           </div>
-        ))}
-      </RadioGroup.Root>
+          <div className='ms-2 text-sm'>
+            <label htmlFor={id[index]} className='font-medium text-gray-900'>
+              {label[index]}
+            </label>
+            <p
+              id='helper-radio-text'
+              className='text-xs font-normal text-black'
+            ></p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
 
-export default RadioGroupComponent;
+export default InputRadio;
