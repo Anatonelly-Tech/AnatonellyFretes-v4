@@ -92,18 +92,18 @@ export function NavBar() {
           MENU
         </Dialog.Trigger>
         <Dialog.Portal>
-          <button
-            className="fixed top-0 left-1/2 -translate-x-1/2 w-60 h-10 bg-violet-600 text-white font-bold text-3xl rounded-b-xl border-x-2 border-b-2 border-violet-500 shadow-especial shadow-violet-950 hover:shadow-zinc-800"
-            onClick={HadleAddAnimation}
-          >
-            MENU
-          </button>
           <Dialog.Overlay
             className={`${
               navBarActive ? "fixed inset-0 bg-black opacity-50" : "hidden"
             }`}
             onClick={HadleAddAnimation}
           />
+          <button
+            className="fixed top-0 left-1/2 -translate-x-1/2 w-60 h-10 bg-violet-600 text-white font-bold text-3xl rounded-b-xl border-x-2 border-b-2 border-violet-500 shadow-especial shadow-violet-950 hover:shadow-zinc-800"
+            onClick={HadleAddAnimation}
+          >
+            MENU
+          </button>
           <NavigationMenu.Root
             data-state={navBarActive ? "open" : "closed"}
             className={`w-auto h-auto ${
