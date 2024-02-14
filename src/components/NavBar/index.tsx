@@ -1,3 +1,4 @@
+"use client";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import * as Dialog from "@radix-ui/react-dialog";
 
@@ -88,7 +89,7 @@ export function NavBar() {
         <Dialog.Trigger
           className="fixed top-0 left-1/2 -translate-x-1/2 w-60 h-10 bg-violet-600 text-white font-bold text-3xl rounded-b-xl  shadow-especial shadow-violet-950 hover:shadow-zinc-800"
           onClick={HadleAddAnimation}
-          >
+        >
           MENU
         </Dialog.Trigger>
         <Dialog.Portal>
@@ -97,36 +98,37 @@ export function NavBar() {
               navBarActive ? "fixed inset-0 bg-black opacity-50" : "hidden"
             }`}
             onClick={HadleAddAnimation}
-            />
+          />
           <button
             className="fixed top-0 left-1/2 -translate-x-1/2 w-60 h-10 bg-violet-600 text-white font-bold text-3xl rounded-b-xl  shadow-especial shadow-violet-950 hover:shadow-zinc-800"
             onClick={HadleAddAnimation}
-            >
+          >
             MENU
           </button>
           <NavigationMenu.Root
             data-state={navBarActive ? true : false}
-            className={`w-auto h-auto ${
+            className={`w-0 h-0 fixed top-0 left-1/2 ${
               navBarActive ? "visible animate-fadeIn" : "invisible"
             }
             ${animationRoot ? "" : "animate-fadeOut"}
             `}
-            >
+          >
             <NavigationMenu.List
               className={` flex gap-3 fixed top-16 left-1/2 -translate-x-1/2  items-center justify-center w-auto h-16 `}
-              >
+            >
               {PagesNavBar.map((page, index) => (
                 <CreatedPages
-                key={index}
-                name={page.name}
-                AllPages={page.AllPages}
-                icon={page.icon}
+                  key={index}
+                  name={page.name}
+                  AllPages={page.AllPages}
+                  icon={page.icon}
+                  HadleAddAnimation={HadleAddAnimation}
                 />
-                ))}
+              ))}
             </NavigationMenu.List>
           </NavigationMenu.Root>
         </Dialog.Portal>
       </Dialog.Root>
-  </>
+    </>
   );
 }

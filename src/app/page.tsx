@@ -3,7 +3,6 @@
 // libs
 
 // components
-import { NavBar } from '@/components/NavBar';
 import UserInfo from '@/components/UserInfo';
 import AccountInformations from '@/components/AccountInformations';
 import ProgressBar from '@/components/ProgressBar';
@@ -14,7 +13,6 @@ import '../styles/main.css';
 export default function Home() {
   return (
     <div className='w-full h-full flex '>
-      <NavBar />
       {/* esquerda */}
       <div className='w-1/6 flex flex-col h-full py-2 items-center justify-center'>
         <UserInfo />
@@ -23,7 +21,7 @@ export default function Home() {
           result={'15 Fretes'}
         />
         <AccountInformations title={'Valor Economizado'} result={'R$150,00'} />
-        <ProgressBar />
+        {/* <ProgressBar /> */}
       </div>
       {/* meio */}
       <div className='w-3/5 h-full bg-blue-400 flex flex-col '></div>
