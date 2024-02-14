@@ -18,8 +18,8 @@ export function NavBar() {
     {
       name: "Home",
       AllPages: [
-        { title: "Home", path: "./home" },
-        { title: "Rastreamento de carga", path: "./home" },
+        { title: "Home", path: "./" },
+        { title: "Rastreamento de carga", path: "./test" },
       ],
       icon: <MdHomeFilled size={30} className="text-white" />,
     },
@@ -83,12 +83,12 @@ export function NavBar() {
   }
 
   return (
-    <div className="">
+    <>
       <Dialog.Root>
         <Dialog.Trigger
-          className="fixed top-0 left-1/2 -translate-x-1/2 w-60 h-10 bg-violet-600 text-white font-bold text-3xl rounded-b-xl border-x-2 border-b-2 border-violet-500 shadow-especial shadow-violet-950 hover:shadow-zinc-800"
+          className="fixed top-0 left-1/2 -translate-x-1/2 w-60 h-10 bg-violet-600 text-white font-bold text-3xl rounded-b-xl  shadow-especial shadow-violet-950 hover:shadow-zinc-800"
           onClick={HadleAddAnimation}
-        >
+          >
           MENU
         </Dialog.Trigger>
         <Dialog.Portal>
@@ -97,36 +97,36 @@ export function NavBar() {
               navBarActive ? "fixed inset-0 bg-black opacity-50" : "hidden"
             }`}
             onClick={HadleAddAnimation}
-          />
+            />
           <button
-            className="fixed top-0 left-1/2 -translate-x-1/2 w-60 h-10 bg-violet-600 text-white font-bold text-3xl rounded-b-xl border-x-2 border-b-2 border-violet-500 shadow-especial shadow-violet-950 hover:shadow-zinc-800"
+            className="fixed top-0 left-1/2 -translate-x-1/2 w-60 h-10 bg-violet-600 text-white font-bold text-3xl rounded-b-xl  shadow-especial shadow-violet-950 hover:shadow-zinc-800"
             onClick={HadleAddAnimation}
-          >
+            >
             MENU
           </button>
           <NavigationMenu.Root
-            data-state={navBarActive ? "open" : "closed"}
+            data-state={navBarActive ? true : false}
             className={`w-auto h-auto ${
               navBarActive ? "visible animate-fadeIn" : "invisible"
             }
-              ${animationRoot ? "" : "animate-fadeOut"}
+            ${animationRoot ? "" : "animate-fadeOut"}
             `}
-          >
+            >
             <NavigationMenu.List
               className={` flex gap-3 fixed top-16 left-1/2 -translate-x-1/2  items-center justify-center w-auto h-16 `}
-            >
+              >
               {PagesNavBar.map((page, index) => (
                 <CreatedPages
-                  key={index}
-                  name={page.name}
-                  AllPages={page.AllPages}
-                  icon={page.icon}
+                key={index}
+                name={page.name}
+                AllPages={page.AllPages}
+                icon={page.icon}
                 />
-              ))}
+                ))}
             </NavigationMenu.List>
           </NavigationMenu.Root>
         </Dialog.Portal>
       </Dialog.Root>
-    </div>
+  </>
   );
 }
