@@ -1,6 +1,10 @@
-import { ChevronDownIcon } from '@radix-ui/react-icons';
+// Libs
 import React from 'react';
 
+// Icons
+import { ChevronDownIcon } from '@radix-ui/react-icons';
+
+// Interface
 interface SelectProps {
   register: any;
   value: string[];
@@ -29,7 +33,6 @@ const SelectComponent = ({
         {...register(name)}
         id={id}
         className='bg-zinc-900 p-2 rounded shadow-sm shaodw-black focus:outline-none focus:shadow-outline invalid:text-black'
-        
       >
         <option value='' disabled selected>
           <p className='text-zinc-500'>{placeholder}</p>

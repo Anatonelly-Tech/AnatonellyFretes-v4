@@ -1,6 +1,11 @@
+// Libs
 import React from 'react';
 import * as Avatar from '@radix-ui/react-avatar';
 
+// Documentação da lib
+// https://www.radix-ui.com/primitives/docs/components/avatar
+
+// Interface
 interface AvatarComponentProps {
   username: string;
   fallback?: boolean;

@@ -1,5 +1,7 @@
+// Libs
 import React from 'react';
 
+// Interface
 interface RadioProps {
   id: string[];
   label: string[];

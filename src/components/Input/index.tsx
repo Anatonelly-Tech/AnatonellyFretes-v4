@@ -1,5 +1,7 @@
+// Libs
 import React, { InputHTMLAttributes } from 'react';
 
+// Interface
 interface InputLabelProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   icon?: React.ReactNode;

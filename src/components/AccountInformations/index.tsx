@@ -1,3 +1,4 @@
+// Interface
 interface InfoProps {
   title: string;
   result: string;

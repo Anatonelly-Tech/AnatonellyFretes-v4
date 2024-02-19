@@ -1,17 +1,17 @@
 'use client';
 
 // libs
+import { useState } from 'react';
 
 // components
 import UserInfo from '@/components/UserInfo';
 import AccountInformations from '@/components/AccountInformations';
 import ProgressBar from '@/components/ProgressBar';
 import Ranking from '@/components/Ranking';
+import { Carousel } from '@/components/Carousel';
 
 // style
 import '../styles/main.css';
-import { useState } from 'react';
-import { Carousel } from '@/components/Carousel';
 
 export default function Home() {
   const [username, setUsername] = useState('Maria');

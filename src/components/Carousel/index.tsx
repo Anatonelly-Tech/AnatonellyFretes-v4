@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+// Libs
+import React from 'react';
 import Marquee from 'react-fast-marquee';
 
+// Documentação da lib
+// https://www.npmjs.com/package/react-fast-marquee
+
 export function Carousel() {
-  const [publi, setPubli] = useState('');
   const Publis = [
     {
       empresa: 'Petrobras',
@@ -25,14 +28,6 @@ export function Carousel() {
       desconto: '15%',
       cupom: 'Anatonelly15',
     },
-    // {
-    //   empresa: 'Jefferson',
-    //   src: '/img/Publis/Jefferson.png',
-    // },
-    // {
-    //   empresa: 'Gabi',
-    //   src: '/img/Publis/Gabi.png',
-    // },
   ];
 
   return (
@@ -49,8 +44,12 @@ export function Carousel() {
           <div className='bg-white text-black p-3  rounded-lg'>
             <p className='text-xl font-black'>{publi.empresa}</p>
             <p className='text-lg font-semibold'>{publi.titulo}</p>
-            <p>Desconto: <span className='font-semibold'>{publi.desconto}</span></p>
-              <p>Cupom: <span className='font-semibold'>{publi.cupom}</span></p>
+            <p>
+              Desconto: <span className='font-semibold'>{publi.desconto}</span>
+            </p>
+            <p>
+              Cupom: <span className='font-semibold'>{publi.cupom}</span>
+            </p>
           </div>
         </div>
       ))}

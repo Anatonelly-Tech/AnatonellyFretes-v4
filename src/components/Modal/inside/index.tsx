@@ -1,20 +1,24 @@
 'use client';
 
-
-//libs
-import React, { useState } from 'react';
+// Libs
+import React from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
+import { useForm } from 'react-hook-form';
+import { DevTool } from '@hookform/devtools';
+
+// Documentação da lib
+// Dialog: https://www.radix-ui.com/primitives/docs/components/dialog
+// UseForm: https://react-hook-form.com/api/useform/useform
+// DevTools: https://react-hook-form.com/dev-tools
+
+// Icons
 import { FaLock, FaPhoneAlt, FaRegAddressCard } from 'react-icons/fa';
 import { PersonIcon } from '@radix-ui/react-icons';
-import { MdOutlineBusinessCenter, MdOutlineMailOutline } from 'react-icons/md';
-import { TbDeviceMobileMessage } from 'react-icons/tb';
-import { DevTool } from '@hookform/devtools';
-import { useForm } from 'react-hook-form';
+import { MdOutlineMailOutline } from 'react-icons/md';
 
-//components
+// Components
 import InputLabel from '@/components/Input';
 import SelectComponent from '@/components/Select';
-import RadioGroupComponent from '@/components/Radio';
 import InputRadio from '@/components/Radio';
 
 const ModalComponentInside = () => {

@@ -1,7 +1,10 @@
+// Libs
 import React from 'react';
-import * as Avatar from '@radix-ui/react-avatar';
+
+// Components
 import AvatarComponent from '../AvatarImage';
 
+// Interface
 interface UserInfoProps {
   username: string;
   role: string;

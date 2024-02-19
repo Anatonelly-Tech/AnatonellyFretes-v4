@@ -1,5 +1,9 @@
-import * as Progress from "@radix-ui/react-progress";
+// Libs
 import { useState, useEffect } from "react";
+import * as Progress from "@radix-ui/react-progress";
+
+// Documentação da lib
+// Progress: https://www.radix-ui.com/primitives/docs/components/progress
 
 export default function ProgressBar() {
   const [progress, setProgress] = useState(0);
