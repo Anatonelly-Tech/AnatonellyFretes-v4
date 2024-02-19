@@ -13,11 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={"w-full h-full" + inter.className}>
       <head>
         <link rel="icon" href="/favicon.png" />
       </head>
-      <body className="bg-anatonelly-bg bg-no-repeat bg-cover">
+      <body className="bg-anatonelly-bg bg-no-repeat bg-cover w-screen h-screen">
         <NavBar />
         {children}
       </body>
