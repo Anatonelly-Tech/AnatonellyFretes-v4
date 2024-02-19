@@ -1,5 +1,6 @@
 import React from 'react';
 import * as Avatar from '@radix-ui/react-avatar';
+import AvatarComponent from '../AvatarImage';
 
 interface UserInfoProps {
   username: string;
@@ -12,20 +13,12 @@ const UserInfo = ({ username, role, plan, invoice }: UserInfoProps) => {
   return (
     <div className='w-5/6 bg-purple-600 items-center justify-center flex pt-2 rounded-md flex-col gap-3'>
       <div className='flex flex-col justify-center items-center gap-2'>
-        <Avatar.Root className='bg-white border inline-flex h-20 w-20 select-none items-center justify-center overflow-hidden rounded-full align-middle '>
-          <Avatar.Image
-            className='h-full w-full rounded object-cover text-black'
-            src='/img/UsersImage/Maria.png'
-            alt={`${username}'s profile picture`}
-          />
-          <Avatar.Fallback
-            className='text-purple-300 leading-1 flex h-full w-full items-center justify-center bg-white text-[15px] font-medium'
-            delayMs={600}
-          >
-            {username.charAt(0).toUpperCase() +
-              username.charAt(1).toUpperCase()}
-          </Avatar.Fallback>
-        </Avatar.Root>
+        <AvatarComponent
+          username={username}
+          src={'/img/UsersImage/Maria.png'}
+          fallback={true}
+        />
+
         <div className='flex flex-col'>
           <p className='text-white text-md font-medium'>{username}</p>
           <p className='text-white text-sm font-light'>{role}</p>
