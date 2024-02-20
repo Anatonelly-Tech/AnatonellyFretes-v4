@@ -12,6 +12,8 @@ import { Carousel } from "@/components/Carousel";
 
 // style
 import "../styles/main.css";
+import UserNotifyBar from "@/components/UserNotifyBar";
+import * as Avatar from "@radix-ui/react-avatar";
 
 export default function Home() {
   const [username, setUsername] = useState("Maria");
@@ -53,7 +55,7 @@ export default function Home() {
   return (
     <div className="w-full h-full flex ">
       {/* esquerda */}
-      <div className="w-1/5 flex flex-col h-full py-2 items-center justify-center gap-5">
+      <div className="w-1/5 flex flex-col h-full py-4 items-center justify-start gap-5">
         <UserInfo
           username={username}
           role={"Admin"}
@@ -96,11 +98,17 @@ export default function Home() {
       </div>
       {/* direita */}
       <div className="w-1/5 h-full flex flex-col ">
-        {/* <MessageUserNotify
-          NumberMessage={0}
-          NumberUser={10}
-          NumberNotify={100}
-        /> */}
+        <div className="flex items-center justify-end gap-4 m-4">
+          <UserNotifyBar />
+          <Avatar.Root className="bg-white border inline-flex h-12 w-12 select-none items-center justify-center overflow-hidden rounded-full align-middle ">
+            <Avatar.Image
+              className="h-full w-full rounded object-cover text-black"
+              src={"/img/UsersImage/Maria.png"}
+              alt={`Maria's profile picture`}
+            />
+            <div className="bg-green-600 h-3 w-3 rounded-full absolute -translate-y-4 translate-x-5"></div>
+          </Avatar.Root>
+        </div>
         <div className=" flex flex-col items-center p-6">
           <h1 className="text-white text-2xl font-bold text-left">
             Rankings da Semana

@@ -7,29 +7,45 @@ import { VscBell } from "react-icons/vsc";
 import { VscMail } from "react-icons/vsc";
 
 const UserNotifyBar = () => {
-  const [account, setAccount] = useState(0);
-  const [bell, setBell] = useState(0);
-  const [mail, setMail] = useState(0);
+  const [account, setAccount] = useState(11);
+  const [bell, setBell] = useState(11);
+  const [mail, setMail] = useState(1);
+
+  if (account > 99) {
+    setAccount(99);
+  }
+  if (bell > 99) {
+    setBell(99);
+  }
+  if (mail > 99) {
+    setMail(99);
+  }
 
   return (
-    <div className="w-52 h-16 bg-purple-500 rounded flex p-2 justify-between items-center text-white">
+    <div className="w-40 h-12 p-2 bg-purple-500 rounded-lg flex  items-center justify-evenly text-white">
       <div>
-        <VscAccount size={45} />
-        <div className="bg-red-500 w-5 h-5 rounded-full absolute -translate-y-11 translate-x-7 ">
-          {account}
-        </div>
+        <VscMail size={30} />
+        {mail <= 0 ? null : (
+          <div className="bg-red-500 w-4 h-4 rounded-full absolute -translate-y-8 translate-x-5 flex items-center justify-center ">
+            <p className="text-xs">{mail}</p>
+          </div>
+        )}
       </div>
       <div>
-        <VscBell size={45} />
-        <div className="bg-red-500 w-5 h-5 rounded-full absolute -translate-y-11 translate-x-7 ">
-          {bell}
-        </div>
+        <VscAccount size={30} />
+        {account <= 0 ? null : (
+          <div className="bg-red-500 w-4 h-4 rounded-full absolute -translate-y-8 translate-x-5 flex items-center justify-center">
+            <p className="text-xs">{account}</p>
+          </div>
+        )}
       </div>
       <div>
-        <VscMail size={45} />
-        <div className="bg-red-500 w-5 h-5 rounded-full absolute -translate-y-11 translate-x-7 ">
-          {mail}
-        </div>
+        <VscBell size={30} />
+        {bell <= 0 ? null : (
+          <div className="bg-red-500 w-4 h-4 rounded-full absolute -translate-y-8 translate-x-5 flex items-center justify-center ">
+            <p className="text-xs">{bell}</p>
+          </div>
+        )}
       </div>
     </div>
   );

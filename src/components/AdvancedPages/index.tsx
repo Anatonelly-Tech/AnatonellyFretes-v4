@@ -5,14 +5,9 @@ interface AdvancedPagesProps {
 }
 
 export default function AdvancedPages({ WhatPage }: AdvancedPagesProps) {
-  const truckPositions = {
-    1: "left-[19%] animate-MoveLeft",
-    2: "left-[39%] animate-MoveLeft",
-    3: "left-[60%] animate-MoveLeft",
-    4: "left-[80%] animate-MoveLeft",
-  };
+  const truckPositions = ["18.5%", "39%", "59%", "79%"];
 
-  const getPosition = () => truckPositions[WhatPage] || "";
+  const getPosition = () => truckPositions[WhatPage - 1];
 
   const pageTexts = [
     "Dados de coleta e entrega",
@@ -24,16 +19,15 @@ export default function AdvancedPages({ WhatPage }: AdvancedPagesProps) {
   return (
     <div className="w-full relative left-0 p-5">
       <FaTruck
-        className={`text-white text-4xl relative -top-2 ${getPosition()}`}
+        className={`text-white text-4xl relative -top-2 animate-MoveLeft`}
+        style={{ left: getPosition() }}
       />
-      <div className="flex flex-col items-center">
+      <div className="flex items-center justify-evenly w-full">
         <hr className="w-11/12 absolute top-14" />
         {[1, 2, 3, 4].map((page) => (
           <div
             key={page}
-            className={`w-5 h-5 bg-purple-600 rounded-full absolute flex items-center justify-center left-[${
-              20 + 20 * (page - 1)
-            }%] top-[2.9rem]`}
+            className={`w-5 h-5 bg-purple-600 rounded-full flex items-center justify-center relative -translate-y-[0.6rem]`}
           >
             {WhatPage === page ? (
               <div className=" absolute w-2 h-2 rounded-full bg-white flex items-center justify-center">

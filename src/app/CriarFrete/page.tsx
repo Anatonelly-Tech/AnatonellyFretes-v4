@@ -2,6 +2,7 @@
 
 import AdvancedPages from "@/components/AdvancedPages";
 import React from "react";
+import Page1 from "./page1";
 
 const page = () => {
   return (
@@ -10,9 +11,9 @@ const page = () => {
         Meus <br /> Fretes
       </h1>
       <div className="bg-zinc-500 w-[80%] h-[70%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded">
-        <AdvancedPages WhatPage={3} />
+        <AdvancedPages WhatPage={1} />
       </div>
-      <form action=""></form>
+      <form action="">{/* <Page1 /> */}</form>
     </div>
   );
 };

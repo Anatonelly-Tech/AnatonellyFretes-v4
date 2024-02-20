@@ -19,7 +19,7 @@ const page = () => {
       </div>
 
       <div className="w-8/12 h-2/4 absolute  left-1/2 top-44 -translate-x-1/2 bg-slate-400">
-        <AdvancedPages WhatPage={2} />
+        <AdvancedPages WhatPage={1} />
       </div>
     </div>
   );
