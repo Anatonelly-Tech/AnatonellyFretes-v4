@@ -1,7 +1,7 @@
 'use client';
 
 // Libs
-import React, { useState } from 'react';
+import React from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import ModalComponentInside from './inside';
 

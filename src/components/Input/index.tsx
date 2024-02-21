@@ -1,5 +1,6 @@
 // Libs
 import React, { InputHTMLAttributes } from 'react';
+import { useHookFormMask } from 'use-mask-input';
 
 // Interface
 interface InputLabelProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -16,43 +17,28 @@ const InputLabel = ({
   register,
   ...props
 }: InputLabelProps) => {
-  if (props.required === true) {
-    return (
-      <div>
-        <label className='text-sm font-medium text-black' htmlFor={props.id}>
-          {label}*
-        </label>
-        <div className='flex rounded shadow-md shadow-black/30'>
-          <div className='flex py-2 rounded-l bg-gray-500 items-center justify-center'>
-            {icon}
-          </div>
-          <input
-            {...register(`${props.name}`)}
-            {...props}
-            className='bg-zinc-900 py-2 px-2 rounded-r w-full text-sm placeholder:text-zinc-500 text-zinc-300'
-          />
+  const RegisterWithMask = useHookFormMask(register);
+  const fieldRegister = mask
+    ? RegisterWithMask(props.name, mask)
+    : register(props.name);
+
+  return (
+    <div>
+      <label className='text-sm font-medium text-black' htmlFor={props.id}>
+        {label}*
+      </label>
+      <div className='flex rounded shadow-md shadow-black/30'>
+        <div className='flex py-2 rounded-l bg-gray-500 items-center justify-center'>
+          {icon}
         </div>
+        <input
+          {...fieldRegister}
+          {...props}
+          className='bg-zinc-900 py-2 px-2 rounded-r w-full text-sm placeholder:text-zinc-500 text-zinc-300'
+        />
       </div>
-    );
-  } else {
-    return (
-      <div>
-        <label className='text-sm font-medium text-black' htmlFor={props.id}>
-          {label}
-        </label>
-        <div className='flex rounded shadow-md shadow-black/30'>
-          <div className='flex py-2 rounded-l bg-gray-500 items-center justify-center'>
-            {icon}
-          </div>
-          <input
-            {...register(`${props.name}`)}
-            {...props}
-            className='bg-zinc-900 py-2 px-2 rounded-r w-full text-sm placeholder:text-zinc-500 text-zinc-300'
-          />
-        </div>
-      </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default InputLabel;

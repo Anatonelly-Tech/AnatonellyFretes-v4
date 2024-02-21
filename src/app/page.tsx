@@ -91,7 +91,7 @@ export default function Home() {
             <span className="text-2xl">Publicidade</span>
             <hr className="border-zinc-400 w-36 border-2" />
           </div>
-          <div className=" w-full -z-10">
+          <div className=" w-full">
             <Carousel />
           </div>
         </div>
