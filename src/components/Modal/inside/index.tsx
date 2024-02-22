@@ -1,10 +1,11 @@
 'use client';
 
 // Libs
-import React from 'react';
+import React, { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 // Documentação da lib
@@ -25,17 +26,37 @@ import InputLabel from '@/components/Input';
 import SelectComponent from '@/components/Select';
 import InputRadio from '@/components/Radio';
 
+// Interface
+interface State extends SnackbarOrigin {
+  open: boolean;
+}
+
 const ModalComponentInside = () => {
+  const [state, setState] = useState<State>({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+  const { vertical, horizontal, open } = state;
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
+
   const {
     register,
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(responsibleValidationSchema) });
 
   const onSubmit = (data: any) => {
     console.log(data);
+    setState({ vertical: 'bottom', horizontal: 'left', open: true });
+
     //manda para o db
+    reset();
   };
 
   return (
@@ -63,9 +84,10 @@ const ModalComponentInside = () => {
                 placeholder='Nome completo do usuário'
                 label='Nome Completo'
                 icon={<PersonIcon className='w-8' />}
-                
               />
-              <span className='text-red-500 font-bold text-sm m-0 p-0'>{errors.name?.message}</span>
+              <span className='text-red-500 font-bold text-sm m-0 p-0'>
+                {errors.name?.message}
+              </span>
             </div>
             <div>
               <InputLabel
@@ -76,9 +98,10 @@ const ModalComponentInside = () => {
                 label='CPF'
                 icon={<FaRegAddressCard className='w-8' />}
                 mask='999.999.999-99'
-                
               />
-              <span className='text-red-500 font-bold text-sm m-0 p-0'>{errors.cpf?.message}</span>
+              <span className='text-red-500 font-bold text-sm m-0 p-0'>
+                {errors.cpf?.message}
+              </span>
             </div>
             <div>
               <InputLabel
@@ -89,9 +112,10 @@ const ModalComponentInside = () => {
                 label='E-mail'
                 type='email'
                 icon={<MdOutlineMailOutline className='w-8' />}
-                
               />
-              <span className='text-red-500 font-bold text-sm m-0 p-0'>{errors.email?.message}</span>
+              <span className='text-red-500 font-bold text-sm m-0 p-0'>
+                {errors.email?.message}
+              </span>
             </div>
             <div>
               <InputLabel
@@ -101,10 +125,11 @@ const ModalComponentInside = () => {
                 placeholder='(XX) 00000-0000'
                 label='Telefone'
                 icon={<FaPhoneAlt className='w-8' />}
-                
                 mask='(99) 99999-9999'
               />
-              <span className='text-red-500 font-bold text-sm m-0 p-0'>{errors.phone?.message}</span>
+              <span className='text-red-500 font-bold text-sm m-0 p-0'>
+                {errors.phone?.message}
+              </span>
             </div>
             <div>
               <SelectComponent
@@ -116,7 +141,9 @@ const ModalComponentInside = () => {
                 id='contactForm'
                 name='contactForm'
               />
-              <span className='text-red-500 font-bold text-sm m-0 p-0'>{errors.contactForm?.message}</span>
+              <span className='text-red-500 font-bold text-sm m-0 p-0'>
+                {errors.contactForm?.message}
+              </span>
             </div>
           </div>
           <div className='flex flex-col gap-3'>
@@ -140,7 +167,9 @@ const ModalComponentInside = () => {
                   'Pode editar os próprios dados, exceto nome, e-mail e nível de acesso.',
                 ]}
               />
-              <span className='text-red-500 font-bold text-sm m-0 p-0'>{errors.isAdmin?.message}</span>
+              <span className='text-red-500 font-bold text-sm m-0 p-0'>
+                {errors.isAdmin?.message}
+              </span>
             </div>
             <div>
               <SelectComponent
@@ -172,7 +201,9 @@ const ModalComponentInside = () => {
                 id='departament'
                 name='departament'
               />
-              <span className='text-red-500 font-bold text-sm m-0 p-0'>{errors.departament?.message}</span>
+              <span className='text-red-500 font-bold text-sm m-0 p-0'>
+                {errors.departament?.message}
+              </span>
             </div>
           </div>
           <div className='flex flex-col gap-3'>
@@ -189,9 +220,10 @@ const ModalComponentInside = () => {
                 label='Senha'
                 type='password'
                 icon={<FaLock className='w-8' />}
-                
               />
-              <span className='text-red-500 font-bold text-sm m-0 p-0'>{errors.password?.message}</span>
+              <span className='text-red-500 font-bold text-sm m-0 p-0'>
+                {errors.password?.message}
+              </span>
             </div>
             <div>
               <InputLabel
@@ -202,9 +234,10 @@ const ModalComponentInside = () => {
                 label='Confirme a senha'
                 type='password'
                 icon={<FaLock className='w-8' />}
-                
               />
-              <span className='text-red-500 font-bold text-sm m-0 p-0'>{errors.confirmPassword?.message}</span>
+              <span className='text-red-500 font-bold text-sm m-0 p-0'>
+                {errors.confirmPassword?.message}
+              </span>
             </div>
           </div>
         </form>
@@ -219,6 +252,15 @@ const ModalComponentInside = () => {
             Enviar
           </button>
         </div>
+
+        <Snackbar
+          anchorOrigin={{ vertical, horizontal }}
+          open={open}
+          onClose={handleClose}
+          autoHideDuration={5000}
+          message='Usuário cadastrado com sucesso!'
+          key={vertical + horizontal}
+        />
         <Dialog.Close />
       </Dialog.Content>
     </Dialog.Portal>

@@ -13,8 +13,8 @@ export const responsibleValidationSchema = Yup.object().shape({
   isAdmin: Yup.string().required('Tipo de usuário é obrigatório'),
   departament: Yup.string().required('Departamento é obrigatório'),
   password: Yup.string().required('Senha é obrigatória'),
-  confirmPassword: Yup.string().required('A confirmação da senha é obrigatória').oneOf(
-    [Yup.ref('password'), null],
-    'As senhas não coincidem'
-  ),
+  confirmPassword: Yup.string()
+    .required('A confirmação da senha é obrigatória')
+    .oneOf([Yup.ref('password'), null], 'As senhas não coincidem'),
 });
+ 
