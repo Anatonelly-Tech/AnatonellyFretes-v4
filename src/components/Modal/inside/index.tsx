@@ -56,7 +56,7 @@ const ModalComponentInside = () => {
     setState({ vertical: 'bottom', horizontal: 'left', open: true });
 
     //manda para o db
-    reset();
+    // reset();
   };
 
   return (
@@ -257,7 +257,7 @@ const ModalComponentInside = () => {
           anchorOrigin={{ vertical, horizontal }}
           open={open}
           onClose={handleClose}
-          autoHideDuration={5000}
+          autoHideDuration={122000}
           message='Usuário cadastrado com sucesso!'
           key={vertical + horizontal}
         />

@@ -22,14 +22,14 @@ const InputRadio = ({
   name,
 }: RadioProps) => {
   return (
-    <div className='text-black flex flex-col items-start justify-center gap-1'>
+    <div className='text-black flex flex-col w-auto items-start justify-center gap-1'>
       <span className='text-sm text-black font-medium'>{title}*</span>
       {value.map((item, index) => (
         <div
-          className='flex items-center justify-center '
+          className='flex items-center w-auto justify-center '
           title={subLabel[index]}
         >
-          <div className='flex items-center h-5'>
+          <div className='flex items-center w-auto h-5'>
             <input
               {...register(name)}
               id={id[index]}
