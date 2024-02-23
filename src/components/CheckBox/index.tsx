@@ -9,7 +9,7 @@ interface CheckBoxProps {
 
 export default function CheckBox({ label, id, sublabel }: CheckBoxProps) {
   return (
-    <div className="flex items-center ">
+    <div className="flex items-center w-56">
       <Checkbox.Root
         className="shadow-blackA4 hover:bg-violet3 flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] bg-white shadow-[0_2px_10px] outline-none focus:shadow-[0_0_0_2px_black]"
         id={id}
@@ -20,7 +20,7 @@ export default function CheckBox({ label, id, sublabel }: CheckBoxProps) {
       </Checkbox.Root>
       <div className="flex flex-col items-start justify-center ">
         <label
-          className="pl-2 text-[15px] leading-none text-white"
+          className="pl-2 text-[15px] leading-none text-white w-36"
           htmlFor={id}
         >
           {label}
