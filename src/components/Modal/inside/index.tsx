@@ -25,6 +25,7 @@ import { MdOutlineMailOutline } from 'react-icons/md';
 import InputLabel from '@/components/Input';
 import SelectComponent from '@/components/Select';
 import InputRadio from '@/components/Radio';
+import { Alert } from '@mui/material';
 
 // Interface
 interface State extends SnackbarOrigin {
@@ -242,7 +243,6 @@ const ModalComponentInside = () => {
           </div>
         </form>
         <DevTool control={control} />
-
         <div className='flex mt-6 gap-3'>
           <button
             form='modalForm'
@@ -252,15 +252,22 @@ const ModalComponentInside = () => {
             Enviar
           </button>
         </div>
-
         <Snackbar
           anchorOrigin={{ vertical, horizontal }}
           open={open}
           onClose={handleClose}
-          autoHideDuration={122000}
-          message='Usuário cadastrado com sucesso!'
+          autoHideDuration={10000}
           key={vertical + horizontal}
-        />
+        >
+          <Alert
+            onClose={handleClose}
+            severity='success'
+            variant='filled'
+            sx={{ width: '100%' }}
+          >
+            Usuário cadastrado com sucesso!
+          </Alert>
+        </Snackbar>
         <Dialog.Close />
       </Dialog.Content>
     </Dialog.Portal>
