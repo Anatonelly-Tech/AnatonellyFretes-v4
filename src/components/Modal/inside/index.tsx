@@ -242,7 +242,7 @@ const ModalComponentInside = () => {
             </div>
           </div>
         </form>
-        <DevTool control={control} />
+        {/* <DevTool control={control} /> */}
 
         <div className="flex mt-6 gap-3">
           <button
@@ -262,9 +262,9 @@ const ModalComponentInside = () => {
         >
           <Alert
             onClose={handleClose}
-            severity='success'
-            variant='filled'
-            sx={{ width: '100%' }}
+            severity="success"
+            variant="filled"
+            sx={{ width: "100%" }}
           >
             Usuário cadastrado com sucesso!
           </Alert>

@@ -89,7 +89,7 @@ const page = () => {
 
   return (
     <div className="w-full h-full flex flex-col justify-between">
-      <DevTool control={control} />
+      {/* <DevTool control={control} /> */}
       <h1 className="bg-gradient-to-br from-purple-500 to-blue-500 inline-block text-transparent bg-clip-text text-6xl font-extrabold break-all">
         Meus <br /> Fretes
       </h1>

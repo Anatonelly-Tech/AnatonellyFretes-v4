@@ -1,7 +1,16 @@
-import React from 'react';
+import React from "react";
 
-const Page3 = () => {
-  return <div>Page3</div>;
-};
+interface Page3Props {
+  register: any;
+  error: any;
+}
 
-export default Page3;
+export default function Page3({ register, error }: Page3Props) {
+  return (
+    <div className="flex flex-col items-center justify-center w-4/5 h-4/5 bg-zinc-400 gap-5">
+      
+      
+      
+    </div>
+  );
+}
