@@ -56,7 +56,7 @@ const ModalComponentInside = () => {
     setState({ vertical: 'bottom', horizontal: 'left', open: true });
 
     //manda para o db
-    // reset();
+    reset();
   };
 
   return (

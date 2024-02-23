@@ -73,14 +73,14 @@ export default function Page1({ register }: Page1Props) {
         </div>
         <div className='bg-zinc-300 shadow-md p-2 rounded flex w-1/3 '>
           <InputRadio
-            id={['LocalizacaoFrete']}
+            id={['localizacaoFrete']}
             label={['Nacional', 'Internacional']}
             subLabel={[
               'Fretes realizados dentro do país',
               'Fretes realizados para fora do país',
             ]}
             register={register}
-            name={'Nacional'}
+            name={'localizacaoFrete'}
             value={['Nacional', 'Internacional']}
             title={'Localizacao do Frete'}
           />

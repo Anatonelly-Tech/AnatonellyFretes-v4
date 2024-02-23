@@ -23,7 +23,7 @@ const InputLabel = ({
     : register(props.name);
 
   return (
-    <div>
+    <div className='w-full'>
       <label className='text-sm font-medium text-black' htmlFor={props.id}>
         {label}*
       </label>

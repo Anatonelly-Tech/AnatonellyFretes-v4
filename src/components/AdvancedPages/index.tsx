@@ -2,7 +2,6 @@ import Page1 from '@/app/CriarFrete/page1';
 import Page2 from '@/app/CriarFrete/page2';
 import Loading from '@/components/Loading';
 
-
 interface AdvancedPagesProps {
   activeStep: number;
   register: any;
@@ -15,8 +14,9 @@ export default function AdvancedPages({
   switch (activeStep) {
     case 0:
       return <Page1 register={register} />;
-    case 1:
-      return <Page2 />;
+      case 1:
+        // return <Page1 register={register} />;
+        return <Page2 register={register} />;
     case 2:
       return <Page1 register={register} />;
     case 3:
