@@ -11,14 +11,14 @@ import ModalComponentInside from './inside';
 // Icons
 import { PlusCircledIcon } from '@radix-ui/react-icons';
 
-const ModalComponent = () => {
+const ModalComponent = ({setResponsaveisFrete}:any) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger className='w-50 h-8 p-2 items-center justify-center gap-1 bg-gray-500 rounded-sm flex flex-row leading-none hover:bg-gray-600 text-gray-100 shadow-md shadow-black/30 font-black'>
         <PlusCircledIcon />
         Adicionar Funcionario
       </Dialog.Trigger>
-      <ModalComponentInside />
+      <ModalComponentInside setResponsaveisFrete={setResponsaveisFrete} />
     </Dialog.Root>
   );
 };

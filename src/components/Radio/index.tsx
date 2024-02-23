@@ -8,7 +8,7 @@ interface RadioProps {
   subLabel: string[];
   register: any;
   name?: string;
-  value: string[];
+  value: any[];
   title: string;
 }
 
