@@ -253,19 +253,18 @@ const ModalComponentInside = () => {
             Enviar
           </button>
         </div>
-
         <Snackbar
           anchorOrigin={{ vertical, horizontal }}
           open={open}
           onClose={handleClose}
-          autoHideDuration={122000}
+          autoHideDuration={10000}
           key={vertical + horizontal}
         >
           <Alert
             onClose={handleClose}
-            severity="success"
-            variant="filled"
-            sx={{ width: "100%" }}
+            severity='success'
+            variant='filled'
+            sx={{ width: '100%' }}
           >
             Usuário cadastrado com sucesso!
           </Alert>
