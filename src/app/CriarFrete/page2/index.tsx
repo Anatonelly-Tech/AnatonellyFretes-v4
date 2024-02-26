@@ -30,7 +30,7 @@ const Page2 = ({ register }: Page2Props) => {
             label={['Sim', 'Não']}
             subLabel={['Frete precisa de lona', 'frete não precisa de lona']}
             register={register}
-            name={'Sim'}
+            name={'PrecisaLona'}
             value={['Sim', 'Não']}
             title={'Precisa de lona?'}
           />
@@ -44,7 +44,7 @@ const Page2 = ({ register }: Page2Props) => {
               'Frete não precisa de rastreador',
             ]}
             register={register}
-            name={'Sim'}
+            name={'PrecisaRastreador'}
             value={['Sim', 'Não']}
             title={'Precisa de Rastreador?'}
           />

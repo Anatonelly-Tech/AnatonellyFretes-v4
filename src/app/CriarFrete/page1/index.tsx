@@ -16,7 +16,10 @@ import { FaCity } from 'react-icons/fa';
 import { MdDateRange } from 'react-icons/md';
 import { getAllResponsibles } from '@/services/responsibleFreight';
 import LoadingForComponents from '@/components/Loading/LoadingForComponents';
+import { VscAccount } from 'react-icons/vsc';
 export default function Page1({ register, error }: Page1Props) {
+  const [loaded, setLoaded] = useState(false);
+
   const [responsaveisFrete, setResponsaveisFrete] = useState([]);
   useEffect(() => {
     const getResponsaveis = async () => {
@@ -25,7 +28,28 @@ export default function Page1({ register, error }: Page1Props) {
     };
     getResponsaveis();
   }, []);
-  console.log(responsaveisFrete);
+
+  const WaitLoad = () => {
+    setTimeout(() => {
+      setLoaded(true);
+    }, 5000);
+  };
+
+  const tryLoading = () => {
+    return loaded == false ? (
+      <>
+        <LoadingForComponents />
+        {WaitLoad()}
+      </>
+    ) : (
+      <div className='flex flex-col items-center justify-center'>
+        <VscAccount className='text-white' size={50}/>
+        <span className='text-white font-bold'>
+          Nenhum Funcionario Cadastrado!
+        </span>
+      </div>
+    );
+  };
 
   return (
     <div className='flex w-full h-full flex-col items-start justify-center gap-8 p-5'>
@@ -33,22 +57,22 @@ export default function Page1({ register, error }: Page1Props) {
         <div className='flex w-full gap-4  bg-zinc-300 shadow-md p-2 rounded'>
           <div className='w-2/3'>
             <InputLabel
-              id='colectCity'
-              name='colectCity'
+              id='collectCity'
+              name='collectCity'
               register={register}
               label='Cidade de Coleta'
               icon={<FaCity className='w-8' />}
               placeholder='Cidade de Coleta'
             />
             <span className='text-sm flex text-red-500 font-bold'>
-              {error.colectCity?.message}
+              {error.collectCity?.message}
             </span>
           </div>
 
           <div className='w-1/3'>
             <InputLabel
-              id='colectDate'
-              name='colectDate'
+              id='collectDate'
+              name='collectDate'
               register={register}
               type='date'
               label='Data de Coleta'
@@ -56,7 +80,7 @@ export default function Page1({ register, error }: Page1Props) {
               placeholder='DD/MM/AAAA'
             />
             <span className='text-sm flex text-red-500 font-bold'>
-              {error.colectDate?.message}
+              {error.collectDate?.message}
             </span>
           </div>
         </div>
@@ -113,7 +137,7 @@ export default function Page1({ register, error }: Page1Props) {
                 })
               ) : (
                 <div className='grid col-start-1 col-end-5 py-5 w-full justify-center items-center'>
-                  <LoadingForComponents />
+                  {tryLoading()}
                 </div>
               )}
             </div>
@@ -128,12 +152,12 @@ export default function Page1({ register, error }: Page1Props) {
               'Fretes realizados para fora do país',
             ]}
             register={register}
-            name={'localizacaoFrete'}
+            name={'radioValueLocalizacao'}
             value={['Nacional', 'Internacional']}
             title={'Localizacao do Frete'}
           />
           <span className='text-sm flex text-red-500 font-bold'>
-            {error.localizacaoFrete?.message}
+            {error.radioValueLocalizacao?.message}
           </span>
         </div>
       </div>
