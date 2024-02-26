@@ -36,7 +36,7 @@ const page = () => {
     setState({ ...state, open: false });
   };
 
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(3);
 
   const {
     register,
@@ -113,6 +113,10 @@ const page = () => {
       } else {
         setState({ vertical: 'bottom', horizontal: 'left', open: true });
       }
+    }
+    // page3
+    if (activeStep == 2) {
+      actualStep = activeStep + 1;
     }
 
     return setActiveStep(actualStep);

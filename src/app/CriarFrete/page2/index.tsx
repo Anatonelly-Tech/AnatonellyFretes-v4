@@ -117,7 +117,7 @@ const Page2 = ({ register, error }: Page2Props) => {
         <div className='flex flex-col w-full'>
           <SelectComponent
             register={register}
-            placeholder='Selecione a unidade de medida'
+            placeholder='Selecione'
             value={['Por Quilograma', 'Por Tonelada']}
             valueId={['KG', 'T']}
             label='Unidade de Medida'

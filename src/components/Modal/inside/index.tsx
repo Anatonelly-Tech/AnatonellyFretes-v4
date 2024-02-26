@@ -147,7 +147,7 @@ const ModalComponentInside = ({ setResponsaveisFrete }: any) => {
             <div>
               <SelectComponent
                 register={register}
-                placeholder='Selecione o método de contato'
+                placeholder='Selecione'
                 value={['Apenas Ligação', 'Ligação e Whatsapp']}
                 valueId={['onlyCall', 'callAndWhatsapp']}
                 label='Forma de Contato'
@@ -187,7 +187,7 @@ const ModalComponentInside = ({ setResponsaveisFrete }: any) => {
             <div>
               <SelectComponent
                 register={register}
-                placeholder='Selecione o cargo'
+                placeholder='Selecione'
                 value={[
                   'Administrativo',
                   'Comercial',
