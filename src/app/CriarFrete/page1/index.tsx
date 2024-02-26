@@ -43,7 +43,7 @@ export default function Page1({ register, error }: Page1Props) {
       </>
     ) : (
       <div className='flex flex-col items-center justify-center'>
-        <VscAccount className='text-white' size={50}/>
+        <VscAccount className='text-white' size={50} />
         <span className='text-white font-bold'>
           Nenhum Funcionario Cadastrado!
         </span>
@@ -62,7 +62,8 @@ export default function Page1({ register, error }: Page1Props) {
               register={register}
               label='Cidade de Coleta'
               icon={<FaCity className='w-8' />}
-              placeholder='Cidade de Coleta'
+              isRequired={true}
+              placeholder='Ex. São Paulo - SP'
             />
             <span className='text-sm flex text-red-500 font-bold'>
               {error.collectCity?.message}
@@ -71,6 +72,7 @@ export default function Page1({ register, error }: Page1Props) {
 
           <div className='w-1/3'>
             <InputLabel
+              isRequired={true}
               id='collectDate'
               name='collectDate'
               register={register}
@@ -87,12 +89,13 @@ export default function Page1({ register, error }: Page1Props) {
         <div className='flex w-full gap-4  bg-zinc-300 shadow-md p-2 rounded'>
           <div className='w-2/3'>
             <InputLabel
+              isRequired={true}
               id='deliveryCity'
               name='deliveryCity'
               register={register}
               label='Cidade de Entrega'
               icon={<FaCity className='w-8' />}
-              placeholder='Cidade de Entrega'
+              placeholder='Ex. Rio de Janeiro - RJ'
             />
             <span className='text-sm flex text-red-500 font-bold'>
               {error.deliveryCity?.message}
@@ -105,6 +108,7 @@ export default function Page1({ register, error }: Page1Props) {
               register={register}
               type='date'
               label='Data de Entrega'
+              isRequired={true}
               icon={<MdDateRange className='w-8' />}
               placeholder='DD/MM/AAAA'
             />
@@ -146,6 +150,7 @@ export default function Page1({ register, error }: Page1Props) {
         <div className='bg-zinc-300 shadow-md p-4 rounded flex flex-col gap-3 w-auto h-auto items-start'>
           <InputRadio
             id={['Nacional', 'Internacional']}
+            isRequired={true}
             label={['Nacional', 'Internacional']}
             subLabel={[
               'Fretes realizados dentro do país',

@@ -8,6 +8,7 @@ interface InputLabelProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ReactNode;
   mask?: string;
   register: any;
+  isRequired?: boolean;
 }
 
 const InputLabel = ({
@@ -15,6 +16,7 @@ const InputLabel = ({
   icon,
   mask,
   register,
+  isRequired = false,
   ...props
 }: InputLabelProps) => {
   const RegisterWithMask = useHookFormMask(register);
@@ -22,23 +24,43 @@ const InputLabel = ({
     ? RegisterWithMask(props.name, mask)
     : register(props.name);
 
-  return (
-    <div className='w-full'>
-      <label className='text-sm font-medium text-black' htmlFor={props.id}>
-        {label}*
-      </label>
-      <div className='flex rounded shadow-md shadow-black/30'>
-        <div className='flex py-2 text-white rounded-l bg-gray-500 items-center justify-center'>
-          {icon}
+  if (!isRequired) {
+    return (
+      <div className='w-full'>
+        <label className='text-sm font-medium text-black' htmlFor={props.id}>
+          {label}
+        </label>
+        <div className='flex rounded shadow-md shadow-black/30'>
+          <div className='flex py-2 text-white rounded-l bg-gray-500 items-center justify-center'>
+            {icon}
+          </div>
+          <input
+            {...fieldRegister}
+            {...props}
+            className='bg-zinc-900 p-2 rounded-r w-full text-sm placeholder:text-zinc-500 text-zinc-300 dark:[color-scheme:dark]'
+          />
         </div>
-        <input
-          {...fieldRegister}
-          {...props}
-          className='bg-zinc-900 py-2 px-2 rounded-r w-full text-sm placeholder:text-zinc-500 text-zinc-300 dark:[color-scheme:dark]'
-        />
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className='w-full'>
+        <label className='text-sm font-medium text-black' htmlFor={props.id}>
+          {label}*
+        </label>
+        <div className='flex rounded shadow-md shadow-black/30'>
+          <div className='flex py-2 text-white rounded-l bg-gray-500 items-center justify-center'>
+            {icon}
+          </div>
+          <input
+            {...fieldRegister}
+            {...props}
+            className='bg-zinc-900 p-2 rounded-r w-full text-sm placeholder:text-zinc-500 text-zinc-300 dark:[color-scheme:dark]'
+          />
+        </div>
+      </div>
+    );
+  }
 };
 
 export default InputLabel;
