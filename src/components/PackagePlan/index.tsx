@@ -106,7 +106,13 @@ const PackagePlan: React.FC = () => {
     ) => {
       for (let i = 0; i < beneficios.length; i++) {
         await new Promise((resolve) => setTimeout(resolve, timeout));
-        setVisibleBenefits((prevBenefits) => [...prevBenefits, beneficios[i]]);
+        setVisibleBenefits((prevBenefits) => {
+        
+          if (!prevBenefits.includes(beneficios[i])) {
+            return [...prevBenefits, beneficios[i]];
+          }
+          return prevBenefits;
+        });
       }
     };
 
