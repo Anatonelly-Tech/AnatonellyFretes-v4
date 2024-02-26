@@ -11,7 +11,7 @@ import AdvancedPages from '@/components/AdvancedPages';
 import StepperComponent from '@/components/Stepper';
 
 // Utils
-import { createFreightPage1ValidationSchema } from '@/utils/createFreightValidation';
+import { createFreightValidationSchema } from '@/utils/createFreightValidation';
 
 // Icons
 import { VscChevronRight } from 'react-icons/vsc';
@@ -45,7 +45,7 @@ const page = () => {
     reset,
     formState: { errors, touchedFields },
   } = useForm({
-    resolver: yupResolver(createFreightPage1ValidationSchema),
+    resolver: yupResolver(createFreightValidationSchema),
     mode: 'all',
   });
 
@@ -62,27 +62,59 @@ const page = () => {
 
   const nextStep = () => {
     let actualStep = activeStep;
-    if (
-      touchedFields.collectCity == true &&
-      touchedFields.collectDate == true &&
-      touchedFields.deliveryCity == true &&
-      touchedFields.deliveryDate == true &&
-      touchedFields.radioValueLocalizacao == true
-    ) {
-      setState({ vertical: 'bottom', horizontal: 'left', open: false });
-
+    // page1
+    if (activeStep == 0) {
       if (
-        errors.collectCity == undefined &&
-        errors.collectDate == undefined &&
-        errors.deliveryCity == undefined &&
-        errors.deliveryDate == undefined &&
-        errors.radioValueLocalizacao == undefined
+        touchedFields.collectCity == true &&
+        touchedFields.collectDate == true &&
+        touchedFields.deliveryCity == true &&
+        touchedFields.deliveryDate == true &&
+        touchedFields.radioValueLocalizacao == true
       ) {
-        actualStep = activeStep + 1;
+        setState({ vertical: 'bottom', horizontal: 'left', open: false });
+  
+        if (
+          errors.collectCity == undefined &&
+          errors.collectDate == undefined &&
+          errors.deliveryCity == undefined &&
+          errors.deliveryDate == undefined &&
+          errors.radioValueLocalizacao == undefined
+        ) {
+          actualStep = activeStep + 1;
+        }
+      } else {
+        setState({ vertical: 'bottom', horizontal: 'left', open: true });
       }
-    } else {
-      setState({ vertical: 'bottom', horizontal: 'left', open: true });
     }
+    // page2
+    if (activeStep == 1) {
+      if (
+        touchedFields.product == true &&
+        touchedFields.species == true &&
+        touchedFields.weight == true &&
+        touchedFields.unitMeasurement == true &&
+        touchedFields.radioValueTipoCarga == true &&
+        touchedFields.radioValueRastreador == true &&
+        touchedFields.radioValueLona == true 
+      ) {
+        setState({ vertical: 'bottom', horizontal: 'left', open: false });
+  
+        if (
+          errors.product == undefined &&
+          errors.species == undefined &&
+          errors.weight == undefined &&
+          errors.unitMeasurement == undefined &&
+          errors.radioValueTipoCarga == undefined &&
+          errors.radioValueLona == undefined &&
+          errors.radioValueRastreador == undefined
+        ) {
+          actualStep = activeStep + 1;
+        }
+      } else {
+        setState({ vertical: 'bottom', horizontal: 'left', open: true });
+      }
+    }
+
     return setActiveStep(actualStep);
   };
 
