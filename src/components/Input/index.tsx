@@ -7,7 +7,6 @@ interface InputLabelProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   icon?: React.ReactNode;
   mask?: string;
-  register: any;
   isRequired?: boolean;
 }
 
@@ -15,13 +14,9 @@ const InputLabel = ({
   label,
   icon,
   mask,
-  register,
   isRequired = false,
   ...props
 }: InputLabelProps) => {
-  const RegisterWithMask = useHookFormMask(register);
-  const fieldRegister = mask ? register(props.name) : register(props.name);
-
   if (!isRequired) {
     return (
       <div className="w-full">
@@ -33,7 +28,6 @@ const InputLabel = ({
             {icon}
           </div>
           <input
-            {...fieldRegister}
             {...props}
             className="bg-zinc-900 p-2 rounded-r w-full text-sm placeholder:text-zinc-500 text-zinc-300 dark:[color-scheme:dark]"
           />
@@ -51,7 +45,6 @@ const InputLabel = ({
             {icon}
           </div>
           <input
-            {...fieldRegister}
             {...props}
             className="bg-zinc-900 p-2 rounded-r w-full text-sm placeholder:text-zinc-500 text-zinc-300 dark:[color-scheme:dark]"
           />

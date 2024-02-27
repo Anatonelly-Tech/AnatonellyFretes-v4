@@ -1,17 +1,17 @@
-'use client';
-import '@/styles/main.css';
+"use client";
+import "@/styles/main.css";
 
-import React, { useState } from 'react';
-import ModalComponent from '@/components/Modal';
-import Loading from '@/components/Loading';
-import ProgressBar from '@/components/ProgressBar';
-import UserNotifyBar from '@/components/UserNotifyBar';
-import AdvancedPages from '@/components/AdvancedPages';
-import Page2 from '../CriarFrete/page2';
+import React, { useState } from "react";
+import ModalComponent from "@/components/Modal";
+import Loading from "@/components/Loading";
+import ProgressBar from "@/components/ProgressBar";
+import UserNotifyBar from "@/components/UserNotifyBar";
+import AdvancedPages from "@/components/AdvancedPages";
+import Page2 from "../CriarFrete/page2/page";
 
-import { useForm } from 'react-hook-form';
-import { DevTool } from '@hookform/devtools';
-import { postResponsibleFreight } from '@/services/responsibleFreight';
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
+import { postResponsibleFreight } from "@/services/responsibleFreight";
 
 const page = () => {
   const cadastrarFuncionario = async (data: any) => {
@@ -22,18 +22,18 @@ const page = () => {
     cadastrarFuncionario(datab);
   };
   const datab = {
-    name: 'testFuncionario',
-    cpf: 'testFuncionario',
-    email: 'testFuncionario',
-    phone: 'testFuncionario',
-    contactWay: 'callOnly',
+    name: "testFuncionario",
+    cpf: "testFuncionario",
+    email: "testFuncionario",
+    phone: "testFuncionario",
+    contactWay: "callOnly",
     isAdmin: true,
-    department: 'Compras',
-    password: 'testFuncionario',
+    department: "Compras",
+    password: "testFuncionario",
   };
   return (
-    <div className='p-5 gap-5 w-full h-full flex '>
-      <button className='w-10 h-10 bg-white' onClick={test}></button>
+    <div className="p-5 gap-5 w-full h-full flex ">
+      <button className="w-10 h-10 bg-white" onClick={test}></button>
     </div>
   );
 };
