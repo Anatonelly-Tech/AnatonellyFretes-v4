@@ -72,7 +72,7 @@ const page = () => {
         touchedFields.radioValueLocalizacao == true
       ) {
         setState({ vertical: 'bottom', horizontal: 'left', open: false });
-  
+
         if (
           errors.collectCity == undefined &&
           errors.collectDate == undefined &&
@@ -95,10 +95,10 @@ const page = () => {
         touchedFields.unitMeasurement == true &&
         touchedFields.radioValueTipoCarga == true &&
         touchedFields.radioValueRastreador == true &&
-        touchedFields.radioValueLona == true 
+        touchedFields.radioValueLona == true
       ) {
         setState({ vertical: 'bottom', horizontal: 'left', open: false });
-  
+
         if (
           errors.product == undefined &&
           errors.species == undefined &&
@@ -107,6 +107,36 @@ const page = () => {
           errors.radioValueTipoCarga == undefined &&
           errors.radioValueLona == undefined &&
           errors.radioValueRastreador == undefined
+        ) {
+          actualStep = activeStep + 1;
+        }
+      } else {
+        setState({ vertical: 'bottom', horizontal: 'left', open: true });
+      }
+    }
+    // page3
+    if (activeStep == 2) {
+      actualStep = activeStep + 1;
+    }
+
+    if (activeStep == 3) {
+      if (
+        touchedFields.radioValueValor == true &&
+        touchedFields.radioValuePedagio == true &&
+        touchedFields.freightPrice == true &&
+        touchedFields.valueCalculation == true &&
+        touchedFields.paymentForm == true &&
+        touchedFields.radioPacoteEscolhido == true
+      ) {
+        setState({ vertical: 'bottom', horizontal: 'left', open: false });
+
+        if (
+          errors.radioValueValor == undefined &&
+          errors.radioValuePedagio == undefined &&
+          errors.freightPrice == undefined &&
+          errors.valueCalculation == undefined &&
+          errors.paymentForm == undefined &&
+          errors.radioPacoteEscolhido == undefined
         ) {
           actualStep = activeStep + 1;
         }
@@ -125,7 +155,7 @@ const page = () => {
         Meus <br /> Fretes
       </h1>
 
-      <div className='bg-zinc-400 w-[80%] h-[70%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded p-5'>
+      <div className='bg-zinc-400 w-[80%] h-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded p-5'>
         <StepperComponent
           setActiveStep={setActiveStep}
           activeStep={activeStep}

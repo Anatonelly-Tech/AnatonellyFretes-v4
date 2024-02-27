@@ -24,7 +24,7 @@ export default function AdvancedPages({
     case 2:
       return <Page3 error={error} register={register} />;
     case 3:
-      // return <Page4 error={error} register={register} />;
+      return <Page4 error={error} register={register} />;
     default:
       return <Loading />;
   }
