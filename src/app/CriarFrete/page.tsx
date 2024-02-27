@@ -24,6 +24,18 @@ interface State extends SnackbarOrigin {
 }
 
 const page = () => {
+  const {
+    register,
+    control,
+    handleSubmit,
+    setError,
+    formState: { errors, touchedFields },
+  } = useForm({
+    defaultValues: { responsibleFreight: [], veiculos: [], carrocerias: [] },
+    resolver: yupResolver(createFreightValidationSchema),
+    mode: 'all',
+  });
+
   const [state, setState] = useState<State>({
     open: false,
     vertical: 'top',
@@ -36,18 +48,7 @@ const page = () => {
     setState({ ...state, open: false });
   };
 
-  const [activeStep, setActiveStep] = useState(0);
-
-  const {
-    register,
-    control,
-    handleSubmit,
-    reset,
-    formState: { errors, touchedFields },
-  } = useForm({
-    resolver: yupResolver(createFreightValidationSchema),
-    mode: 'all',
-  });
+  const [activeStep, setActiveStep] = useState(3);
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -74,6 +75,7 @@ const page = () => {
         setState({ vertical: 'bottom', horizontal: 'left', open: false });
 
         if (
+          errors.responsibleFreight == undefined &&
           errors.collectCity == undefined &&
           errors.collectDate == undefined &&
           errors.deliveryCity == undefined &&
@@ -116,7 +118,13 @@ const page = () => {
     }
     // page3
     if (activeStep == 2) {
-      actualStep = activeStep + 1;
+      if (touchedFields.veiculos == true && touchedFields.carrocerias == true) {
+        if (errors.veiculos == undefined && errors.carrocerias == undefined) {
+          actualStep = activeStep + 1;
+        }
+      } else {
+        setState({ vertical: 'bottom', horizontal: 'left', open: true });
+      }
     }
 
     if (activeStep == 3) {

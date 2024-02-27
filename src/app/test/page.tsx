@@ -11,48 +11,49 @@ import Page2 from '../CriarFrete/page2';
 
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
-import { postResponsibleFreight } from '@/services/responsibleFreight';
+import {
+  getAllResponsibles,
+  postResponsibleFreight,
+} from '@/services/responsibleFreight';
 
 const page = () => {
-  const cadastrarFuncionario = async (data: any) => {
-    const funcionario = await postResponsibleFreight(data);
-    console.log(funcionario);
+  const [responsaveisFrete, setResponsaveisFrete] = useState([]);
+
+  const getfuncionarios = async () => {
+    const responsaveis = await getAllResponsibles();
+    console.log(responsaveis.data.response);
+
+    setResponsaveisFrete(responsaveis.data.response);
+    console.log(responsaveisFrete);
   };
-  const test = () => {
-    cadastrarFuncionario(datab);
-  };
-  const datab = {
-    name: 'testFuncionario',
-    cpf: 'testFuncionario',
-    email: 'testFuncionario',
-    phone: 'testFuncionario',
-    contactWay: 'callOnly',
-    isAdmin: true,
-    department: 'Compras',
-    password: 'testFuncionario',
-  };
+
+  // const datab = {
+  //   name: 'testFuncionario',
+  //   cpf: 'testFuncionario',
+  //   email: 'testFuncionario',
+  //   phone: 'testFuncionario',
+  //   contactWay: 'callOnly',
+  //   isAdmin: true,
+  //   department: 'Compras',
+  //   password: 'testFuncionario',
+  // };
   return (
     <div className='p-5 gap-5 w-full h-full flex '>
-      <button className='w-10 h-10 bg-white' onClick={test}></button>
+      <div>
+        {responsaveisFrete.map((item) => (
+          <div className='text-white font-black flex flex-col' key={item._id}>
+            <span>{item.name}</span>
+            <span>{item.phone}</span>
+          </div>
+        ))}
+      </div>
+      <button className='w-10 h-10 bg-white' onClick={getfuncionarios}></button>
     </div>
   );
 };
 
 export default page;
-
-// const getfuncionarios = async () => {
-//   const responsaveis = await getAllResponsibles();
-//   setResponsaveisFrete(responsaveis.data.response);
-// };
 {
-  /* <div>
-  {responsaveisFrete.map((item) => (
-    <div className='text-white font-black flex flex-col' key={item._id}>
-      <span>{item.name}</span>
-      <span>{item.phone}</span>
-    </div>
-  ))}
-</div>; */
 }
 
 {

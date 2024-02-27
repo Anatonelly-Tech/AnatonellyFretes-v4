@@ -9,6 +9,10 @@ export const createFreightValidationSchema = Yup.object().shape({
   radioValueLocalizacao: Yup.string().required(
     'Localização do frete é obrigatória'
   ),
+  responsibleFreight: Yup.array()
+    .required('Resposável pelo frete é obrigatório')
+    .min(1, 'É necessário pelo menos um responsável'),
+
   // Page 2
   product: Yup.string().required('Produto é obrigatório'),
   species: Yup.string().required('Espécie é obrigatória'),
@@ -23,6 +27,14 @@ export const createFreightValidationSchema = Yup.object().shape({
   radioValueTipoCarga: Yup.string().required('Tipo de carga é obrigatório'),
   radioValueLona: Yup.string().required('Lona é obrigatória'),
   radioValueRastreador: Yup.string().required('Rastreador é obrigatório'),
+
+  // Page3
+  veiculos: Yup.array()
+    .required('Veiculos é obrigatório')
+    .min(1, 'Escolha pelo menos um Veiculo'),
+  carrocerias: Yup.array()
+    .required('Carrocerias é obrigatório')
+    .min(1, 'Escolha pelo menos uma Carroceria'),
 
   // Page 4
   radioValueValor: Yup.string().required('Valor é obrigatório.'),
