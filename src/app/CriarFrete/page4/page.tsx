@@ -10,9 +10,8 @@ import {
 } from "react-icons/fa";
 import PackagePlan from "@/components/PackagePlan";
 import { MdAttachMoney } from "react-icons/md";
-interface Page4Props {}
 
-export default function Page4({}: Page4Props) {
+export default function Page4() {
   return (
     <div className=" mt-10 flex flex-col items-center justify-start w-4/5 h-4/5 bg-zinc-400 gap-5 p-5">
       <div className="flex items-center justify-start w-full h-auto px-5 gap-10">
