@@ -65,8 +65,8 @@ const config: Config = {
           to: { transform: "translateX(0)" },
         },
         MoveLeft: {
-          from: { transform: "translateX(-200px)" },
-          to: { transform: "translateX(0)" },
+          from: { opacity: "0", transform: "translateX(-200px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
         },
         Apper: {
           from: { opacity: "0" },
@@ -89,7 +89,7 @@ const config: Config = {
       exitToLeft: "exitToLeft 250ms ease",
       exitToRight: "exitToRight 250ms ease",
       MoveRight: "MoveRight 1s ease",
-      MoveLeft: "MoveLeft 1s ease",
+      MoveLeft: "MoveLeft 150ms ease",
       Apper: "Apper 1s ease",
       Desapper: "Desapper 1s ease",
     },

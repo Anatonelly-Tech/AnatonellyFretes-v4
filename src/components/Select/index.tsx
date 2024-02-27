@@ -32,7 +32,7 @@ const SelectComponent = ({
       <select
         {...register(name)}
         id={id}
-        className='bg-zinc-900 p-2 rounded shadow-sm shaodw-black focus:outline-none focus:shadow-outline invalid:text-black'
+        className='bg-zinc-900 p-2 rounded shadow-md shaodw-black focus:outline-none focus:shadow-outline invalid:text-black text-white'
       >
         <option value='' disabled selected>
           <p className='text-zinc-500'>{placeholder}</p>
