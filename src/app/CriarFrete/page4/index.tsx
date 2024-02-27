@@ -18,7 +18,7 @@ interface Page4Props {
 
 export default function Page4({ register, error }: Page4Props) {
   console.log(typeof register);
-  
+
   return (
     <div className=' mt-10 flex flex-col items-center justify-start w-4/5 h-4/5 bg-zinc-400 gap-5 p-5'>
       <div className='flex items-center justify-start w-full h-auto px-5 gap-10'>
@@ -35,6 +35,9 @@ export default function Page4({ register, error }: Page4Props) {
             value={['JaSeiValor', 'Acombinar']}
             title={'Informações de Valor'}
           />
+          <span className='text-sm flex text-red-500 font-bold'>
+            {error.radioValueValor?.message}
+          </span>
         </div>
         <div className='bg-zinc-300 shadow-md p-4 rounded flex flex-col gap-3 w-auto h-auto items-start'>
           <InputRadio
@@ -49,41 +52,59 @@ export default function Page4({ register, error }: Page4Props) {
             value={['InclusoValor', 'PagoParte']}
             title={'Pedagio'}
           />
+          <span className='text-sm flex text-red-500 font-bold'>
+            {error.radioValuePedagio?.message}
+          </span>
         </div>
       </div>
       <div className='w-full h-auto flex justify-between items-center px-5 gap-3'>
-        <InputLabel
-          id='freightPrice'
-          name='freightPrice'
-          register={register}
-          label='Valor do frete'
-          icon={<MdAttachMoney className='w-8' />}
-          placeholder='Valor do frete'
-        />
-        <SelectComponent
-          register={register}
-          placeholder='Selecione'
-          value={['Por Quilograma', 'Por Tonelada', 'Total']}
-          valueId={['KG', 'T', 'Total']}
-          label='Cálculo do valor'
-          id='valueCalculation'
-          name='valueCalculation'
-        />
-        <SelectComponent
-          register={register}
-          placeholder='Selecione'
-          value={[
-            'Pix',
-            'Depósito em conta',
-            'Crédito em cartão',
-            'Cheque',
-            'Outros',
-          ]}
-          valueId={['Pix', 'Deposito', 'Cartao', 'Cheque', 'Outros']}
-          label='Forma de pagamento'
-          id='paymentForm'
-          name='paymentForm'
-        />
+        <div className='flex flex-col w-full'>
+          <InputLabel
+            id='freightPrice'
+            name='freightPrice'
+            register={register}
+            label='Valor do frete'
+            icon={<MdAttachMoney className='w-8' />}
+            placeholder='Valor do frete'
+          />
+          <span className='text-sm flex text-red-500 font-bold'>
+            {error.freightPrice?.message}
+          </span>
+        </div>
+        <div>
+          <SelectComponent
+            register={register}
+            placeholder='Selecione'
+            value={['Por Quilograma', 'Por Tonelada', 'Total']}
+            valueId={['KG', 'T', 'Total']}
+            label='Cálculo do valor'
+            id='valueCalculation'
+            name='valueCalculation'
+          />
+          <span className='text-sm flex text-red-500 font-bold'>
+            {error.valueCalculation?.message}
+          </span>
+        </div>
+        <div>
+          <SelectComponent
+            register={register}
+            placeholder='Selecione'
+            value={[
+              'Pix',
+              'Depósito em conta',
+              'Crédito em cartão',
+              'Cheque',
+              'Outros',
+            ]}
+            valueId={['Pix', 'Deposito', 'Cartao', 'Cheque', 'Outros']}
+            label='Forma de pagamento'
+            id='paymentForm'
+            name='paymentForm'
+          />
+          <span className='text-sm flex text-red-500 font-bold'>
+            {error.paymentForm?.message}
+          </span>
+        </div>
         <InputLabel
           id='advancePrice'
           name='advancePrice'
@@ -104,11 +125,10 @@ export default function Page4({ register, error }: Page4Props) {
           placeholder='Observações'
         />
       </div>
-      
+
       <div className='w-full h-auto'>
-        <PackagePlan register={register} />
+        <PackagePlan register={register} error={error} />
       </div>
     </div>
   );
-
 }
