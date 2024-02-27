@@ -1,9 +1,7 @@
+"use client";
 // Libs
 
-interface Page1Props {
-  register: any;
-  error: any;
-}
+interface Page1Props {}
 
 import CheckBox from "@/components/CheckBox";
 import InputLabel from "@/components/Input";
@@ -17,7 +15,7 @@ import { MdDateRange } from "react-icons/md";
 import { getAllResponsibles } from "@/services/responsibleFreight";
 import LoadingForComponents from "@/components/Loading/LoadingForComponents";
 import { VscAccount } from "react-icons/vsc";
-export default function Page1({ register, error }: Page1Props) {
+export default function Page1({}: Page1Props) {
   const [loaded, setLoaded] = useState(false);
 
   // const [responsaveisFrete, setResponsaveisFrete] = useState([]);
@@ -59,29 +57,23 @@ export default function Page1({ register, error }: Page1Props) {
             <InputLabel
               id="collectCity"
               name="collectCity"
-              register={register}
               label="Cidade de Coleta"
               icon={<FaCity className="w-8" />}
               placeholder="Cidade de Coleta"
             />
-            <span className="text-sm flex text-red-500 font-bold">
-              {error.collectCity?.message}
-            </span>
+            <span className="text-sm flex text-red-500 font-bold"></span>
           </div>
 
           <div className="w-1/3">
             <InputLabel
               id="collectDate"
               name="collectDate"
-              register={register}
               type="date"
               label="Data de Coleta"
               icon={<MdDateRange className="w-8" />}
               placeholder="DD/MM/AAAA"
             />
-            <span className="text-sm flex text-red-500 font-bold">
-              {error.collectDate?.message}
-            </span>
+            <span className="text-sm flex text-red-500 font-bold"></span>
           </div>
         </div>
         <div className="flex w-full gap-4  bg-zinc-300 shadow-md p-2 rounded">
@@ -89,28 +81,22 @@ export default function Page1({ register, error }: Page1Props) {
             <InputLabel
               id="deliveryCity"
               name="deliveryCity"
-              register={register}
               label="Cidade de Entrega"
               icon={<FaCity className="w-8" />}
               placeholder="Cidade de Entrega"
             />
-            <span className="text-sm flex text-red-500 font-bold">
-              {error.deliveryCity?.message}
-            </span>
+            <span className="text-sm flex text-red-500 font-bold"></span>
           </div>
           <div className="w-1/3">
             <InputLabel
               id="deliveryDate"
               name="deliveryDate"
-              register={register}
               type="date"
               label="Data de Entrega"
               icon={<MdDateRange className="w-8" />}
               placeholder="DD/MM/AAAA"
             />
-            <span className="text-sm flex text-red-500 font-bold">
-              {error.deliveryDate?.message}
-            </span>
+            <span className="text-sm flex text-red-500 font-bold"></span>
           </div>
         </div>
       </div>
@@ -147,14 +133,11 @@ export default function Page1({ register, error }: Page1Props) {
               "Fretes realizados dentro do país",
               "Fretes realizados para fora do país",
             ]}
-            register={register}
             name={"radioValueLocalizacao"}
             value={["Nacional", "Internacional"]}
             title={"Localizacao do Frete"}
           />
-          <span className="text-sm flex text-red-500 font-bold">
-            {error.radioValueLocalizacao?.message}
-          </span>
+          <span className="text-sm flex text-red-500 font-bold"></span>
         </div>
       </div>
     </div>
