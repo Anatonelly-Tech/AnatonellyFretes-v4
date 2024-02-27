@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -107,7 +108,6 @@ const PackagePlan: React.FC = () => {
       for (let i = 0; i < beneficios.length; i++) {
         await new Promise((resolve) => setTimeout(resolve, timeout));
         setVisibleBenefits((prevBenefits) => {
-        
           if (!prevBenefits.includes(beneficios[i])) {
             return [...prevBenefits, beneficios[i]];
           }
