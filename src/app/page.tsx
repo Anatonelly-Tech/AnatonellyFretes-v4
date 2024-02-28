@@ -9,7 +9,7 @@ import AccountInformations from "@/components/AccountInformations";
 import ProgressBar from "@/components/ProgressBar";
 import Ranking from "@/components/Ranking";
 import { Carousel } from "@/components/Carousel";
-
+import ProgressBarAntd from "@/components/newProgressBar";
 // style
 import "../styles/main.css";
 import UserNotifyBar from "@/components/UserNotifyBar";
@@ -67,7 +67,7 @@ export default function Home() {
           result={"15 Fretes"}
         />
         <AccountInformations title={"Valor Economizado"} result={"R$150,00"} />
-        <ProgressBar />
+        <ProgressBarAntd percentProgress={75} meta={100} key={1} />
       </div>
       {/* meio */}
       <div className="w-3/5 h-full flex flex-col py-28 text-white">
