@@ -30,7 +30,7 @@ const page = () => {
         className="w-full h-full flex items-center justify-center"
         action=""
       >
-        <Page4 error={errors} register={register} />
+        <Page4/>
       </form>
       {/* <DevTool control={control} /> */}
     </div>
