@@ -29,6 +29,7 @@ const page = () => {
     control,
     handleSubmit,
     setError,
+    getValues,
     formState: { errors, touchedFields },
   } = useForm({
     defaultValues: { responsibleFreight: [], veiculos: [], carrocerias: [] },
@@ -147,6 +148,8 @@ const page = () => {
           errors.radioPacoteEscolhido == undefined
         ) {
           actualStep = activeStep + 1;
+          const data = getValues();
+          console.log('data: ', data);
         }
       } else {
         setState({ vertical: 'bottom', horizontal: 'left', open: true });
