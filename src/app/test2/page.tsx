@@ -20,7 +20,7 @@ const page = () => {
   } = useForm();
   return (
     <div className="w-full h-full flex items-start justify-start p-20">
-      <ProgressBarAntd />
+      <ProgressBarAntd meta={100} percentProgress={50} />
     </div>
   );
 };

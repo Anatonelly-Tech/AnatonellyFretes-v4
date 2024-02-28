@@ -10,6 +10,10 @@ const config: Config = {
     extend: {
       boxShadow: {
         especial: "rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset",
+        interno:
+          "rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset",
+        rounded:
+          "rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px",
       },
       backgroundImage: {
         "anatonelly-bg": 'url("/AnatonellyFretes.png")',
