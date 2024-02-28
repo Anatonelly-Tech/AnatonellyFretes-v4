@@ -23,7 +23,7 @@ const Page2 = ({ register, error }: Page2Props) => {
             subLabel={['frete completo', 'frete complemento']}
             register={register}
             name={'radioValueTipoCarga'}
-            value={['Nacional', 'Internacional']}
+            value={['Completa', 'Complemento']}
             title={'Tipo de Carga'}
             isRequired={true}
           />
