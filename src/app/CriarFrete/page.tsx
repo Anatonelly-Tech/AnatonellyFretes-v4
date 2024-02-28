@@ -36,7 +36,7 @@ const page = () => {
     resolver: yupResolver(createFreightValidationSchema),
     mode: 'all',
   });
-
+  const [data, setData] = useState({});
   const [state, setState] = useState<State>({
     open: false,
     vertical: 'top',
@@ -49,7 +49,7 @@ const page = () => {
     setState({ ...state, open: false });
   };
 
-  const [activeStep, setActiveStep] = useState(3);
+  const [activeStep, setActiveStep] = useState(0);
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -148,14 +148,17 @@ const page = () => {
           errors.radioPacoteEscolhido == undefined
         ) {
           actualStep = activeStep + 1;
-          const data = getValues();
-          console.log('data: ', data);
+          setData(getValues());
         }
       } else {
         setState({ vertical: 'bottom', horizontal: 'left', open: true });
       }
     }
 
+    if (activeStep == 4) {
+      // criar frete no banco com o data
+      // se possivel redirecionar o usuario para outra tela
+    }
     return setActiveStep(actualStep);
   };
 
@@ -181,6 +184,7 @@ const page = () => {
             error={errors}
             register={register}
             activeStep={activeStep}
+            data={data}
           />
         </form>
       </div>
