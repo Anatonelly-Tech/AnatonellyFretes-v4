@@ -5,6 +5,8 @@ const BASE_URL = '/responsible';
 
 export const getAllResponsibles = async () => api.get(`${BASE_URL}`);
 
+export const getResponsibleById = async (id) => api.get(`${BASE_URL}/${id}`);
+
 export const postResponsibleFreight = async ({
   name,
   cpf,
