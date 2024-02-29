@@ -150,6 +150,7 @@ export default function Page1({ register, error }: Page1Props) {
                         id={item.idResponsible}
                         name={'responsibleFreight'}
                         register={register}
+                        value={item.idResponsible}
                       />
                     </>
                   );

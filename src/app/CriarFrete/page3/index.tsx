@@ -25,6 +25,7 @@ export default function Page3({ register, error }: Page3Props) {
                 name={'veiculos'}
                 label={item}
                 id={`VL${index}`}
+                value={item}
               />
             ))}
           </div>
@@ -36,6 +37,7 @@ export default function Page3({ register, error }: Page3Props) {
                 label={item}
                 name={'veiculos'}
                 id={`VM${index}`}
+                value={item}
               />
             ))}
           </div>
@@ -47,6 +49,7 @@ export default function Page3({ register, error }: Page3Props) {
                 label={item}
                 name={'veiculos'}
                 id={`CP${index}`}
+                value={item}
               />
             ))}
           </div>
@@ -68,6 +71,7 @@ export default function Page3({ register, error }: Page3Props) {
                 name={'carrocerias'}
                 label={item}
                 id={`CF${index}`}
+                value={item}
               />
             ))}
           </div>
@@ -79,6 +83,7 @@ export default function Page3({ register, error }: Page3Props) {
                 register={register}
                 label={item}
                 id={`CA${index}`}
+                value={item}
               />
             ))}
           </div>
@@ -90,6 +95,7 @@ export default function Page3({ register, error }: Page3Props) {
                 register={register}
                 label={item}
                 id={`CE${index}`}
+                value={item}
               />
             ))}
           </div>
