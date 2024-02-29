@@ -1,11 +1,8 @@
 "use client";
 import "@/styles/main.css";
-import { Tabs } from "antd";
+import { ConfigProvider, Tabs } from "antd";
 import type { TabsProps } from "antd";
 import React from "react";
-
-import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 
 const page = () => {
   const items: TabsProps["items"] = [
@@ -20,27 +17,48 @@ const page = () => {
       children: "Content of Tab Pane 2",
     },
   ];
-  const onChange = (key: string) => {
-    console.log(key);
-  };
+
   return (
-    <div className="w-full h-full flex items-start justify-start p-10 bg-white">
-      <Tabs
-        
-        defaultActiveKey="1"
-        type="card"
-        size={"large"}
-        items={new Array(2).fill(null).map((_, i) => {
-          const id = String(i + 1);
-          return {
-            label: items.map((item) => item.label)[i] || `Tab ${id} `,
-            key: id,
-            children:
-              `pagina dos fretes ` + items.map((item) => item.label)[i] ||
-              `Tab ${id}`,
-          };
-        })}
-      />
+    <div className="w-full h-full flex items-start justify-start p-10">
+      <ConfigProvider
+        theme={{
+          components: {
+            Tabs: {
+              cardBg: "#a855f7",
+              itemColor: "#cbd5e1",
+              colorPrimary: "#fff",
+              itemHoverColor: " #fff",
+              fontWeightStrong: 900,
+              controlItemBgHover: "#fff ",
+              titleFontSizeLG: 20,
+              borderRadius: 2,
+              colorBgContainer: "#7c3aed",
+            },
+          },
+        }}
+      >
+        <style jsx>{`
+          .custom-tab-hover:hover {
+            background-color: #581c87 !important;
+          }
+        `}</style>
+        <Tabs
+          defaultActiveKey="1"
+          type="card"
+          size={"large"}
+          items={new Array(2).fill(null).map((_, i) => {
+            const id = String(i + 1);
+            return {
+              label: items.map((item) => item.label)[i] || `Tab ${id} `,
+              key: id,
+              className: "custom-tab-hover", // Adiciona a classe customizada aqui
+              children:
+                `pagina dos fretes ` + items.map((item) => item.label)[i] ||
+                `Tab ${id}`,
+            };
+          })}
+        />
+      </ConfigProvider>
     </div>
   );
 };
