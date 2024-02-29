@@ -32,7 +32,7 @@ export default function Page4({ register, error }: Page4Props) {
             ]}
             register={register}
             name={'radioValueValor'}
-            value={['JaSeiValor', 'Acombinar']}
+            value={['JaSeiValor', 'aCombinar']}
             title={'Informações de Valor'}
           />
           <span className='text-sm flex text-red-500 font-bold'>
@@ -49,7 +49,7 @@ export default function Page4({ register, error }: Page4Props) {
             ]}
             register={register}
             name={'radioValuePedagio'}
-            value={['InclusoValor', 'PagoParte']}
+            value={['InclusoNoValor', 'PagoAParte']}
             title={'Pedagio'}
           />
           <span className='text-sm flex text-red-500 font-bold'>

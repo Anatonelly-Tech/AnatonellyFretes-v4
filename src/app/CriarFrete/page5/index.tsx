@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Page5 = ({ data }: any) => {
-  function DiaFormatado(dateWithoutFormat: Date) {
-    let dia = (dateWithoutFormat.getDate() + 1).toString().padStart(2, '0');
-    let mes = (dateWithoutFormat.getMonth() + 1).toString().padStart(2, '0'); //+1 pois no getMonth Janeiro começa com zero.
-    let ano = dateWithoutFormat.getFullYear();
-    return dia + '/' + mes + '/' + ano;
-  }
+import { DiaFormatado } from '@/utils/formatDateFunction';
+import { arrayOfResponsibles } from '@/utils/responsibleName';
+
+const Page5 = async ({ data }: any) => {
+  const responsibles = await arrayOfResponsibles(data);
   return (
     <div className='w-full flex gap-2 h-full flex-col p-5'>
       <span className='text-xl font-semibold'>Pedido #001</span>
@@ -130,7 +128,7 @@ const Page5 = ({ data }: any) => {
               <div className='flex flex-col w-1/2'>
                 <span className='font-medium'>
                   Valor a Pagar:
-                  {data.radioValueValor == 'Acombinar' ? (
+                  {data.radioValueValor == 'aCombinar' ? (
                     <span className='font-normal pl-1'>A Combinar</span>
                   ) : (
                     <span className='font-normal pl-1'>
@@ -168,7 +166,7 @@ const Page5 = ({ data }: any) => {
             </div>
             <span className='font-medium'>
               Responsável pelo Frete:
-              {data.responsibleFreight.map((responsible: string) => (
+              {responsibles.map((responsible: string) => (
                 <span className='font-normal pl-1'>{responsible}; </span>
               ))}
             </span>

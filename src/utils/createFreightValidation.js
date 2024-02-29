@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 export const createFreightValidationSchema = Yup.object().shape({
+  name: Yup.string().required('Nome do frete é obrigatório'),
   // Page1
   collectCity: Yup.string().required('Cidade de coleta é obrigatória'),
   collectDate: Yup.string().required('Data de coleta é obrigatória'),
@@ -9,7 +10,7 @@ export const createFreightValidationSchema = Yup.object().shape({
   radioValueLocalizacao: Yup.string().required(
     'Localização do frete é obrigatória'
   ),
-  responsibleFreight: Yup.array()
+  idResponsible: Yup.array()
     .required('Resposável pelo frete é obrigatório')
     .min(1, 'É necessário pelo menos um responsável'),
 

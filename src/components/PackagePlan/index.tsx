@@ -11,6 +11,7 @@ interface PackagePlanProps {
   accordionOpen: boolean;
   register: any;
   error: any;
+  value: string;
 }
 
 const beneficiosPlan1 = [
@@ -34,6 +35,7 @@ const PackagePlan = ({ register, error }: any) => {
   const [accordionOpen2, setAccordionOpen2] = useState<boolean>(false);
   const createPlan = ({
     Title,
+    value,
     beneficios,
     setVisibleBenefits,
     accordionOpen,
@@ -52,7 +54,7 @@ const PackagePlan = ({ register, error }: any) => {
             {...register('radioPacoteEscolhido')}
             className="appearance-none focus:outline-none before:content[''] peer relative h-5 w-5 cursor-pointer outline-none rounded-full border border-gray-500 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:before:bg-gray-900 hover:before:opacity-10"
             id={Title}
-            value={Title}
+            value={value}
           />
           <span className=' text-gray-900 transition-opacity opacity-0 pointer-events-none peer-checked:opacity-100 relative -translate-x-[17px] translate-y-[3px]'>
             <svg
@@ -134,20 +136,22 @@ const PackagePlan = ({ register, error }: any) => {
     <div className='flex flex-col items-start justify-center gap-2 w-full p-5'>
       <div className='flex  w-full gap-2'>
         {createPlan({
-          Title: 'Plano 1',
+          Title: 'Frete Simples',
           beneficios: visibleBenefits1,
           setVisibleBenefits: setVisibleBenefits1,
           accordionOpen: accordionOpen1,
           register: register,
           error: error,
+          value: 'FreteSimples',
         })}
         {createPlan({
-          Title: 'Plano 2',
+          Title: 'Frete Destaque',
           beneficios: visibleBenefits2,
           setVisibleBenefits: setVisibleBenefits2,
           accordionOpen: accordionOpen2,
           register: register,
           error: error,
+          value: 'FreteDestaque',
         })}
       </div>
       <span className='text-sm flex text-red-500 font-bold'>

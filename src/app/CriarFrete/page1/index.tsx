@@ -148,7 +148,7 @@ export default function Page1({ register, error }: Page1Props) {
                         label={item.name}
                         sublabel={item.phone}
                         id={item.idResponsible}
-                        name={'responsibleFreight'}
+                        name={'idResponsible'}
                         register={register}
                         value={item.idResponsible}
                       />

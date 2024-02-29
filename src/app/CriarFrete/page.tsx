@@ -12,15 +12,20 @@ import StepperComponent from '@/components/Stepper';
 
 // Utils
 import { createFreightValidationSchema } from '@/utils/createFreightValidation';
-
+import { RandomFormName } from '@/utils/randomFormName';
 // Icons
 import { VscChevronRight } from 'react-icons/vsc';
 import { VscChevronLeft } from 'react-icons/vsc';
 import { Alert } from '@mui/material';
+import clsx from 'clsx';
+import { postFreight } from '@/services/formData';
 
 // Interface
 interface State extends SnackbarOrigin {
   open: boolean;
+}
+interface State2 extends SnackbarOrigin {
+  open2: boolean;
 }
 
 const page = () => {
@@ -28,11 +33,11 @@ const page = () => {
     register,
     control,
     handleSubmit,
-    setError,
+    setValue,
     getValues,
     formState: { errors, touchedFields },
   } = useForm({
-    defaultValues: { responsibleFreight: [], veiculos: [], carrocerias: [] },
+    defaultValues: { idResponsible: [], veiculos: [], carrocerias: [] },
     resolver: yupResolver(createFreightValidationSchema),
     mode: 'all',
   });
@@ -42,8 +47,14 @@ const page = () => {
     vertical: 'top',
     horizontal: 'center',
   });
+  const [state2, setState2] = useState<State2>({
+    open2: false,
+    vertical: 'bottom',
+    horizontal: 'left',
+  });
 
   const { vertical, horizontal, open } = state;
+  const { open2 } = state2;
 
   const handleClose = () => {
     setState({ ...state, open: false });
@@ -62,8 +73,10 @@ const page = () => {
     return setActiveStep(actualStep);
   };
 
-  const nextStep = () => {
+  const nextStep = async () => {
     let actualStep = activeStep;
+    // console.log(RandomFormName());
+
     // page1
     if (activeStep == 0) {
       if (
@@ -76,7 +89,7 @@ const page = () => {
         setState({ vertical: 'bottom', horizontal: 'left', open: false });
 
         if (
-          errors.responsibleFreight == undefined &&
+          errors.idResponsible == undefined &&
           errors.collectCity == undefined &&
           errors.collectDate == undefined &&
           errors.deliveryCity == undefined &&
@@ -156,7 +169,15 @@ const page = () => {
     }
 
     if (activeStep == 4) {
-      // criar frete no banco com o data
+      try {
+        setValue('name', await RandomFormName());
+        setData(getValues());
+        await postFreight(data);
+
+        setState2({ vertical: 'bottom', horizontal: 'left', open2: true });
+      } catch (error) {
+        console.log(error);
+      }
       // se possivel redirecionar o usuario para outra tela
     }
     return setActiveStep(actualStep);
@@ -216,6 +237,22 @@ const page = () => {
           sx={{ width: '100%' }}
         >
           Preencha todos os campos obrigatórios!
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open2}
+        onClose={handleClose}
+        autoHideDuration={5000}
+        key={vertical + horizontal}
+      >
+        <Alert
+          onClose={handleClose}
+          severity='success'
+          variant='filled'
+          sx={{ width: '100%' }}
+        >
+          Formulario Cadastrado Com Sucesso!
         </Alert>
       </Snackbar>
     </div>
