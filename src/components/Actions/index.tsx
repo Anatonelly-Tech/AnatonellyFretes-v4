@@ -34,7 +34,7 @@ const Index = ({ idFrete }: IndexProps) => {
           onClick={() => handleOpen("PUT")}
           style={{ backgroundColor: customColors[1], color: "white" }}
         >
-          <CiEdit className="text-xl font-bold" />
+          <CiEdit className="text-xl font-black text-white" />
         </Button>
       </Tooltip>
 
