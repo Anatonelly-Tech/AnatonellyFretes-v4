@@ -141,9 +141,9 @@ export default function Page1({ register, error }: Page1Props) {
             {/* <div className="w-full">lista de responsaveis pelo frete</div> */}
             <div className='w-full h-auto grid grid-cols-4 p-2 bg-gray-500 shadow-md rounded gap-4'>
               {responsaveisFrete.length > 0 ? (
-                responsaveisFrete.map((item) => {
+                responsaveisFrete.map((item, index) => {
                   return (
-                    <>
+                    <div key={index}>
                       <CheckBox
                         label={item.name}
                         sublabel={item.phone}
@@ -152,7 +152,7 @@ export default function Page1({ register, error }: Page1Props) {
                         register={register}
                         value={item.idResponsible}
                       />
-                    </>
+                    </div>
                   );
                 })
               ) : (

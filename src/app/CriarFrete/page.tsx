@@ -1,7 +1,7 @@
 'use client';
 // Libs
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
@@ -17,22 +17,16 @@ import { RandomFormName } from '@/utils/randomFormName';
 import { VscChevronRight } from 'react-icons/vsc';
 import { VscChevronLeft } from 'react-icons/vsc';
 import { Alert } from '@mui/material';
-import clsx from 'clsx';
 import { postFreight } from '@/services/formData';
 
 // Interface
 interface State extends SnackbarOrigin {
   open: boolean;
 }
-interface State2 extends SnackbarOrigin {
-  open2: boolean;
-}
 
 const page = () => {
   const {
     register,
-    control,
-    handleSubmit,
     setValue,
     getValues,
     formState: { errors, touchedFields },
@@ -41,20 +35,25 @@ const page = () => {
     resolver: yupResolver(createFreightValidationSchema),
     mode: 'all',
   });
+
   const [data, setData] = useState({});
+
   const [state, setState] = useState<State>({
     open: false,
     vertical: 'top',
     horizontal: 'center',
   });
-  const [state2, setState2] = useState<State2>({
-    open2: false,
-    vertical: 'bottom',
-    horizontal: 'left',
-  });
 
   const { vertical, horizontal, open } = state;
-  const { open2 } = state2;
+
+  const [bgRightButton, setBgRightButton] = useState('bg-violet-600');
+
+  const [hoverBgRightButton, setHoverBgRightButton] = useState(
+    'hover:bg-violet-800'
+  );
+
+  const [shadowRightButton, setShadowRightButton] =
+    useState('shadow-violet-950');
 
   const handleClose = () => {
     setState({ ...state, open: false });
@@ -62,14 +61,15 @@ const page = () => {
 
   const [activeStep, setActiveStep] = useState(0);
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    //manda para o db
-    setState({ vertical: 'bottom', horizontal: 'left', open: true });
-  };
-
   const prevStep = () => {
     const actualStep = activeStep - 1;
+
+    if (activeStep == 4) {
+      setBgRightButton('bg-violet-600');
+      setHoverBgRightButton('hover:bg-violet-800');
+      setShadowRightButton('shadow-violet-950');
+    }
+
     return setActiveStep(actualStep);
   };
 
@@ -161,6 +161,11 @@ const page = () => {
           errors.radioPacoteEscolhido == undefined
         ) {
           actualStep = activeStep + 1;
+
+          setBgRightButton('bg-gray-500');
+          setHoverBgRightButton('hover:bg-gray-700');
+          setShadowRightButton('');
+          setValue('name', await RandomFormName());
           setData(getValues());
         }
       } else {
@@ -168,24 +173,11 @@ const page = () => {
       }
     }
 
-    if (activeStep == 4) {
-      try {
-        setValue('name', await RandomFormName());
-        setData(getValues());
-        await postFreight(data);
-
-        setState2({ vertical: 'bottom', horizontal: 'left', open2: true });
-      } catch (error) {
-        console.log(error);
-      }
-      // se possivel redirecionar o usuario para outra tela
-    }
     return setActiveStep(actualStep);
   };
 
   return (
     <div className='w-full h-full flex flex-col justify-between'>
-      <DevTool control={control} />
       <h1 className='bg-gradient-to-br from-purple-500 to-blue-500 inline-block text-transparent bg-clip-text text-6xl font-extrabold break-all'>
         Meus <br /> Fretes
       </h1>
@@ -197,7 +189,6 @@ const page = () => {
         />
         <form
           action=''
-          onSubmit={handleSubmit(onSubmit)}
           id='createFreight'
           className='w-full h-auto flex items-center justify-center'
         >
@@ -218,7 +209,7 @@ const page = () => {
         </button>
         <button
           onClick={nextStep}
-          className='w-10 h-10 bg-violet-600 shadow-especial shadow-violet-950 hover:bg-violet-800 hover:shadow-zinc-800 justify-center items-center rounded-full  flex font-bold'
+          className={`w-10 h-10 shadow-especial ${shadowRightButton} ${bgRightButton} ${hoverBgRightButton} hover:shadow-zinc-800 justify-center items-center rounded-full  flex font-bold`}
         >
           <VscChevronRight size={50} className='text-white text-xl' />
         </button>
@@ -237,22 +228,6 @@ const page = () => {
           sx={{ width: '100%' }}
         >
           Preencha todos os campos obrigatórios!
-        </Alert>
-      </Snackbar>
-      <Snackbar
-        anchorOrigin={{ vertical, horizontal }}
-        open={open2}
-        onClose={handleClose}
-        autoHideDuration={5000}
-        key={vertical + horizontal}
-      >
-        <Alert
-          onClose={handleClose}
-          severity='success'
-          variant='filled'
-          sx={{ width: '100%' }}
-        >
-          Formulario Cadastrado Com Sucesso!
         </Alert>
       </Snackbar>
     </div>

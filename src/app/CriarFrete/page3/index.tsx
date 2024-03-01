@@ -9,7 +9,6 @@ interface Page3Props {
 }
 
 export default function Page3({ register, error }: Page3Props) {
-  console.log(Veiculos);
   return (
     <div className=' mt-10 flex items-start justify-center w-4/5 h-4/5 bg-zinc-400 gap-5'>
       <div className='flex flex-col items-center justify-center w-1/2 h-5/6 gap-5'>
@@ -20,37 +19,43 @@ export default function Page3({ register, error }: Page3Props) {
           <div className='flex flex-col items-start justify-center gap-2 '>
             <h3 className='text-white font-bold '>Leves</h3>
             {Veiculos.Leves.map((item, index) => (
-              <CheckBox
-                register={register}
-                name={'veiculos'}
-                label={item}
-                id={`VL${index}`}
-                value={item}
-              />
+              <div key={index}>
+                <CheckBox
+                  register={register}
+                  name={'veiculos'}
+                  label={item}
+                  id={`VL${index}`}
+                  value={item}
+                />
+              </div>
             ))}
           </div>
           <div className='flex flex-col items-start justify-center gap-2'>
             <h3 className='text-white font-bold '>Médios</h3>
             {Veiculos.Medios.map((item, index) => (
-              <CheckBox
-                register={register}
-                label={item}
-                name={'veiculos'}
-                id={`VM${index}`}
-                value={item}
-              />
+              <div key={index}>
+                <CheckBox
+                  register={register}
+                  label={item}
+                  name={'veiculos'}
+                  id={`VM${index}`}
+                  value={item}
+                />
+              </div>
             ))}
           </div>
           <div className='flex flex-col items-start justify-center gap-2'>
             <h3 className='text-white font-bold '>Pesados</h3>
             {Veiculos.Pesados.map((item, index) => (
-              <CheckBox
-                register={register}
-                label={item}
-                name={'veiculos'}
-                id={`CP${index}`}
-                value={item}
-              />
+              <div key={index}>
+                <CheckBox
+                  register={register}
+                  label={item}
+                  name={'veiculos'}
+                  id={`CP${index}`}
+                  value={item}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -66,37 +71,43 @@ export default function Page3({ register, error }: Page3Props) {
           <div className='flex flex-col items-start justify-center gap-2'>
             <h3 className='text-white font-bold '>Fechadas</h3>
             {Carrocerias.Fechadas.map((item, index) => (
-              <CheckBox
-                register={register}
-                name={'carrocerias'}
-                label={item}
-                id={`CF${index}`}
-                value={item}
-              />
+              <div key={index}>
+                <CheckBox
+                  register={register}
+                  name={'carrocerias'}
+                  label={item}
+                  id={`CF${index}`}
+                  value={item}
+                />
+              </div>
             ))}
           </div>
           <div className='flex flex-col items-start justify-center gap-2'>
             <h3 className='text-white font-bold '>Abertas</h3>
             {Carrocerias.Abertas.map((item, index) => (
-              <CheckBox
-                name={'carrocerias'}
-                register={register}
-                label={item}
-                id={`CA${index}`}
-                value={item}
-              />
+              <div key={index}>
+                <CheckBox
+                  name={'carrocerias'}
+                  register={register}
+                  label={item}
+                  id={`CA${index}`}
+                  value={item}
+                />
+              </div>
             ))}
           </div>
           <div className='flex flex-col items-start justify-center gap-2'>
             <h3 className='text-white font-bold '>Especial</h3>
             {Carrocerias.Especial.map((item, index) => (
-              <CheckBox
-                name={'carrocerias'}
-                register={register}
-                label={item}
-                id={`CE${index}`}
-                value={item}
-              />
+              <div key={index}>
+                <CheckBox
+                  name={'carrocerias'}
+                  register={register}
+                  label={item}
+                  id={`CE${index}`}
+                  value={item}
+                />
+              </div>
             ))}
           </div>
         </div>

@@ -22,7 +22,6 @@ export default function AdvancedPages({
     case 0:
       return <Page1 error={error} register={register} />;
     case 1:
-      // return <Page1 register={register} />;
       return <Page2 error={error} register={register} />;
     case 2:
       return <Page3 error={error} register={register} />;

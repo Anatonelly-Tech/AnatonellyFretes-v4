@@ -12,7 +12,6 @@ interface Page2Props {
 }
 
 const Page2 = ({ register, error }: Page2Props) => {
-  console.log(error);
   return (
     <div className='flex flex-col items-center justify-center w-4/5 h-4/5 bg-zinc-400 gap-5'>
       <div className='flex items-center justify-between h-auto w-full gap-5'>

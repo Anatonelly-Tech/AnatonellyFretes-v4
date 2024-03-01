@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { DiaFormatado } from '@/utils/formatDateFunction';
 import { arrayOfResponsibles } from '@/utils/responsibleName';
+import { postFreight } from '@/services/formData';
 
 const Page5 = async ({ data }: any) => {
   const responsibles = await arrayOfResponsibles(data);
@@ -98,7 +99,7 @@ const Page5 = async ({ data }: any) => {
                 Veiculos:
                 <div className='flex flex-wrap pl-1 gap-1'>
                   {data.veiculos.map((veiculo: string) => (
-                    <span className='bg-zinc-100 font-normal rounded-lg p-1 '>
+                    <span key={veiculo} className='bg-zinc-100 font-normal rounded-lg p-1 '>
                       {veiculo}
                     </span>
                   ))}
@@ -110,7 +111,7 @@ const Page5 = async ({ data }: any) => {
                 Carrocerias:
                 <div className='flex flex-wrap pl-1 gap-1'>
                   {data.carrocerias.map((carroceria: string) => (
-                    <span className='bg-zinc-100 font-normal rounded-lg p-1 '>
+                    <span key={carroceria} className='bg-zinc-100 font-normal rounded-lg p-1 '>
                       {carroceria}
                     </span>
                   ))}
@@ -167,12 +168,24 @@ const Page5 = async ({ data }: any) => {
             <span className='font-medium'>
               Responsável pelo Frete:
               {responsibles.map((responsible: string) => (
-                <span className='font-normal pl-1'>{responsible}; </span>
+                <span key={responsible} className='font-normal pl-1'>{responsible}; </span>
               ))}
             </span>
           </div>
         </div>
+        <div></div>
       </div>
+      <button
+        className='w-36 h-10 bg-green-500 font-black text-white rounded shadow-lg hover:bg-green-600'
+        type='submit'
+        form='createFreight'
+        onClick={async () => {
+          await postFreight(data);
+          console.log('Formulario enviado com sucesso!');
+        }}
+      >
+        Confirmar
+      </button>
     </div>
   );
 };
