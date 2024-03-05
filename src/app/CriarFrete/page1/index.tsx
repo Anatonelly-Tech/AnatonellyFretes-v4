@@ -27,13 +27,14 @@ export default function Page1({ register, error }: Page1Props) {
       setResponsaveisFrete(responsaveis.data.response);
     };
     getResponsaveis();
-  }, []);
-
+  }, []); 
+  
   const WaitLoad = () => {
     setTimeout(() => {
       setLoaded(true);
     }, 5000);
   };
+
 
   const tryLoading = () => {
     return loaded == false ? (

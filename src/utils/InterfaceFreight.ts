@@ -1,0 +1,37 @@
+export interface Frete {
+  _id: string;
+  name: string;
+  collectCity: string;
+  collectDate: string;
+  deliveryCity: string;
+  deliveryDate: string;
+  responsibleFreight: any[];
+  product: string;
+  species: string;
+  weight: string;
+  volume?: string;
+  weightCuban?: string;
+  sizeCubic?: string;
+  lenght?: string;
+  height?: string;
+  width?: string;
+  freightPrice: string;
+  paymentForm: string;
+  comments?: string;
+  advancePrice?: string;
+  valueCalculation: string;
+  radioValueLocalizacao: string;
+  radioValueTipoCarga: string;
+  radioValueLona: string;
+  radioValueRastreador: string;
+  unitMeasurement: string;
+  radioValueValor: string;
+  radioValuePedagio: string;
+  radioPacoteEscolhido: string;
+  veiculos: string[];
+  carrocerias: string[];
+  statusItem: boolean;
+  createdAt: string;
+  idForm: string;
+  idResponsible: number[];
+}

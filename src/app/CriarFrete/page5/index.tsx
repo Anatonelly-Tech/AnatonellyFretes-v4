@@ -173,7 +173,6 @@ const Page5 = async ({ data }: any) => {
             </span>
           </div>
         </div>
-        <div></div>
       </div>
       <button
         className='w-36 h-10 bg-green-500 font-black text-white rounded shadow-lg hover:bg-green-600'

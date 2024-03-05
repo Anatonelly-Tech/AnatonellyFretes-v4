@@ -4,6 +4,25 @@ const BASE_URL = '/formData';
 
 export const getAllFreight = async () => api.get(`${BASE_URL}`);
 
+export const putFreight = async (idForm, data) =>
+  api.put(`${BASE_URL}/${idForm}`, data);
+
+export const changeStatus = async (idForm, idResponsible, statusItem) => {
+  api.put(`${BASE_URL}?idForm=${idForm}`, {
+    idResponsible,
+    statusItem,
+  });
+  window.location.reload(true);
+};
+
+export const deleteFreight = async (idForm) => {
+  api.delete(`${BASE_URL}/${idForm}`);
+  window.location.reload(true);
+};
+
+export const getFreightById = async (idForm) =>
+  api.get(`${BASE_URL}/${idForm}`);
+
 export const postFreight = async ({
   name,
   collectCity,
@@ -18,6 +37,7 @@ export const postFreight = async ({
   sizeCubic,
   length,
   height,
+  width,
   freightPrice,
   paymentForm,
   comments,
@@ -49,6 +69,7 @@ export const postFreight = async ({
     sizeCubic,
     length,
     height,
+    width,
     freightPrice,
     paymentForm,
     comments,
