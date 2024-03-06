@@ -47,7 +47,7 @@ const Actions = ({ idForm, statusItem, idResponsible, ...props }: Frete) => {
 
                 // adiciona os resultados na tela com inputs preenchidos
                 // primeiro campo id segundo campo objeto
-                await putFreight(response.id, response);
+                // await putFreight(response.id, response);
               }}
               style={{ backgroundColor: customColors[1], color: 'white' }}
             >

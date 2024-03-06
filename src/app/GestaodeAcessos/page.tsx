@@ -15,27 +15,14 @@ const page = () => {
     };
     getResponsaveis();
   }, []);
-  console.log(responsaveisFrete);
 
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('Asc');
 
   return (
-    <div className='flex flex-col gap-2 p-5'>
-      <div className=' flex text-white items-center justify-center w-64 h-auto bg-purple-500 flex-col rounded p-10 gap-5 shadow-inner shadow-purple-950 '>
-        <p className='font-bold text-xl text-center'>
-          Quantidade De Usuarios Cadastrados
-        </p>
-        <div className='flex flex-col items-center justify-center gap-1 bg-purple-600 rounded-full w-2/5 h-full shadow-lg shadow-purple-900 p-3'>
-          <FaRegUser size={20} />
-          <span className='font-bold text-lg'>
-            {responsaveisFrete.length}/10
-          </span>
-        </div>
-      </div>
-      <div>
-        <div className='flex flex-col gap-5'>
-
+    <div className='flex flex-col w-full gap-2 p-5'>
+      <div className='flex flex-col gap-5'>
+        <div className='flex flex-col gap-3 justify-between h-auto'>
           <div className='flex gap-5'>
             <div className='flex items-center justify-center  shadow-md '>
               <input
@@ -46,7 +33,10 @@ const page = () => {
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder='Pesquisar'
               />
-              <label htmlFor="search" className='text-gray-400 p-2 rounded-r h-10 bg-white'>
+              <label
+                htmlFor='search'
+                className='text-gray-400 p-2 rounded-r h-10 bg-white'
+              >
                 <CiSearch size={20} />
               </label>
             </div>
@@ -65,41 +55,57 @@ const page = () => {
               </button>
             </div>
           </div>
-          <div className='flex flex-col gap-3'>
-            {responsaveisFrete
-              .sort((a, b) =>
-                sort === 'Asc'
-                  ? a.name.localeCompare(b.name)
-                  : b.name.localeCompare(a.name)
-              )
-              .filter(
-                (resp) =>
-                  resp.phone.toLowerCase().includes(search.toLowerCase()) ||
-                  resp.name.toLowerCase().includes(search.toLowerCase()) ||
-                  resp.email.toLowerCase().includes(search.toLowerCase()) ||
-                  resp.department.toLowerCase().includes(search.toLowerCase())
-              )
-              .map((resp) => (
-                <div className='flex w-full max-w-full bg-gray-100 gap-3 p-3 rounded shadow-lg shadow-black'>
-                  <div className='flex w-1/4 flex-col items-center justify-center border-r-gray-300 pr-2 border-r-2'>
-                    <p className='font-bold'>{resp.name}</p>
-                    <p>{resp.email}</p>
-                  </div>
-                  <div className='flex w-1/4 flex-col items-center justify-center  border-r-gray-300 pr-2 border-r-2'>
-                    <p className='font-bold'>{resp.department}</p>
-                    <p>{resp.phone}</p>
-                  </div>
-                  <div className='flex w-1/4 flex-col items-center justify-center  border-r-gray-300 pr-2 border-r-2'>
-                    <p className='font-bold'>
-                      {resp.isAdmin == true ? 'Administrador' : 'Colaborador'}
-                    </p>
-                  </div>
-                  <div className='w-1/4 flex'>
-                    <ActionResponsible idResponsible={resp.idResponsible} />
-                  </div>
-                </div>
-              ))}
+          <div className='flex flex-col items-center justify-center gap-1 bg-purple-600 rounded-full w-20 h-20 shadow-lg shadow-purple-900 p-3 text-white'>
+            <FaRegUser size={20} />
+            {responsaveisFrete.length > 10 ? (
+              <span className='font-bold  text-lg'>
+                <span className='font-bold text-red-500 text-lg'>
+                  {responsaveisFrete.length}
+                </span>
+                /10
+              </span>
+            ) : (
+              <span className='font-bold text-lg'>
+                {responsaveisFrete.length}/10
+              </span>
+            )}
           </div>
+        </div>
+
+        <div className='flex flex-col gap-3'>
+          {responsaveisFrete
+            .sort((a, b) =>
+              sort === 'Asc'
+                ? a.name.localeCompare(b.name)
+                : b.name.localeCompare(a.name)
+            )
+            .filter(
+              (resp) =>
+                resp.phone.toLowerCase().includes(search.toLowerCase()) ||
+                resp.name.toLowerCase().includes(search.toLowerCase()) ||
+                resp.email.toLowerCase().includes(search.toLowerCase()) ||
+                resp.department.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((resp) => (
+              <div className='flex w-full max-w-full bg-gray-100 gap-3 p-3 rounded shadow-lg shadow-black'>
+                <div className='flex w-1/4 flex-col items-center justify-center border-r-gray-300 pr-2 border-r-2'>
+                  <p className='font-bold'>{resp.name}</p>
+                  <p>{resp.email}</p>
+                </div>
+                <div className='flex w-1/4 flex-col items-center justify-center  border-r-gray-300 pr-2 border-r-2'>
+                  <p className='font-bold'>{resp.department}</p>
+                  <p>{resp.phone}</p>
+                </div>
+                <div className='flex w-1/4 flex-col items-center justify-center  border-r-gray-300 pr-2 border-r-2'>
+                  <p className='font-bold'>
+                    {resp.isAdmin == true ? 'Administrador' : 'Colaborador'}
+                  </p>
+                </div>
+                <div className='w-1/4 flex'>
+                  <ActionResponsible idResponsible={resp.idResponsible} />
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </div>

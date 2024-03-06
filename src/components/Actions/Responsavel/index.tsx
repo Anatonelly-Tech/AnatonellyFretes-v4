@@ -4,11 +4,15 @@ import Tooltip from '@mui/material/Tooltip';
 import { FaRegEye, FaTrashAlt } from 'react-icons/fa';
 import { CiEdit } from 'react-icons/ci';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
+import {
+  deleteResponsible,
+  getResponsibleById,
+  putResponsible,
+} from '@/services/responsibleFreight';
+import { log } from 'console';
 
-const ActionResponsible = ({idResponsible}:number) => {
+const ActionResponsible = ({ idResponsible }: number) => {
   const customColors = ['#15803d', '#a16207', '#22c55e', '#fbbf24', '#dc2626'];
-
-  
 
   return (
     <div className='flex h-full w-full items-center justify-center gap-1'>
@@ -17,7 +21,8 @@ const ActionResponsible = ({idResponsible}:number) => {
           size='small'
           id='GET'
           onClick={async () => {
-            console.log('exibir',idResponsible);
+            const data = await getResponsibleById(idResponsible);
+            console.log(data.data.response);
           }}
           style={{
             backgroundColor: customColors[0],
@@ -33,7 +38,11 @@ const ActionResponsible = ({idResponsible}:number) => {
           size='small'
           id='PUT'
           onClick={async () => {
-            console.log('editar');
+            const data = await getResponsibleById(idResponsible);
+            console.log(data.data.response);
+            // edit freight
+            // primeiro campo id segundo campo objeto
+            // putResponsible(idResponsible, { data });
           }}
           style={{ backgroundColor: customColors[1], color: 'white' }}
         >
@@ -70,7 +79,9 @@ const ActionResponsible = ({idResponsible}:number) => {
                 <AlertDialog.Action>
                   <button
                     onClick={
-                      async () => console.log('deletar') /* remove freight*/
+                      async () => {
+                        await deleteResponsible(idResponsible);
+                      } /* remove freight*/
                     }
                     className='bg-red-500 text-white font-bold w-28 h-8 rounded hover:bg-red-600'
                   >
