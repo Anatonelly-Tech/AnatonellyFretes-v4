@@ -13,7 +13,7 @@ import {
 } from '@/services/formData';
 import { MdBlock } from 'react-icons/md';
 
-const Index = ({ idForm, statusItem, idResponsible, ...props }: Frete) => {
+const Actions = ({ idForm, statusItem, idResponsible, ...props }: Frete) => {
   const customColors = ['#15803d', '#a16207', '#22c55e', '#fbbf24', '#dc2626'];
 
   if (statusItem == false) {
@@ -197,4 +197,4 @@ const Index = ({ idForm, statusItem, idResponsible, ...props }: Frete) => {
   }
 };
 
-export default Index;
+export default Actions;
