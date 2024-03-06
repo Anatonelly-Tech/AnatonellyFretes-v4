@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Page5 = ({ data }: any) => {
-  function DiaFormatado(dateWithoutFormat: Date) {
-    let dia = (dateWithoutFormat.getDate() + 1).toString().padStart(2, '0');
-    let mes = (dateWithoutFormat.getMonth() + 1).toString().padStart(2, '0'); //+1 pois no getMonth Janeiro começa com zero.
-    let ano = dateWithoutFormat.getFullYear();
-    return dia + '/' + mes + '/' + ano;
-  }
+import { DiaFormatado } from '@/utils/formatDateFunction';
+import { arrayOfResponsibles } from '@/utils/responsibleName';
+import { postFreight } from '@/services/formData';
+
+const Page5 = async ({ data }: any) => {
+  const responsibles = await arrayOfResponsibles(data);
   return (
     <div className='w-full flex gap-2 h-full flex-col p-5'>
       <span className='text-xl font-semibold'>Pedido #001</span>
@@ -100,7 +99,7 @@ const Page5 = ({ data }: any) => {
                 Veiculos:
                 <div className='flex flex-wrap pl-1 gap-1'>
                   {data.veiculos.map((veiculo: string) => (
-                    <span className='bg-zinc-100 font-normal rounded-lg p-1 '>
+                    <span key={veiculo} className='bg-zinc-100 font-normal rounded-lg p-1 '>
                       {veiculo}
                     </span>
                   ))}
@@ -112,7 +111,7 @@ const Page5 = ({ data }: any) => {
                 Carrocerias:
                 <div className='flex flex-wrap pl-1 gap-1'>
                   {data.carrocerias.map((carroceria: string) => (
-                    <span className='bg-zinc-100 font-normal rounded-lg p-1 '>
+                    <span key={carroceria} className='bg-zinc-100 font-normal rounded-lg p-1 '>
                       {carroceria}
                     </span>
                   ))}
@@ -130,7 +129,7 @@ const Page5 = ({ data }: any) => {
               <div className='flex flex-col w-1/2'>
                 <span className='font-medium'>
                   Valor a Pagar:
-                  {data.radioValueValor == 'Acombinar' ? (
+                  {data.radioValueValor == 'aCombinar' ? (
                     <span className='font-normal pl-1'>A Combinar</span>
                   ) : (
                     <span className='font-normal pl-1'>
@@ -168,13 +167,24 @@ const Page5 = ({ data }: any) => {
             </div>
             <span className='font-medium'>
               Responsável pelo Frete:
-              {data.responsibleFreight.map((responsible: string) => (
-                <span className='font-normal pl-1'>{responsible}; </span>
+              {responsibles.map((responsible: string) => (
+                <span key={responsible} className='font-normal pl-1'>{responsible}; </span>
               ))}
             </span>
           </div>
         </div>
       </div>
+      <button
+        className='w-36 h-10 bg-green-500 font-black text-white rounded shadow-lg hover:bg-green-600'
+        type='submit'
+        form='createFreight'
+        onClick={async () => {
+          await postFreight(data);
+          console.log('Formulario enviado com sucesso!');
+        }}
+      >
+        Confirmar
+      </button>
     </div>
   );
 };

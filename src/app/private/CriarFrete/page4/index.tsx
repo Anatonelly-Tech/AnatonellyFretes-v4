@@ -17,8 +17,6 @@ interface Page4Props {
 }
 
 export default function Page4({ register, error }: Page4Props) {
-  console.log(typeof register);
-
   return (
     <div className=' mt-10 flex flex-col items-center justify-start w-4/5 h-4/5 bg-zinc-400 gap-5 p-5'>
       <div className='flex items-center justify-start w-full h-auto px-5 gap-10'>
@@ -32,7 +30,7 @@ export default function Page4({ register, error }: Page4Props) {
             ]}
             register={register}
             name={'radioValueValor'}
-            value={['JaSeiValor', 'Acombinar']}
+            value={['JaSeiValor', 'aCombinar']}
             title={'Informações de Valor'}
           />
           <span className='text-sm flex text-red-500 font-bold'>
@@ -49,7 +47,7 @@ export default function Page4({ register, error }: Page4Props) {
             ]}
             register={register}
             name={'radioValuePedagio'}
-            value={['InclusoValor', 'PagoParte']}
+            value={['InclusoNoValor', 'PagoAParte']}
             title={'Pedagio'}
           />
           <span className='text-sm flex text-red-500 font-bold'>

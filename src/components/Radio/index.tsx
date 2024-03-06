@@ -29,6 +29,7 @@ const InputRadio = ({
         <span className='text-sm text-black font-medium'>{title}</span>
         {value.map((item, index) => (
           <div
+            key={index}
             className='flex items-center w-auto justify-center '
             title={subLabel[index]}
           >
@@ -56,6 +57,7 @@ const InputRadio = ({
         <span className='text-sm text-black font-medium'>{title}*</span>
         {value.map((item, index) => (
           <div
+            key={index}
             className='flex items-center w-auto justify-center '
             title={subLabel[index]}
           >

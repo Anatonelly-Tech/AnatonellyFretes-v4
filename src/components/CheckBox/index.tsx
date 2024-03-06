@@ -50,7 +50,7 @@ export default function CheckBox({
         <label className="text-white font-semibold" htmlFor={id}>
           {label}
         </label>
-        <label className="text-zinc-500 font-semibold" htmlFor={id}>
+        <label className="text-zinc-300 font-semibold" htmlFor={id}>
           {sublabel}
         </label>
       </div>
