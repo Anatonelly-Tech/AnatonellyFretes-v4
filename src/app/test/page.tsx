@@ -1,5 +1,5 @@
-'use client';
-import '@/styles/main.css';
+"use client";
+import "../../styles/main.css";
 
 import React, { useState } from 'react';
 import ModalComponent from '@/components/Modal';
@@ -43,7 +43,7 @@ const page = () => {
   //   password: 'testFuncionario',
   // };
   return (
-    <div className='p-5 gap-5 w-full h-full flex '>
+    <div className="p-5 gap-5 w-full h-full flex ">
       <div>
         {responsaveisFrete.length > 0
           ? responsaveisFrete.map((item, index) => (
@@ -53,7 +53,7 @@ const page = () => {
             ))
           : <span className='text-red-500'>Nada Cadastrado ainda Click NO BOTÃO</span> }
       </div>
-      <button className='w-10 h-10 bg-white' onClick={getfuncionarios}></button>
+      <button className="w-10 h-10 bg-white" onClick={getfuncionarios}></button>
     </div>
   );
 };

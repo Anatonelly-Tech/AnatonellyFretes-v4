@@ -5,7 +5,7 @@ import React, { InputHTMLAttributes } from "react";
 interface InputLoginProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   mask?: string;
-  register: any;
+  register?: any;
   isRequired?: boolean;
 }
 
@@ -20,12 +20,13 @@ const InputLogin = ({
     <div className=" p-4 rounded-lg w-full">
       <div className="relative bg-inherit">
         <input
-          {...register(props.name)}
+          // {...register(props.name)}
           type="text"
           id={props.id}
           name={props.name}
           className="peer bg-transparent h-10 w-full text-gray-100 placeholder-transparent border-b-2 px-2 border-gray-200  focus:outline-none focus:border-purple-100"
           placeholder={label}
+          {...props}
         />
         <label
           htmlFor={props.name}

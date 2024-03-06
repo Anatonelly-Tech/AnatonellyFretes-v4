@@ -1,9 +1,9 @@
-import Page1 from '@/app/CriarFrete/page1';
-import Page2 from '@/app/CriarFrete/page2';
-import Page3 from '@/app/CriarFrete/page3';
-import Page4 from '@/app/CriarFrete/page4';
-import Page5 from '@/app/CriarFrete/page5';
-import Loading from '@/components/Loading';
+import Page1 from "@/app/private/CriarFrete/page1";
+import Page2 from "@/app/private/CriarFrete/page2";
+import Page3 from "@/app/private/CriarFrete/page3";
+import Page4 from "@/app/private/CriarFrete/page4";
+import Page5 from "@/app/private/CriarFrete/page5";
+import Loading from "@/components/Loading";
 
 interface AdvancedPagesProps {
   activeStep: number;
