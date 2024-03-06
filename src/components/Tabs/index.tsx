@@ -1,5 +1,5 @@
 "use client";
-import "@/styles/main.css";
+import "../../styles/main.css";
 import { ConfigProvider, Tabs } from "antd";
 import type { TabsProps } from "antd";
 import React from "react";

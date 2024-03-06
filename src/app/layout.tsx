@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { AuthProvider } from "@/providers/auth-provider";
 const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: "Anatonelly Fretes",
 };
@@ -13,14 +13,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={"w-full h-full" + inter.className}>
-      <head>
-        <link rel="icon" href="/favicon.png" />
-      </head>
-      <body className="bg-anatonelly-bg bg-no-repeat bg-cover w-screen h-screen relative -z-50">
-        <NavBar />
-        {children}
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en" className={"w-full h-full" + inter.className}>
+        <head>
+          <link rel="icon" href="/favicon.png" />
+        </head>
+        <body className="bg-anatonelly-bg bg-no-repeat bg-cover w-screen h-screen relative -z-50">
+          <NavBar />
+          {children}
+        </body>
+      </html>
+    </AuthProvider>
   );
 }
