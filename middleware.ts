@@ -9,7 +9,7 @@ const middleware = (request: NextRequestWithAuth) => {
   console.log("[MIDDLEWARE_NEXTAUTH_TOKEN]: ", request.nextauth.token);
 
   const isPrivate = request.nextUrl.pathname.startsWith("/private");
-  const isAdminUser = request.nextauth.token?.role === "admin";
+  const isAdminUser = request.nextauth.token?.role === "Admin";
 
   if (isPrivate && !isAdminUser) {
     return NextResponse.rewrite(new URL("/denid", request.url));

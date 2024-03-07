@@ -170,9 +170,9 @@ const ModalComponentInside = ({ setResponsaveisFrete }: any) => {
             <div>
               <InputRadio
                 title='Nível de acesso'
-                value={[true, false]}
+                value={['Admin', "User"]}
                 register={register}
-                name='isAdmin'
+                name='role'
                 id={['Administrador', 'Colaborador']}
                 label={['Administrador', 'Colaborador']}
                 subLabel={[
@@ -181,7 +181,7 @@ const ModalComponentInside = ({ setResponsaveisFrete }: any) => {
                 ]}
               />
               <span className='text-red-500 font-bold text-sm m-0 p-0'>
-                {errors.isAdmin?.message}
+                {errors.role?.message}
               </span>
             </div>
             <div>

@@ -32,16 +32,6 @@ const page = () => {
     
   };
 
-  // const datab = {
-  //   name: 'testFuncionario',
-  //   cpf: 'testFuncionario',
-  //   email: 'testFuncionario',
-  //   phone: 'testFuncionario',
-  //   contactWay: 'callOnly',
-  //   isAdmin: true,
-  //   department: 'Compras',
-  //   password: 'testFuncionario',
-  // };
   return (
     <div className="p-5 gap-5 w-full h-full flex ">
       <div>
