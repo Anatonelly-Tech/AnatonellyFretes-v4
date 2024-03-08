@@ -1,4 +1,0 @@
-if (session) {
-  return;
-}
-return <DaniedPage />;
