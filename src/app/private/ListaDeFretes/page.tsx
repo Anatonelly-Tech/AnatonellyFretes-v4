@@ -43,9 +43,9 @@ const page = () => {
 
   const [loaded, setLoaded] = useState(false);
   const WaitLoad = () => {
-    setTimeout(() => {
+    // setTimeout(() => {
       setLoaded(true);
-    }, 5000);
+    // }, 5000);
   };
 
   const tryLoading = () => {

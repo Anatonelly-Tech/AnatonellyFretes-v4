@@ -66,7 +66,7 @@ const page = () => {
           alt=""
         />
         <form
-          className="flex flex-col items-center justify-around h-full"
+          className="flex flex-col items-center justify-around h-full w-full"
           onSubmit={handleLogin}
         >
           <div className="w-full">
@@ -89,16 +89,16 @@ const page = () => {
               required
             />
           </div>
-          <div className="flex justify-between gap-5 w-full">
-            <CheckBox
+          <div className="flex justify-center items-center w-full">
+            {/* <CheckBox
               id="ManterConcectado"
               register={register}
               label="Manter conectado"
               value={false}
               name="ManterConcectado"
-            />
+            /> */}
             <a
-              className="text-zinc-300 hover:text-zinc-500 font-bold underline"
+              className="text-zinc-300 hover:text-zinc-500 font-bold underline text-center"
               href=""
             >
               Esqueci minha senha
