@@ -15,24 +15,22 @@ import {
 import { MdBlock } from "react-icons/md";
 
 const Actions = ({ idForm, statusItem, idResponsible, ...props }: Frete) => {
-  // const customColors = ["#15803d", "#a16207", "#22c55e", "#fbbf24", "#dc2626"];
-
   if (statusItem == false) {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center gap-1">
         <div className="flex items-center justify-center gap-1">
           <Modal2
-            color="green"
+            color="bg-green-600 hover:bg-green-700"
             method="GET"
             Icon={<FaRegEye className="text-lg font-bold" />}
             nameTitle="testeee"
             id={idForm}
           />
           <Modal2
-            color="yellow"
+            color="bg-yellow-600 hover:bg-yellow-700 "
             method="PUT"
             Icon={<CiEdit className="text-lg font-black text-white" />}
-            nameTitle="testeee"
+            nameTitle="teste2"
             id={idForm}
           />
         </div>
@@ -97,17 +95,17 @@ const Actions = ({ idForm, statusItem, idResponsible, ...props }: Frete) => {
       <div className="w-full h-full flex flex-col items-center justify-center gap-1">
         <div className="flex items-center justify-center gap-1">
           <Modal2
-            color="green"
+            color="bg-green-600 hover:bg-green-700"
             method="GET"
             Icon={<FaRegEye className="text-lg font-bold" />}
             nameTitle="testeee"
             id={idForm}
           />
           <Modal2
-            color="yellow"
+            color="bg-yellow-600 hover:bg-yellow-700 "
             method="PUT"
             Icon={<CiEdit className="text-lg font-black text-white" />}
-            nameTitle="testeee"
+            nameTitle="teste2"
             id={idForm}
           />
         </div>

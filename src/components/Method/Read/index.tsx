@@ -40,9 +40,9 @@ const READ = ({ id }: READProps) => {
   console.log(Freight);
 
   return (
-    <div className="w-auto h-auto text-nowrap flex flex-col items-center justify-center ">
+    <div className="w-auto h-auto text-nowrap p-2 flex flex-col items-center justify-center ">
       {loaded ? (
-        <div className="w-auto h-auto text-nowrap flex flex-col items-center justify-center gap-3">
+        <div className="w-auto h-auto text-nowrap flex flex-col items-center justify-center gap-5">
           <div className="w-auto flex items-start justify-center gap-3">
             <div className="h-auto flex flex-col font-semibold">
               Nome do Frete
@@ -69,22 +69,6 @@ const READ = ({ id }: READProps) => {
               </div>
             </div>
             <div className="h-auto flex flex-col font-semibold">
-              Valor do Frete
-              <div className=" h-28 bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
-                <div className="h-full p-5 flex items-center justify-center text-xl">
-                  {Freight.radioValueValor == "aCombinar" ? (
-                    <span className="font-normal pl-1">A Combinar</span>
-                  ) : (
-                    <span className="font-normal pl-1">
-                      R$ {Freight.freightPrice}/{Freight.valueCalculation}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="w-auto flex items-start justify-center gap-3">
-            <div className="h-auto flex flex-col font-semibold">
               Responsáveis do Frete
               <div className=" h-28 bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
                 <div className="h-full gap-2 p-5 flex flex-col items-center justify-center text-md">
@@ -94,10 +78,14 @@ const READ = ({ id }: READProps) => {
                 </div>
               </div>
             </div>
-            <div className="w-full h-auto flex flex-col font-semibold">
+          </div>
+          <div className="w-full h-32 flex items-start justify-center gap-3">
+            <div className="w-full h-full flex flex-col font-semibold">
               veiculos e carrocerias
-              <div className="flex items-start justify-center gap-5 p-5 
-               bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm overflow-auto">
+              <div
+                className="max-h-28 flex items-start justify-center gap-5 p-5 
+               bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm overflow-y-scroll"
+              >
                 <div className="flex flex-col items-start justify-center">
                   Veiculos
                   {Freight.veiculos.map((veiculo: any) => (
@@ -116,69 +104,123 @@ const READ = ({ id }: READProps) => {
                 </div>
               </div>
             </div>
-            <div className=" h-auto w-auto flex flex-col font-semibold text-sm">
-              Forma de <br /> Pagamento
-              <div className="w-auto  bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
+            <div className="h-full  flex flex-col w-full  font-semibold text-sm">
+              Produto
+              <div className="w-full  bg-zinc-100 h-full shadow-inner shadow-zinc-400 rounded-sm">
                 <div className="w-auto px-2 h-full flex items-center justify-center text-sm">
-                  {Freight.paymentForm}
+                  {Freight.product}
+                </div>
+              </div>
+            </div>
+            <div className="h-full w-full flex flex-col font-semibold text-sm">
+              Espécie
+              <div className="w-full  bg-zinc-100 h-full shadow-inner shadow-zinc-400 rounded-sm">
+                <div className="w-auto px-2 h-full flex items-center justify-center text-sm">
+                  {Freight.species}
                 </div>
               </div>
             </div>
           </div>
-          <div className="w-full flex items-start justify-between">
-            <div className=" h-auto w-auto flex flex-col font-semibold text-sm">
-              Pacote <br /> escolhido
-              <div className="w-auto h-16 bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
-                <div className="w-auto px-2 h-full flex items-center justify-center text-sm">
-                  {Freight.radioPacoteEscolhido}
+
+          <div className="w-full flex flex-col gap-2 items-start justify-between">
+            <div className="w-full h-24 flex items-center justify-between gap-4">
+              <div className="h-full flex flex-col w-full  font-semibold text-sm">
+                Forma de Pagamento
+                <div className="w-auto  bg-zinc-100 h-full shadow-inner shadow-zinc-400 rounded-sm">
+                  <div className="w-auto px-2 h-full flex items-center justify-center text-sm">
+                    {Freight.paymentForm}
+                  </div>
+                </div>
+              </div>
+              <div className="h-full flex flex-col w-full  font-semibold text-sm">
+                Pacote escolhido
+                <div className="w-auto bg-zinc-100 h-full shadow-inner shadow-zinc-400 rounded-sm">
+                  <div className="w-auto px-2 h-full flex items-center justify-center text-sm">
+                    {Freight.radioPacoteEscolhido}
+                  </div>
+                </div>
+              </div>
+              <div className="h-full flex flex-col w-full  font-semibold text-sm">
+                Localização do frete
+                <div className="  bg-zinc-100 h-full shadow-inner shadow-zinc-400 rounded-sm">
+                  <div className=" px-2 h-full flex items-center justify-center text-sm">
+                    {Freight.radioValueLocalizacao}
+                  </div>
+                </div>
+              </div>
+              <div className="h-full flex flex-col w-full  font-semibold text-sm">
+                Precisa de lona?
+                <div className="  bg-zinc-100 h-full shadow-inner shadow-zinc-400 rounded-sm">
+                  <div className=" px-2 h-full flex items-center justify-center text-sm">
+                    {Freight.radioValueLona}
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="h-auto flex flex-col font-semibold text-sm">
-              Localização <br /> do frete
-              <div className=" h-16 bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
-                <div className=" px-2 h-full flex items-center justify-center text-sm">
-                  {Freight.radioValueLocalizacao}
+            <div className="w-full h-24 flex items-center justify-between gap-4">
+              <div className="h-full flex flex-col w-full  font-semibold text-sm">
+                Pedágio incluso?
+                <div className=" h-full bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
+                  <div className=" px-2 h-full flex items-center justify-center text-sm">
+                    {Freight.radioValuePedagio}
+                  </div>
+                </div>
+              </div>
+              <div className="h-full flex w-full flex-col font-semibold text-sm">
+                Precisa de Rastreador?
+                <div className=" h-full bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
+                  <div className=" px-2 h-full flex items-center justify-center text-sm">
+                    {Freight.radioValueRastreador}
+                  </div>
+                </div>
+              </div>
+              <div className="h-full flex w-full flex-col font-semibold text-sm">
+                Tipo de carga
+                <div className=" h-full bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
+                  <div className=" px-2 h-full flex items-center justify-center text-sm">
+                    {Freight.radioValueTipoCarga}
+                  </div>
+                </div>
+              </div>
+              <div className="h-full flex flex-col w-full font-semibold text-sm">
+                Informações do Valor
+                <div className=" h-full bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
+                  <div className=" px-2 h-full flex items-center justify-center text-sm">
+                    {Freight.radioValueValor}
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="h-auto flex flex-col font-semibold text-sm">
-              Precisa <br /> de lona?
-              <div className=" h-16 bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
-                <div className=" px-2 h-full flex items-center justify-center text-sm">
-                  {Freight.radioValueLona}
+            <div className="w-full h-28 flex items-center justify-center gap-3">
+              <div className="h-full flex flex-col font-semibold text-sm">
+                Valor do Frete
+                <div className=" h-full bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
+                  <div className="h-full p-5 flex items-center justify-center text-xl">
+                    {Freight.radioValueValor == "aCombinar" ? (
+                      <span className="font-normal pl-1">A Combinar</span>
+                    ) : (
+                      <span className="font-normal pl-1">
+                        R$ {Freight.freightPrice}/{Freight.valueCalculation}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="h-auto flex flex-col font-semibold text-sm">
-              Pedágio <br /> incluso?
-              <div className=" h-16 bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
-                <div className=" px-2 h-full flex items-center justify-center text-sm">
-                  {Freight.radioValuePedagio}
+
+              <div className="h-full w-full flex flex-col font-semibold text-sm">
+                Unidade de medida
+                <div className="w-full  bg-zinc-100 h-full shadow-inner shadow-zinc-400 rounded-sm">
+                  <div className="w-auto px-2 h-full flex items-center justify-center text-sm">
+                    {Freight.valueCalculation}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="h-auto flex flex-col font-semibold text-sm">
-              Precisa de <br /> Rastreador?
-              <div className=" h-16 bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
-                <div className=" px-2 h-full flex items-center justify-center text-sm">
-                  {Freight.radioValueRastreador}
-                </div>
-              </div>
-            </div>
-            <div className="h-auto flex flex-col font-semibold text-sm">
-              Tipo de <br /> carga
-              <div className=" h-16 bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
-                <div className=" px-2 h-full flex items-center justify-center text-sm">
-                  {Freight.radioValueTipoCarga}
-                </div>
-              </div>
-            </div>
-            <div className="h-auto flex flex-col font-semibold text-sm">
-              Informações <br /> do Valor
-              <div className=" h-16 bg-zinc-100 shadow-inner shadow-zinc-400 rounded-sm">
-                <div className=" px-2 h-full flex items-center justify-center text-sm">
-                  {Freight.radioValueValor}
+              <div className="h-full w-full flex flex-col font-semibold text-sm">
+                Valor total do frete
+                <div className="w-full  bg-zinc-100 h-full shadow-inner shadow-zinc-400 rounded-sm">
+                  <div className="w-auto px-2 h-full flex items-center justify-center text-sm">
+                    R${Freight.weight * Freight.freightPrice}
+                  </div>
                 </div>
               </div>
             </div>
