@@ -20,6 +20,11 @@ export const putUser = async (id, data) => {
   });
   window.location.reload(true);
 };
+export const putUserByEmail = async (email, employeesID) => {
+  api.put(`${BASE_URL}Att/${email}`, {
+    employeesID,
+  });
+};
 
 export const postUserFreight = async ({ name, email, password, role }) =>
   api.post(`${BASE_URL}`, {

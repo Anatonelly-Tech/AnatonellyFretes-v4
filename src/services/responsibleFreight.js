@@ -27,7 +27,7 @@ export const postResponsibleFreight = async ({
   phone,
   contactWay,
   department,
-  isAdmin,
+  role,
   password,
 }) =>
   api.post(`${BASE_URL}`, {

@@ -29,9 +29,7 @@ const page = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(email, password);
     try {
-      console.log(email, password);
       const response = await signIn("credentials", {
         redirect: false,
         email,

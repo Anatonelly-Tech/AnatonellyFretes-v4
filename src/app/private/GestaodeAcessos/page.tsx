@@ -60,7 +60,10 @@ const page = () => {
                   v
                 </button>
               </div>
-              <ModalComponent />
+              <ModalComponent
+                setResponsaveisFrete={setResponsaveisFrete}
+                session={session}
+              />
             </div>
             <div className='flex flex-col items-center justify-center gap-1 bg-purple-600 rounded-full w-20 h-20 shadow-lg shadow-purple-900 p-3 text-white'>
               <FaRegUser size={20} />

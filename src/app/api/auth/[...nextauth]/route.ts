@@ -1,12 +1,12 @@
-import {
-  getResponsibleByEmail,
-} from '@/services/responsibleFreight';
+import { getUserByEmail } from '@/services/user';
 import NextAuth from 'next-auth';
 import { NextAuthOptions } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
 
 const getUser = async (email) => {
-  const User = (await getResponsibleByEmail(email)).data.response;
+  const User = (await getUserByEmail(email)).data.response;
+  console.log(User);
+  
   return User;
 };
 
@@ -18,7 +18,6 @@ const authOptions: NextAuthOptions = {
       credentials: {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
-
       },
       async authorize(credentials) {
         const User = await getUser(credentials?.email);
@@ -53,7 +52,6 @@ const authOptions: NextAuthOptions = {
           name: token.name,
           email: token.email,
           role: token.role,
-          
         },
       };
     },
@@ -66,7 +64,5 @@ const authOptions: NextAuthOptions = {
     signOut: '/auth/login',
   },
 };
-
-const handler = NextAuth(authOptions);
-
-export { handler as GET, handler as POST };
+const handler = NextAuth(authOptions)
+export { handler as GET, handler as POST}
