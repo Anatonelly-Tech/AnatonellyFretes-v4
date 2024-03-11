@@ -4,6 +4,7 @@ import DaniedPage from '@/app/denid/page';
 import ActionResponsible from '@/components/Actions/Responsavel';
 import ModalComponent from '@/components/Modal';
 import { getAllResponsibles } from '@/services/responsibleFreight';
+import { getUserByEmail } from '@/services/user';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import { CiSearch } from 'react-icons/ci';
@@ -11,15 +12,15 @@ import { FaRegUser } from 'react-icons/fa';
 
 const page = () => {
   const [responsaveisFrete, setResponsaveisFrete] = useState([]);
+  const { data: session } = useSession();
   useEffect(() => {
     const getResponsaveis = async () => {
-      const responsaveis = await getAllResponsibles();
-      setResponsaveisFrete(responsaveis.data.response);
+      const responsaveis = await getUserByEmail(session.user.email);
+      setResponsaveisFrete(responsaveis.data.response.employees);
     };
     getResponsaveis();
   }, []);
 
-  const { data: session } = useSession();
   console.log(session);
 
   const [search, setSearch] = useState('');
