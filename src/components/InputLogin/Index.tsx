@@ -1,6 +1,7 @@
 // InputLogin.tsx
 
 import React, { InputHTMLAttributes } from "react";
+import { useHookFormMask } from "use-mask-input";
 
 interface InputLoginProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -16,16 +17,22 @@ const InputLogin = ({
   isRequired = false,
   ...props
 }: InputLoginProps) => {
+  const RegisterWithMask = useHookFormMask(register);
+  const fieldRegister = mask
+    ? RegisterWithMask(props.name, mask)
+    : register(props.name);
+
   return (
     <div className=" p-4 rounded-lg w-full">
       <div className="relative bg-inherit">
         <input
-          // {...register(props.name)}
+          {...fieldRegister}
           type="text"
           id={props.id}
           name={props.name}
           className="peer bg-transparent h-10 w-full text-gray-100 placeholder-transparent border-b-2 px-2 border-gray-200  focus:outline-none focus:border-purple-100"
           placeholder={label}
+          value={props.value}
           {...props}
         />
         <label

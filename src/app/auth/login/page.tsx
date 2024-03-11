@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import CheckBox from "@/components/CheckBox";
 import InputLogin from "@/components/InputLogin/Index";
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -115,7 +115,7 @@ const page = () => {
         </form>
         <a
           className="text-purple-500 hover:text-purple-600 font-bold underline"
-          href=""
+          href=".././public/Cadastro"
         >
           Ainda não tem uma conta?
         </a>
