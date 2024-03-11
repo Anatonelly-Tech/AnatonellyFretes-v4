@@ -27,12 +27,9 @@ const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [error, setError] = useState("");
 
-  console.log(session);
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(email, password);
     try {
-      console.log(email, password);
       const response = await signIn("credentials", {
         redirect: false,
         email,
@@ -51,7 +48,7 @@ const page = () => {
   };
 
   return (
-    <div className="w-full h-full bg-white flex items-center justify-center relative -z-10">
+    <div className="w-screen h-screen bg-white flex items-center justify-center relative -z-10">
       <img
         draggable={false}
         className="w-full h-full absolute -z-10"
@@ -74,7 +71,7 @@ const page = () => {
               id="Email"
               register={register}
               name="Email"
-              type="email"
+              type="text"
               label="Email"
               onChange={(e) => setEmail(e.target.value)}
               required

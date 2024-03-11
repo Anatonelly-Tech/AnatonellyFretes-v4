@@ -6,6 +6,8 @@ export const getAllResponsibles = async () => api.get(`${BASE_URL}`);
 
 export const getResponsibleById = async (id) => api.get(`${BASE_URL}/${id}`);
 
+export const getResponsibleByEmail = async (email) => api.get(`${BASE_URL}Auth/${email}`);
+
 export const deleteResponsible = async (id) => {
   api.delete(`${BASE_URL}/${id}`);
   window.location.reload(true);
@@ -25,7 +27,7 @@ export const postResponsibleFreight = async ({
   phone,
   contactWay,
   department,
-  isAdmin,
+  role,
   password,
 }) =>
   api.post(`${BASE_URL}`, {
@@ -35,6 +37,6 @@ export const postResponsibleFreight = async ({
     phone,
     contactWay,
     department,
-    isAdmin,
+    role,
     password,
   });

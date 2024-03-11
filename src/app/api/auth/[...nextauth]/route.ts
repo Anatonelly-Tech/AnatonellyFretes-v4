@@ -1,31 +1,35 @@
-import NextAuth from "next-auth";
-import { NextAuthOptions } from "next-auth";
-import CredentialProvider from "next-auth/providers/credentials";
+import { getUserByEmail } from '@/services/user';
+import NextAuth from 'next-auth';
+import { NextAuthOptions } from 'next-auth';
+import CredentialProvider from 'next-auth/providers/credentials';
+
+const getUser = async (email) => {
+  const User = (await getUserByEmail(email)).data.response;
+  console.log(User);
+  
+  return User;
+};
 
 const authOptions: NextAuthOptions = {
   providers: [
     CredentialProvider({
-      name: "Credentials",
-      type: "credentials",
+      name: 'Credentials',
+      type: 'credentials',
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        email: { label: 'Email', type: 'email' },
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const user = {
-          id: "1",
-          email: "adm@email.com",
-          password: "adm",
-          name: "admizin",
-          role: "admin",
-        };
-        const isValidEmail = credentials?.email === user.email;
-        const isValidPassword = credentials?.password === user.password;
+        const User = await getUser(credentials?.email);
+
+        const isValidEmail = credentials?.email === User.email;
+        const isValidPassword = credentials?.password === User.password;
 
         if (!isValidEmail || !isValidPassword) {
+          console.log('Invalid email or password');
           return null;
         } else {
-          return user;
+          return User;
         }
       },
     }),
@@ -56,11 +60,9 @@ const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/auth/login",
-    signOut: "/auth/login",
+    signIn: '/auth/login',
+    signOut: '/auth/login',
   },
 };
-
-const handler = NextAuth(authOptions);
-
-export { handler as GET, handler as POST };
+const handler = NextAuth(authOptions)
+export { handler as GET, handler as POST}

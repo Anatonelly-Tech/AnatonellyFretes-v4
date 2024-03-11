@@ -19,6 +19,9 @@ import {
   postResponsibleFreight,
   getAllResponsibles,
 } from '@/services/responsibleFreight';
+
+import { putUserByEmail } from '@/services/user';
+
 // Utils
 import { responsibleValidationSchema } from '@/utils/responsibleValidation';
 
@@ -38,7 +41,7 @@ interface State extends SnackbarOrigin {
   open: boolean;
 }
 
-const ModalComponentInside = ({ setResponsaveisFrete }: any) => {
+const ModalComponentInside = ({ setResponsaveisFrete, session }: any) => {
   const [state, setState] = useState<State>({
     open: false,
     vertical: 'top',
@@ -61,7 +64,15 @@ const ModalComponentInside = ({ setResponsaveisFrete }: any) => {
   const onSubmit = async (data: any) => {
     try {
       setState({ vertical: 'bottom', horizontal: 'left', open: true });
-      await postResponsibleFreight(data);
+      console.log(data);
+
+      const actualresp = await postResponsibleFreight(data);
+      console.log(actualresp.data.response.idResponsible);
+      console.log(session.user.email);
+      await putUserByEmail(
+        session.user.email,
+        actualresp.data.response.idResponsible
+      );
     } catch (error) {
       console.log(error);
     }
@@ -170,7 +181,7 @@ const ModalComponentInside = ({ setResponsaveisFrete }: any) => {
             <div>
               <InputRadio
                 title='Nível de acesso'
-                value={['Admin', "User"]}
+                value={['Admin', 'User']}
                 register={register}
                 name='role'
                 id={['Administrador', 'Colaborador']}
