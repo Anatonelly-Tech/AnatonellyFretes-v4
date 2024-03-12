@@ -13,6 +13,11 @@ import { MdOutlineFileUpload } from "react-icons/md";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userValidationSchema } from "@/utils/userValidation";
+import { FaSearch } from "react-icons/fa";
+import { ClassNames } from "@emotion/react";
+import { Upload } from "antd";
+
+import UploadFilesComponent from "@/components/UploadFilesComponent";
 const page = () => {
   const {
     register,
@@ -24,12 +29,18 @@ const page = () => {
   } = useForm({
     resolver: yupResolver(userValidationSchema),
   });
-
+  const [selectedFile, setSelectedFile] = useState(null);
   const [cidade, setCidade] = useState("");
   const [uf, setUf] = useState("");
   const [logradouro, setLogradouro] = useState("");
   const [bairro, setBairro] = useState("");
   const [CEP, setCEP] = useState("");
+  const frameRef = useRef<HTMLImageElement | null>(null);
+  const { data: session } = useSession();
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const getEndereco = async (cep) => {
     const NovoEndereco = await getCEP(cep);
     setCEP(cep);
@@ -44,23 +55,11 @@ const page = () => {
     setBairro(NovoEndereco.data.bairro);
   };
 
-  const frameRef = useRef<HTMLImageElement | null>(null);
-
   const preview = (event: ChangeEvent<HTMLInputElement>) => {
     if (frameRef.current && event.target.files && event.target.files[0]) {
       frameRef.current.src = URL.createObjectURL(event.target.files[0]);
     }
   };
-
-  const { data: session } = useSession();
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const router = useRouter();
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [email, setEmail] = useState("");
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [password, setPassword] = useState("");
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [error, setError] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -120,16 +119,16 @@ const page = () => {
                   label="Nome Completo"
                 />
 
-                <InputLogin
-                  id="CPF"
-                  register={register}
-                  name="CPF"
-                  type="text"
-                  label="CPF"
-                  mask="999.999.999-99"
-                />
-
                 <div className="w-full flex items-center justify-center">
+                  <InputLogin
+                    id="CPF"
+                    register={register}
+                    name="CPF"
+                    type="text"
+                    label="CPF"
+                    mask="999.999.999-99"
+                  />
+
                   <InputLogin
                     id="Telefone"
                     register={register}
@@ -138,26 +137,11 @@ const page = () => {
                     label="Telefone"
                     mask="(99) 99999-9999"
                   />
-                  <label
-                    htmlFor="picture"
-                    className="flex items-center justify-center gap-2 text-white bg-purple-600  p-2 rounded-lg cursor-pointer hover:bg-purple-700 shadow shadow-black hover:ring-2 hover:ring-purple-950"
-                  >
-                    <MdOutlineFileUpload size={28} />{" "}
-                    <p className="text-sm whitespace-nowrap font-bold">
-                      Selecionar um arquivo
-                    </p>
-                  </label>
-                  <input
-                    className="hidden"
-                    id="picture"
-                    {...register("picture")}
-                    name="picture"
-                    type="file"
-                    accept="image/png, image/gif, image/jpeg"
-                    onChange={(e) => {
-                      preview(e); // Sua lógica personalizada aqui
-                      register("picture").onChange(e); // Atualiza o campo usando o método onChange do register
-                    }}
+                </div>
+                <div className="w-full flex items-center justify-center">
+                  <UploadFilesComponent
+                    setValue={setValue}
+                    register={register}
                   />
                 </div>
 
@@ -193,11 +177,12 @@ const page = () => {
                     mask="99999-999"
                   />
                   <button
-                    className="w-32 h-9 bg-purple-600 text-white rounded-lg"
+                    className="w-auto h-9 flex items-center justify-center gap-3 p-3 px-5 rounded-lg text-nowrap text-white bg-purple-600  hover:bg-purple-700 shadow shadow-black"
                     type="button"
                     onClick={async () => await getEndereco(getValues("CEP"))}
                   >
-                    Buscar Cep
+                    {/* Buscar Cep */}
+                    <FaSearch />
                   </button>
                 </div>
                 <div className="w-full flex items-center justify-center">
@@ -252,7 +237,7 @@ const page = () => {
             </div>
           </div>
         </form>
-        <button className="w-32 h-9 bg-purple-600 text-white rounded-lg">
+        <button className="w-32 h-9 rounded-lg font-bold text-white bg-purple-600  hover:bg-purple-700 shadow shadow-black">
           Cadastrar
         </button>
       </div>
