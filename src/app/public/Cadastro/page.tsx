@@ -17,7 +17,9 @@ import { FaSearch } from "react-icons/fa";
 import { ClassNames } from "@emotion/react";
 import { Upload } from "antd";
 
-import UploadFilesComponent from "@/components/UploadFilesComponent";
+import UploadInput from "@/components/UploadFilesComponent/UploadInput";
+import UploadLabel from "@/components/UploadFilesComponent/UploadLabel";
+import UploadView from "@/components/UploadFilesComponent/UploadView";
 const page = () => {
   const {
     register,
@@ -29,36 +31,27 @@ const page = () => {
   } = useForm({
     resolver: yupResolver(userValidationSchema),
   });
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [cidade, setCidade] = useState("");
-  const [uf, setUf] = useState("");
-  const [logradouro, setLogradouro] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [CEP, setCEP] = useState("");
-  const frameRef = useRef<HTMLImageElement | null>(null);
-  const { data: session } = useSession();
-  const router = useRouter();
+  const [selectedFile, setSelectedFile] = useState("hidden");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const frameRef = useRef<HTMLImageElement | null>(null);
+  const { data: session } = useSession();
+  const router = useRouter();
   const getEndereco = async (cep) => {
     const NovoEndereco = await getCEP(cep);
-    setCEP(cep);
 
     setValue("Cidade", NovoEndereco.data.localidade);
     setValue("Estado", NovoEndereco.data.uf);
     setValue("Rua", NovoEndereco.data.logradouro);
     setValue("Bairro", NovoEndereco.data.bairro);
-    setCidade(NovoEndereco.data.localidade);
-    setUf(NovoEndereco.data.uf);
-    setLogradouro(NovoEndereco.data.logradouro);
-    setBairro(NovoEndereco.data.bairro);
   };
 
   const preview = (event: ChangeEvent<HTMLInputElement>) => {
     if (frameRef.current && event.target.files && event.target.files[0]) {
       frameRef.current.src = URL.createObjectURL(event.target.files[0]);
     }
+    setSelectedFile("flex");
   };
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -91,7 +84,7 @@ const page = () => {
         alt=""
       />
       <div className="flex flex-col items-center justify-between gap-5 p-14 bg-gradient-to-t from-purple-400 via-[rgba(60,7,100,0.82)] to-purple-950 rounded-lg shadow-lg shadow-black">
-        <img draggable={false} className="w-52 z-10" src="/pc.png" alt="" />
+        {/* <img draggable={false} className="w-52 z-10" src="/pc.png" alt="" />
         <img
           className="absolute top-36 w-52 object-cover object-center max-h-32 rounded"
           id="frame"
@@ -104,8 +97,8 @@ const page = () => {
           width="100px"
           height="100px"
           alt=""
-        />
-
+        /> */}
+        <UploadView frameRef={frameRef} selectedFile={selectedFile} />
         <form className="w-full h-full flex flex-col items-center justify-around ">
           <div className="flex items-center justify-between w-full h-full">
             <div className="flex flex-col items-center gap-5 justify-between">
@@ -139,9 +132,14 @@ const page = () => {
                   />
                 </div>
                 <div className="w-full flex items-center justify-center">
-                  <UploadFilesComponent
-                    setValue={setValue}
+                  <UploadLabel htmlFor="picture" />
+                  <UploadInput
+                    selectedFile={selectedFile}
                     register={register}
+                    preview={preview}
+                    setSelectedFile={setSelectedFile}
+                    setValue={setValue}
+                    getValues={getValues}
                   />
                 </div>
 

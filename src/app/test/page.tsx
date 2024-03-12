@@ -30,7 +30,9 @@ const page = () => {
 
   const onSubmit = (data: any) => {
     console.log("Dados do formulário:", data);
-    console.log("entriou");
+    console.log("entrou");
+    const data2 = getValues("picture");
+    console.log(data2[0].name);
   };
 
   return (
