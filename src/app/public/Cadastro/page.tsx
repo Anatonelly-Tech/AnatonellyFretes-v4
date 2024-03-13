@@ -225,12 +225,21 @@ const page = () => {
               </div>
             </div>
           </div>
-          <button
-            type="submit"
-            className="w-32 h-9 rounded-lg font-bold text-white bg-purple-600  hover:bg-purple-700 shadow shadow-black"
-          >
-            Cadastrar
-          </button>
+          <div className="w-full flex items-center justify-between">
+            <button
+              onClick={() => router.push("/")}
+              className="w-32 h-9 rounded-lg font-bold text-white bg-purple-600  hover:bg-purple-700 shadow shadow-black"
+              type="button"
+            >
+              Voltar
+            </button>
+            <button
+              type="submit"
+              className="w-32 h-9 rounded-lg font-bold text-white bg-purple-600  hover:bg-purple-700 shadow shadow-black"
+            >
+              Cadastrar
+            </button>
+          </div>
         </form>
       </div>
     </div>
