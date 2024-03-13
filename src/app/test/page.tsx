@@ -1,49 +1,46 @@
 "use client";
 import "../../styles/main.css";
-
-import React, { useState } from 'react';
-import ModalComponent from '@/components/Modal';
-import Loading from '@/components/Loading';
-import ProgressBar from '@/components/ProgressBar';
-import UserNotifyBar from '@/components/UserNotifyBar';
-import AdvancedPages from '@/components/AdvancedPages';
-import Page2 from '../CriarFrete/page2';
-import { getAllFreight } from '@/services/formData';
-import { useForm } from 'react-hook-form';
-import { DevTool } from '@hookform/devtools';
-import {
-  getAllResponsibles,
-  getResponsibleById,
-  postResponsibleFreight,
-} from '@/services/responsibleFreight';
-import { RandomFormName } from '@/utils/randomFormName.js';
-import { arrayOfResponsibles } from '@/utils/responsibleName';
+import UploadInput from "@/components/UploadFilesComponent/UploadInput";
+import UploadLabel from "@/components/UploadFilesComponent/UploadLabel";
+import UploadView from "@/components/UploadFilesComponent/UploadView";
+import React, { useState } from "react";
+import { ChangeEvent, useRef } from "react";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 
 const page = () => {
-  const [responsaveisFrete, setResponsaveisFrete] = useState([]);
-
-  const getfuncionarios = async () => {
-    // console.log(responsaveis.data.response);
-    // console.log(responsaveis);
-    
-    const responsaveis = await getAllFreight();
-    setResponsaveisFrete(responsaveis.data.response);
-    console.log(responsaveisFrete);
-    
+  const [selectedFile, setSelectedFile] = useState("hidden");
+  const frameRef = useRef<HTMLImageElement | null>(null);
+  const [responsaveisFrete, setResponsaveisFrete] = useState({});
+  const preview = (event: ChangeEvent<HTMLInputElement>) => {
+    if (frameRef.current && event.target.files && event.target.files[0]) {
+      frameRef.current.src = URL.createObjectURL(event.target.files[0]);
+    }
+    setSelectedFile("flex");
   };
+  const {
+    register,
+    control,
+    getValues,
+    setValue,
+    handleSubmit,
+    formState: { errors, touchedFields },
+  } = useForm({});
 
   return (
     <div className="p-5 gap-5 w-full h-full flex ">
-      <div>
-        {responsaveisFrete.length > 0
-          ? responsaveisFrete.map((item, index) => (
-              <div className='text-white font-black flex flex-col' key={index}>
-                <span>{item.name}</span>
-              </div>
-            ))
-          : <span className='text-red-500'>Nada Cadastrado ainda Click NO BOTÃO</span> }
-      </div>
-      <button className="w-10 h-10 bg-white" onClick={getfuncionarios}></button>
+      <UploadView frameRef={frameRef} selectedFile={selectedFile} />
+
+      <UploadLabel htmlFor="picture" />
+      <UploadInput
+        selectedFile={selectedFile}
+        register={register}
+        preview={preview}
+        setSelectedFile={setSelectedFile}
+        setValue={setValue}
+        getValues={getValues}
+      />
+      <DevTool control={control} />
     </div>
   );
 };

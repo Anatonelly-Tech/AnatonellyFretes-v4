@@ -18,9 +18,7 @@ import * as Avatar from '@radix-ui/react-avatar';
 import DaniedPage from '@/app/denid/page';
 import { useSession } from 'next-auth/react';
 
-export default function Home() {
-  const [username, setUsername] = useState('Maria');
-
+export default function Home () {
   const Sellers = [
     {
       QtdFretes: 15,
