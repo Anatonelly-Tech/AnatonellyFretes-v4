@@ -1,46 +1,80 @@
 "use client";
+import ViewShippingSummary from "@/components/ViewShippingSummary";
 import "../../styles/main.css";
-import UploadInput from "@/components/UploadFilesComponent/UploadInput";
-import UploadLabel from "@/components/UploadFilesComponent/UploadLabel";
-import UploadView from "@/components/UploadFilesComponent/UploadView";
+
 import React, { useState } from "react";
-import { ChangeEvent, useRef } from "react";
-import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 
 const page = () => {
-  const [selectedFile, setSelectedFile] = useState("hidden");
-  const frameRef = useRef<HTMLImageElement | null>(null);
-  const [responsaveisFrete, setResponsaveisFrete] = useState({});
-  const preview = (event: ChangeEvent<HTMLInputElement>) => {
-    if (frameRef.current && event.target.files && event.target.files[0]) {
-      frameRef.current.src = URL.createObjectURL(event.target.files[0]);
-    }
-    setSelectedFile("flex");
-  };
-  const {
-    register,
-    control,
-    getValues,
-    setValue,
-    handleSubmit,
-    formState: { errors, touchedFields },
-  } = useForm({});
-
+  const FreteListHome = [
+    {
+      key: 1,
+      idForm: "123",
+      name: "Frete Expresso",
+      freightPrice: "1500.75",
+      collectCity: "São Paulo",
+      deliveryCity: "Rio de Janeiro",
+      collectDate: "2024-03-15",
+      deliveryDate: "2024-03-18",
+      product: "Eletrônicos",
+      statusItem: true,
+    },
+    // {
+    //   key: 2,
+    //   idForm: "123",
+    //   name: "Frete Expresso",
+    //   freightPrice: "1500.75",
+    //   collectCity: "São Paulo",
+    //   deliveryCity: "Rio de Janeiro",
+    //   collectDate: "2024-03-15",
+    //   deliveryDate: "2024-03-18",
+    //   product: "Eletrônicos",
+    //   statusItem: true,
+    // },
+    // {
+    //   key: 3,
+    //   idForm: "123",
+    //   name: "Frete Expresso",
+    //   freightPrice: "1500.75",
+    //   collectCity: "São Paulo",
+    //   deliveryCity: "Rio de Janeiro",
+    //   collectDate: "2024-03-15",
+    //   deliveryDate: "2024-03-18",
+    //   product: "Eletrônicos",
+    //   statusItem: true,
+    // },
+  ];
   return (
     <div className="p-5 gap-5 w-full h-full flex ">
-      <UploadView frameRef={frameRef} selectedFile={selectedFile} />
+      <div className="bg-zinc-300/45 w-1/2 h-64">
+        <ViewShippingSummary
+          idForm="title"
+          name="Resumo do Frete"
+          freightPrice="Preço do Frete"
+          collectCity="cidade de coleta"
+          deliveryCity="cidade de entrega"
+          collectDate="data da coleta"
+          deliveryDate="data da entrega"
+          product="Produto"
+          statusItem={true}
+        />
 
-      <UploadLabel htmlFor="picture" />
-      <UploadInput
-        selectedFile={selectedFile}
-        register={register}
-        preview={preview}
-        setSelectedFile={setSelectedFile}
-        setValue={setValue}
-        getValues={getValues}
-      />
-      <DevTool control={control} />
+        {FreteListHome.map((frete) => (
+          <>
+            <ViewShippingSummary
+              key={frete.key}
+              idForm={frete.idForm}
+              name={frete.name}
+              freightPrice={frete.freightPrice}
+              collectCity={frete.collectCity}
+              deliveryCity={frete.deliveryCity}
+              collectDate={frete.collectDate}
+              deliveryDate={frete.deliveryDate}
+              product={frete.product}
+              statusItem={frete.statusItem}
+            />
+          </>
+        ))}
+      </div>
     </div>
   );
 };
