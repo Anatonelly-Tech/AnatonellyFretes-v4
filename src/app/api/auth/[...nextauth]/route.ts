@@ -6,7 +6,7 @@ import CredentialProvider from 'next-auth/providers/credentials';
 const getUser = async (email) => {
   const User = (await getUserByEmail(email)).data.response;
   console.log(User);
-  
+
   return User;
 };
 
@@ -37,9 +37,11 @@ const authOptions: NextAuthOptions = {
   callbacks: {
     jwt: ({ token, user }) => {
       const customUser = user as unknown as any;
+
       if (user) {
         return {
           ...token,
+
           role: customUser.role,
         };
       }
@@ -48,6 +50,7 @@ const authOptions: NextAuthOptions = {
     session: async ({ session, token }) => {
       return {
         ...session,
+        maxAge: 4 * 60 * 60,
         user: {
           name: token.name,
           email: token.email,
@@ -64,5 +67,5 @@ const authOptions: NextAuthOptions = {
     signOut: '/auth/login',
   },
 };
-const handler = NextAuth(authOptions)
-export { handler as GET, handler as POST}
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };

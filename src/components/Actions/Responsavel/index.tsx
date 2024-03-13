@@ -9,10 +9,12 @@ import {
   getResponsibleById,
   putResponsible,
 } from '@/services/responsibleFreight';
-import { log } from 'console';
+import { removeRespByUserEmail } from '@/services/user';
+import { useSession } from 'next-auth/react';
 
 const ActionResponsible = ({ idResponsible }: number) => {
   const customColors = ['#15803d', '#a16207', '#22c55e', '#fbbf24', '#dc2626'];
+  const { data: session } = useSession();
 
   return (
     <div className='flex h-full w-full items-center justify-center gap-1'>
@@ -81,6 +83,10 @@ const ActionResponsible = ({ idResponsible }: number) => {
                     onClick={
                       async () => {
                         await deleteResponsible(idResponsible);
+                        await removeRespByUserEmail(
+                          session.user.email,
+                          idResponsible
+                        );
                       } /* remove freight*/
                     }
                     className='bg-red-500 text-white font-bold w-28 h-8 rounded hover:bg-red-600'

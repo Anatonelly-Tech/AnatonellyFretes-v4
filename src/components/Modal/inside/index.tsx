@@ -20,7 +20,7 @@ import {
   getAllResponsibles,
 } from '@/services/responsibleFreight';
 
-import { putUserByEmail } from '@/services/user';
+import { getUserByEmail, putUserByEmail } from '@/services/user';
 
 // Utils
 import { responsibleValidationSchema } from '@/utils/responsibleValidation';
@@ -64,21 +64,23 @@ const ModalComponentInside = ({ setResponsaveisFrete, session }: any) => {
   const onSubmit = async (data: any) => {
     try {
       setState({ vertical: 'bottom', horizontal: 'left', open: true });
-      console.log(data);
 
       const actualresp = await postResponsibleFreight(data);
-      console.log(actualresp.data.response.idResponsible);
-      console.log(session.user.email);
       await putUserByEmail(
         session.user.email,
         actualresp.data.response.idResponsible
       );
+      let finalResp = [];
+      const attResp = await getUserByEmail(session.user.email);
+      attResp.data.response.employees.map((item: any) => {
+        finalResp.push(item);
+      });
+      finalResp.push(actualresp.data.response);
+
+      setResponsaveisFrete(finalResp);
     } catch (error) {
       console.log(error);
     }
-    const attResp = await getAllResponsibles();
-
-    setResponsaveisFrete(attResp.data.response);
 
     reset();
   };

@@ -14,9 +14,36 @@ export const deleteUser = async (id) => {
   window.location.reload(true);
 };
 
-export const putUser = async (id, data) => {
+export const putUser = async (
+  id,
+  name,
+  email,
+  role,
+  phone,
+  password,
+  cep,
+  city,
+  state,
+  neighborhood,
+  street,
+  number,
+  complement,
+  picture
+) => {
   api.put(`${BASE_URL}/${id}`, {
-    data,
+    name,
+    email,
+    role,
+    phone,
+    password,
+    cep,
+    city,
+    state,
+    neighborhood,
+    street,
+    number,
+    complement,
+    picture,
   });
   window.location.reload(true);
 };
@@ -26,10 +53,39 @@ export const putUserByEmail = async (email, employeesID) => {
   });
 };
 
-export const postUserFreight = async ({ name, email, password, role }) =>
+export const removeRespByUserEmail = async (email, employeesID) => {
+  api.put(`${BASE_URL}Rem/${[email]}`, {
+    employeesID,
+  });
+};
+
+export const postUserFreight = async ({
+  name,
+  email,
+  role,
+  phone,
+  password,
+  cep,
+  city,
+  state,
+  neighborhood,
+  street,
+  number,
+  complement,
+  picture,
+}) =>
   api.post(`${BASE_URL}`, {
     name,
     email,
-    password,
     role,
+    phone,
+    password,
+    cep,
+    city,
+    state,
+    neighborhood,
+    street,
+    number,
+    complement,
+    picture,
   });

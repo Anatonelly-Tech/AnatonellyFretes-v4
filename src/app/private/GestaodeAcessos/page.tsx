@@ -3,7 +3,6 @@
 import DaniedPage from '@/app/denid/page';
 import ActionResponsible from '@/components/Actions/Responsavel';
 import ModalComponent from '@/components/Modal';
-import { getAllResponsibles } from '@/services/responsibleFreight';
 import { getUserByEmail } from '@/services/user';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
@@ -12,16 +11,16 @@ import { FaRegUser } from 'react-icons/fa';
 
 const page = () => {
   const [responsaveisFrete, setResponsaveisFrete] = useState([]);
+
   const { data: session } = useSession();
   useEffect(() => {
     const getResponsaveis = async () => {
+      setResponsaveisFrete([]);
       const responsaveis = await getUserByEmail(session.user.email);
       setResponsaveisFrete(responsaveis.data.response.employees);
     };
     getResponsaveis();
-  }, []);
-
-  console.log(session);
+  }, [session]);
 
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('Asc');
@@ -92,7 +91,7 @@ const page = () => {
               )
               .filter(
                 (resp) =>
-                  resp.phone.toLowerCase().includes(search.toLowerCase()) ||
+                  resp.phone.includes(search) ||
                   resp.name.toLowerCase().includes(search.toLowerCase()) ||
                   resp.email.toLowerCase().includes(search.toLowerCase()) ||
                   resp.department.toLowerCase().includes(search.toLowerCase())
