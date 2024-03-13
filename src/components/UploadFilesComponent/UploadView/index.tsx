@@ -9,7 +9,7 @@ const UploadView = ({ selectedFile, frameRef }: UploadViewProps) => {
   return (
     <>
       <img
-        className={`${selectedFile} top-36 w-52 object-cover object-center max-h-32 rounded
+        className={`${selectedFile} rounded-full  w-full object-cover object-center h-full 
     `}
         id="frame"
         ref={frameRef}
@@ -18,8 +18,6 @@ const UploadView = ({ selectedFile, frameRef }: UploadViewProps) => {
             ? frameRef.current.src
             : undefined
         }
-        width="100px"
-        height="100px"
         alt=""
       />
     </>

@@ -10,7 +10,7 @@ const UploadLabel = ({ htmlFor }: UploadLabelProps) => {
     <>
       <label
         htmlFor={htmlFor}
-        className="flex items-center justify-center gap-2 p-2 rounded-lg cursor-pointer text-white bg-purple-600  hover:bg-purple-700 shadow shadow-black"
+        className="flex items-center justify-center gap-2 p-4 h-16 rounded-lg cursor-pointer text-white bg-purple-600  hover:bg-purple-700 shadow shadow-black"
       >
         <MdOutlineFileUpload size={28} />{" "}
         <p className="text-sm whitespace-nowrap font-bold">

@@ -22,14 +22,13 @@ const UploadInput = ({
 }: UploadInputProps) => {
   const [nameFile, setNameFile] = useState("");
 
-  const HandleOnChange = (e) => {
+  const HandleOnChange = (e: any) => {
     preview(e);
-    register("picture").onChange(e);
-    setNameFile(getValues("picture"));
+    const file = getValues("picture");
+    setNameFile(file[0].name);
   };
-  console.log(nameFile);
   return (
-    <>
+    <div className="flex items-center justify-center gap-2">
       <input
         id="picture"
         className={`hidden`}
@@ -38,19 +37,21 @@ const UploadInput = ({
         type="file"
         accept="image/png, image/gif, image/jpeg"
         onChange={(e) => {
+          register("picture").onChange(e);
           HandleOnChange(e);
         }}
       />
       <p className={`${selectedFile} text-white w-auto`}>{nameFile}</p>
       <IoMdClose
-        className={`${selectedFile} text-white`}
+        size={20}
+        className={`${selectedFile} text-white text-center h-6 flex items-center justify-center`}
         onClick={() => {
           setSelectedFile("hidden");
 
           setValue("picture", null);
         }}
       />
-    </>
+    </div>
   );
 };
 

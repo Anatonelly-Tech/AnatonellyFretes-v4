@@ -1,6 +1,5 @@
 "use client";
 import { useSession } from "next-auth/react";
-import CheckBox from "@/components/CheckBox";
 import InputLogin from "@/components/InputLogin/Index";
 import React, { ChangeEvent, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
@@ -9,17 +8,15 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { DevTool } from "@hookform/devtools";
-import { MdOutlineFileUpload } from "react-icons/md";
-
+import { FaUserCircle } from "react-icons/fa";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userValidationSchema } from "@/utils/userValidation";
 import { FaSearch } from "react-icons/fa";
-import { ClassNames } from "@emotion/react";
-import { Upload } from "antd";
 
 import UploadInput from "@/components/UploadFilesComponent/UploadInput";
 import UploadLabel from "@/components/UploadFilesComponent/UploadLabel";
 import UploadView from "@/components/UploadFilesComponent/UploadView";
+import { HiUserCircle } from "react-icons/hi2";
 const page = () => {
   const {
     register,
@@ -32,10 +29,10 @@ const page = () => {
     resolver: yupResolver(userValidationSchema),
   });
   const [selectedFile, setSelectedFile] = useState("hidden");
+  const frameRef = useRef<HTMLImageElement | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const frameRef = useRef<HTMLImageElement | null>(null);
   const { data: session } = useSession();
   const router = useRouter();
   const getEndereco = async (cep) => {
@@ -73,6 +70,9 @@ const page = () => {
       console.log("[LOGIN_ERROR]", error);
     }
   };
+  //  (
+  //
+  // )
 
   return (
     <div className="w-screen h-screen bg-white flex items-center justify-center relative -z-10">
@@ -83,22 +83,13 @@ const page = () => {
         src="/bgLogin.png"
         alt=""
       />
-      <div className="flex flex-col items-center justify-between gap-5 p-14 bg-gradient-to-t from-purple-400 via-[rgba(60,7,100,0.82)] to-purple-950 rounded-lg shadow-lg shadow-black">
-        {/* <img draggable={false} className="w-52 z-10" src="/pc.png" alt="" />
-        <img
-          className="absolute top-36 w-52 object-cover object-center max-h-32 rounded"
-          id="frame"
-          ref={frameRef}
-          src={
-            frameRef.current && frameRef.current.src
-              ? frameRef.current.src
-              : undefined
-          }
-          width="100px"
-          height="100px"
-          alt=""
-        /> */}
-        <UploadView frameRef={frameRef} selectedFile={selectedFile} />
+      <div className="flex flex-col items-center justify-center gap-5 p-14 bg-gradient-to-t from-purple-400 via-[rgba(60,7,100,0.82)] to-purple-950 rounded-lg shadow-lg shadow-black">
+        <div className="flex items-center w-20 h-20  justify-center rounded-full border-2 border-purple-600">
+          <UploadView frameRef={frameRef} selectedFile={selectedFile} />
+          {selectedFile !== "hidden" ? null : (
+            <FaUserCircle className="text-zinc-200 w-full h-full" />
+          )}
+        </div>
         <form className="w-full h-full flex flex-col items-center justify-around ">
           <div className="flex items-center justify-between w-full h-full">
             <div className="flex flex-col items-center gap-5 justify-between">
@@ -131,7 +122,24 @@ const page = () => {
                     mask="(99) 99999-9999"
                   />
                 </div>
+
                 <div className="w-full flex items-center justify-center">
+                  <InputLogin
+                    id="Senha"
+                    register={register}
+                    name="Senha"
+                    type="password"
+                    label="Senha"
+                  />
+                  <InputLogin
+                    id="ConfirmarSenha"
+                    register={register}
+                    name="ConfirmarSenha"
+                    type="password"
+                    label="Confirmar Senha"
+                  />
+                </div>
+                <div className="w-full flex items-center justify-center gap-4 p-1">
                   <UploadLabel htmlFor="picture" />
                   <UploadInput
                     selectedFile={selectedFile}
@@ -142,26 +150,9 @@ const page = () => {
                     getValues={getValues}
                   />
                 </div>
-
-                <div className="w-full flex items-center justify-center">
-                  <InputLogin
-                    id="Senha"
-                    register={register}
-                    name="Senha"
-                    type="text"
-                    label="Senha"
-                  />
-                  <InputLogin
-                    id="ConfirmarSenha"
-                    register={register}
-                    name="ConfirmarSenha"
-                    type="text"
-                    label="Confirmar Senha"
-                  />
-                </div>
               </div>
             </div>
-            <div className=" "></div>
+            {/* <div className=" "></div> */}
             <div className="flex flex-col items-center gap-5 justify-between">
               <p className="text-xl text-white font-bold">Endereço</p>
               <div className="flex flex-col items-center justify-center gap-5 p-3">
@@ -234,10 +225,13 @@ const page = () => {
               </div>
             </div>
           </div>
+          <button
+            type="submit"
+            className="w-32 h-9 rounded-lg font-bold text-white bg-purple-600  hover:bg-purple-700 shadow shadow-black"
+          >
+            Cadastrar
+          </button>
         </form>
-        <button className="w-32 h-9 rounded-lg font-bold text-white bg-purple-600  hover:bg-purple-700 shadow shadow-black">
-          Cadastrar
-        </button>
       </div>
     </div>
   );
