@@ -1,4 +1,4 @@
-'use client';
+"use client";
 // Libs
 import React, { useState } from 'react';
 import { set, useForm } from 'react-hook-form';
@@ -7,8 +7,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 
 // Components
-import AdvancedPages from '@/components/AdvancedPages';
-import StepperComponent from '@/components/Stepper';
+import AdvancedPages from "@/components/AdvancedPages";
+import StepperComponent from "@/components/Stepper";
 
 // Utils
 import { createFreightValidationSchema } from '@/utils/createFreightValidation';
@@ -40,8 +40,8 @@ const page = () => {
 
   const [state, setState] = useState<State>({
     open: false,
-    vertical: 'top',
-    horizontal: 'center',
+    vertical: "top",
+    horizontal: "center",
   });
 
   const { vertical, horizontal, open } = state;
@@ -200,21 +200,21 @@ const page = () => {
           />
         </form>
       </div>
-      <div className='w-full h-15 items-center flex justify-around mb-14'>
+      <div className="w-full h-15 items-center flex justify-around mb-14">
         <button
           onClick={prevStep}
-          className='w-10 h-10 bg-violet-600 shadow-especial shadow-violet-950 hover:bg-violet-800 hover:shadow-zinc-800 justify-center items-center rounded-full flex font-bold'
+          className="w-10 h-10 bg-violet-600 shadow-especial shadow-violet-950 hover:bg-violet-800 hover:shadow-zinc-800 justify-center items-center rounded-full flex font-bold"
         >
-          <VscChevronLeft size={50} className='text-white text-xl' />
+          <VscChevronLeft size={50} className="text-white text-xl" />
         </button>
         <button
           onClick={nextStep}
           className={`w-10 h-10 shadow-especial ${shadowRightButton} ${bgRightButton} ${hoverBgRightButton} hover:shadow-zinc-800 justify-center items-center rounded-full  flex font-bold`}
         >
-          <VscChevronRight size={50} className='text-white text-xl' />
+          <VscChevronRight size={50} className="text-white text-xl" />
         </button>
       </div>
-      <Snackbar
+      {/* <Snackbar
         anchorOrigin={{ vertical, horizontal }}
         open={open}
         onClose={handleClose}
@@ -229,7 +229,7 @@ const page = () => {
         >
           Preencha todos os campos obrigatórios!
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
     </div>
   );
 };

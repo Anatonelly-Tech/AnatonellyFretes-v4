@@ -106,7 +106,7 @@ const ModalComponentInside = ({ setResponsaveisFrete, session }: any) => {
               <InputLabel
                 id='name'
                 name='name'
-                register={register}
+                // register={register}
                 placeholder='Nome completo do usuário'
                 label='Nome Completo'
                 icon={<PersonIcon className='w-8' />}
@@ -119,7 +119,7 @@ const ModalComponentInside = ({ setResponsaveisFrete, session }: any) => {
               <InputLabel
                 id='cpf'
                 name='cpf'
-                register={register}
+                // register={register}
                 placeholder='000.000.000-00'
                 label='CPF'
                 icon={<FaRegAddressCard className='w-8' />}
@@ -133,7 +133,7 @@ const ModalComponentInside = ({ setResponsaveisFrete, session }: any) => {
               <InputLabel
                 id='email'
                 name='email'
-                register={register}
+                // register={register}
                 placeholder='mail@mail.com'
                 label='E-mail'
                 type='email'
@@ -147,7 +147,7 @@ const ModalComponentInside = ({ setResponsaveisFrete, session }: any) => {
               <InputLabel
                 id='phone'
                 name='phone'
-                register={register}
+                // register={register}
                 placeholder='(XX) 00000-0000'
                 label='Telefone'
                 icon={<FaPhoneAlt className='w-8' />}
@@ -241,7 +241,7 @@ const ModalComponentInside = ({ setResponsaveisFrete, session }: any) => {
               <InputLabel
                 id='password'
                 name='password'
-                register={register}
+                // register={register}
                 placeholder='********'
                 label='Senha'
                 type='password'
@@ -255,7 +255,7 @@ const ModalComponentInside = ({ setResponsaveisFrete, session }: any) => {
               <InputLabel
                 id='confirmPassword'
                 name='confirmPassword'
-                register={register}
+                // register={register}
                 placeholder='********'
                 label='Confirme a senha'
                 type='password'
