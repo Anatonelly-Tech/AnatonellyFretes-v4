@@ -10,6 +10,10 @@ const config: Config = {
     extend: {
       boxShadow: {
         especial: "rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset",
+        interno:
+          "rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset",
+        rounded:
+          "rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px",
       },
       backgroundImage: {
         "anatonelly-bg": 'url("/AnatonellyFretes.png")',
@@ -65,8 +69,8 @@ const config: Config = {
           to: { transform: "translateX(0)" },
         },
         MoveLeft: {
-          from: { transform: "translateX(-200px)" },
-          to: { transform: "translateX(0)" },
+          from: { opacity: "0", transform: "translateX(-200px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
         },
         Apper: {
           from: { opacity: "0" },
@@ -89,7 +93,7 @@ const config: Config = {
       exitToLeft: "exitToLeft 250ms ease",
       exitToRight: "exitToRight 250ms ease",
       MoveRight: "MoveRight 1s ease",
-      MoveLeft: "MoveLeft 1s ease",
+      MoveLeft: "MoveLeft 150ms ease",
       Apper: "Apper 1s ease",
       Desapper: "Desapper 1s ease",
     },

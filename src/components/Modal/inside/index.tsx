@@ -19,6 +19,9 @@ import {
   postResponsibleFreight,
   getAllResponsibles,
 } from '@/services/responsibleFreight';
+
+import { getUserByEmail, putUserByEmail } from '@/services/user';
+
 // Utils
 import { responsibleValidationSchema } from '@/utils/responsibleValidation';
 
@@ -38,7 +41,7 @@ interface State extends SnackbarOrigin {
   open: boolean;
 }
 
-const ModalComponentInside = ({ setResponsaveisFrete }: any) => {
+const ModalComponentInside = ({ setResponsaveisFrete, session }: any) => {
   const [state, setState] = useState<State>({
     open: false,
     vertical: 'top',
@@ -61,13 +64,23 @@ const ModalComponentInside = ({ setResponsaveisFrete }: any) => {
   const onSubmit = async (data: any) => {
     try {
       setState({ vertical: 'bottom', horizontal: 'left', open: true });
-      await postResponsibleFreight(data);
+
+      const actualresp = await postResponsibleFreight(data);
+      await putUserByEmail(
+        session.user.email,
+        actualresp.data.response.idResponsible
+      );
+      let finalResp = [];
+      const attResp = await getUserByEmail(session.user.email);
+      attResp.data.response.employees.map((item: any) => {
+        finalResp.push(item);
+      });
+      finalResp.push(actualresp.data.response);
+
+      setResponsaveisFrete(finalResp);
     } catch (error) {
       console.log(error);
     }
-    const attResp = await getAllResponsibles();
-
-    setResponsaveisFrete(attResp.data.response);
 
     reset();
   };
@@ -147,7 +160,7 @@ const ModalComponentInside = ({ setResponsaveisFrete }: any) => {
             <div>
               <SelectComponent
                 register={register}
-                placeholder='Selecione o método de contato'
+                placeholder='Selecione'
                 value={['Apenas Ligação', 'Ligação e Whatsapp']}
                 valueId={['onlyCall', 'callAndWhatsapp']}
                 label='Forma de Contato'
@@ -170,9 +183,9 @@ const ModalComponentInside = ({ setResponsaveisFrete }: any) => {
             <div>
               <InputRadio
                 title='Nível de acesso'
-                value={[true, false]}
+                value={['Admin', 'User']}
                 register={register}
-                name='isAdmin'
+                name='role'
                 id={['Administrador', 'Colaborador']}
                 label={['Administrador', 'Colaborador']}
                 subLabel={[
@@ -181,13 +194,13 @@ const ModalComponentInside = ({ setResponsaveisFrete }: any) => {
                 ]}
               />
               <span className='text-red-500 font-bold text-sm m-0 p-0'>
-                {errors.isAdmin?.message}
+                {errors.role?.message}
               </span>
             </div>
             <div>
               <SelectComponent
                 register={register}
-                placeholder='Selecione o cargo'
+                placeholder='Selecione'
                 value={[
                   'Administrativo',
                   'Comercial',
