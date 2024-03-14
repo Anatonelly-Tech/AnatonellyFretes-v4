@@ -1,38 +1,19 @@
 "use client";
-import "@/styles/main.css";
+import ModalComponent from "@/components/ModalComponent";
+import "../../styles/main.css";
 
 import React from "react";
-import ModalComponent from "@/components/Modal";
-import Loading from "@/components/Loading";
-import ProgressBar from "@/components/ProgressBar";
-import UserNotifyBar from "@/components/UserNotifyBar";
-import AdvancedPages from "@/components/AdvancedPages";
-import Page4 from "@/app/CriarFrete/page4/page";
-
-import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
-
-const page = () => {
-  const {
-    register,
-    control,
-    formState: { errors },
-  } = useForm();
+import { FaRegEye } from "react-icons/fa";
+  const page = () => {
   return (
-    <div className="p-5 gap-5 w-full h-full flex ">
-      {/* <ModalComponent /> */}
-      {/* <Loading /> 
-      <div className="flex flex-col">
-        <ProgressBar />
-        <UserNotifyBar />
-  </div> */}
-      <form
-        className="w-full h-full flex items-center justify-center"
-        action=""
-      >
-        <Page4/>
-      </form>
-      {/* <DevTool control={control} /> */}
+    <div className="w-full h-full flex items-start justify-start p-10">
+      <ModalComponent
+        color="green"
+        method="GET"
+        Icon={<FaRegEye className="text-lg font-bold" />}
+        nameTitle="testeee"
+        id={"65e5ee8d1894f424c7a19af5"}
+      />
     </div>
   );
 };

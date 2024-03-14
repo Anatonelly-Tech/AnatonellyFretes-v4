@@ -10,7 +10,7 @@ export const responsibleValidationSchema = Yup.object().shape({
     .required('Telefone é obrigatório')
     .matches(/\(\d{2,}\) \d{4,}\-\d{4}/g, 'Telefone inválido'),
   contactWay: Yup.string().required('Forma de contato é obrigatória'),
-  isAdmin: Yup.string().required('Tipo de usuário é obrigatório'),
+  role: Yup.string().required('Tipo de usuário é obrigatório'),
   department: Yup.string().required('Departamento é obrigatório'),
   password: Yup.string().required('Senha é obrigatória'),
   confirmPassword: Yup.string()
