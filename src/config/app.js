@@ -1,3 +1,3 @@
-export const API = "http://localhost:3030/api/";
+export const API = 'https://anatonellyserver-v2.onrender.com/api/';
 
-export const APICEP = "https://viacep.com.br/ws/";
+export const APICEP = 'https://viacep.com.br/ws/';
