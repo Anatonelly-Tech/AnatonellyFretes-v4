@@ -4,6 +4,7 @@ import { ConfigProvider, Tabs } from "antd";
 import type { TabsProps } from "antd";
 import React from "react";
 import ViewFrete from "@/components/Tabs/ViewFretes";
+import { Frete } from '@/utils/InterfaceFreight';
 
 interface Fretes {
   freteAtivo: Frete[];

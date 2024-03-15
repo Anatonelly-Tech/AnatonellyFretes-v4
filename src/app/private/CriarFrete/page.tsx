@@ -131,8 +131,16 @@ const page = () => {
       }
     }
     // page3
+    // page3
+
+
     if (activeStep == 2) {
-      if (touchedFields.veiculos == true && touchedFields.carrocerias == true) {
+      if (
+        touchedFields.veiculos &&
+        touchedFields.veiculos.length > 0 &&
+        touchedFields.carrocerias &&
+        touchedFields.carrocerias.length > 0
+      ) {
         if (errors.veiculos == undefined && errors.carrocerias == undefined) {
           actualStep = activeStep + 1;
         }

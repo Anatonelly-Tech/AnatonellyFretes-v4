@@ -27,14 +27,13 @@ export default function Page1({ register, error }: Page1Props) {
       setResponsaveisFrete(responsaveis.data.response);
     };
     getResponsaveis();
-  }, []); 
-  
+  }, []);
+
   const WaitLoad = () => {
     setTimeout(() => {
       setLoaded(true);
     }, 5000);
   };
-
 
   const tryLoading = () => {
     return loaded == false ? (
@@ -142,20 +141,29 @@ export default function Page1({ register, error }: Page1Props) {
             {/* <div className="w-full">lista de responsaveis pelo frete</div> */}
             <div className='w-full h-auto grid grid-cols-4 p-2 bg-gray-500 shadow-md rounded gap-4'>
               {responsaveisFrete.length > 0 ? (
-                responsaveisFrete.map((item, index) => {
-                  return (
-                    <div key={index}>
-                      <CheckBox
-                        label={item.name}
-                        sublabel={item.phone}
-                        id={item.idResponsible}
-                        name={'idResponsible'}
-                        register={register}
-                        value={item.idResponsible}
-                      />
-                    </div>
-                  );
-                })
+                responsaveisFrete.map(
+                  (
+                    item: {
+                      name: string;
+                      phone: string;
+                      idResponsible: number;
+                    },
+                    index: number
+                  ) => {
+                    return (
+                      <div key={index}>
+                        <CheckBox
+                          label={item.name}
+                          sublabel={item.phone}
+                          id={item.idResponsible}
+                          name={'idResponsible'}
+                          register={register}
+                          value={item.idResponsible}
+                        />
+                      </div>
+                    );
+                  }
+                )
               ) : (
                 <div className='grid col-start-1 col-end-5 py-5 w-full justify-center items-center'>
                   {tryLoading()}
