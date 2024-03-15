@@ -3,7 +3,7 @@ import NextAuth from 'next-auth';
 import { NextAuthOptions } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
 
-const getUser = async (email) => {
+const getUser = async (email:any) => {
   const User = (await getUserByEmail(email)).data.response;
   console.log(User);
 
