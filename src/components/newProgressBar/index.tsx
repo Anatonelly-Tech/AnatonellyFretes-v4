@@ -21,7 +21,7 @@ export default function ProgressBarAntd({
         strokeWidth={10}
         format={(percent) => (
           <div className="flex flex-col gap-1 items-center justify-start">
-            <span className="text-violet-800 text-xl font-bold">{`Meta`}</span>
+            <span className="text-white text-xl font-bold">{`Meta`}</span>
             <span className="text-white text-3xl font-bold">{`${percent}%`}</span>
           </div>
         )}
