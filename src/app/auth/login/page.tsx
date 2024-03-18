@@ -48,7 +48,7 @@ const page = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-white flex items-center justify-center relative -z-10">
+    <div className="w-screen h-screen flex items-center justify-center relative -z-10">
       {/* <img
         draggable={false}
         className="w-full h-full absolute -z-10"
