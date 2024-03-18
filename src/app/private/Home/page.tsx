@@ -183,7 +183,85 @@ export default function Home() {
     return (
       <div className="w-full h-full flex ">
         {/* esquerda */}
-        <div className="w-1/5 flex flex-col h-full py-4 items-center justify-start gap-5">
+        <div className=" w-3/4 flex flex-col items-center justify-center ">
+          <div>
+            <div className="w-full flex flex-row-reverse items-center justify-center gap-4">
+              <UserNotifyBar />
+              <Avatar.Root className="bg-white border inline-flex h-12 w-12 select-none items-center justify-center overflow-hidden rounded-full align-middle ">
+                <Avatar.Image
+                  className="h-full w-full rounded object-cover text-black"
+                  src={"/img/UsersImage/Maria.png"}
+                  alt={`Maria's profile picture`}
+                />
+                <div className="bg-green-600 h-3 w-3 rounded-full absolute -translate-y-4 translate-x-5"></div>
+              </Avatar.Root>
+            </div>
+            
+          </div>
+          {/* meio */}
+          <div className="w-full h-full flex flex-col justify-center p-10 text-white">
+            <div className="flex flex-col gap-5">
+              <span className=" w-full flex items-center justify-center ">
+                <h1 className="text-3xl font-bold text-center p-3 bg-black/70 rounded-lg">
+                  Seja Bem Vindo(a) {session.user?.name}
+                </h1>
+              </span>
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="text-2xl">Informações do dia</span>
+                  <hr className="border-zinc-400 w-56 border-2" />
+                </div>
+                <div className=" flex flex-col items-end ">
+                  <span className="text-2xl">Meus Fretes</span>
+                  <hr className="border-zinc-400 w-56 border-2" />
+                </div>
+              </div>
+              <div className=" flex justify-between gap-5">
+                <div className="bg-purple-950 w-1/2 h-64 rounded-lg"></div>
+                <div className="bg-purple-950 w-1/2 h-64 text-black flex flex-col items-center justify-start rounded-lg">
+                  <div className="overflow-y-scroll w-11/12 scrollbar-thin scrollbar-track-purple-700 scrollbar-thumb-purple-800 force-overflow">
+                    <ViewShippingSummary
+                      idForm="title"
+                      name="Resumo do Frete"
+                      freightPrice="Preço do Frete"
+                      collectCity="cidade de coleta"
+                      deliveryCity="cidade de entrega"
+                      collectDate="data da coleta"
+                      deliveryDate="data da entrega"
+                      product="Produto"
+                      statusItem={true}
+                    />
+
+                    {FreteListHome.map((frete) => (
+                      <>
+                        <ViewShippingSummary
+                          key={frete.key}
+                          idForm={frete.idForm}
+                          name={frete.name}
+                          freightPrice={frete.freightPrice}
+                          collectCity={frete.collectCity}
+                          deliveryCity={frete.deliveryCity}
+                          collectDate={frete.collectDate}
+                          deliveryDate={frete.deliveryDate}
+                          product={frete.product}
+                          statusItem={frete.statusItem}
+                        />
+                      </>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <span className="text-2xl">Publicidade</span>
+                <hr className="border-zinc-400 w-36 border-2" />
+              </div>
+              <div className=" w-full">{/* <Carousel /> */}</div>
+            </div>
+          </div>
+        </div>
+        {/* direita */}
+        <div className="w-1/4 flex flex-col h-full pt-10 items-center justify-start gap-5 ">
           <UserInfo
             username={session.user?.name || "awaitng Server"}
             role={"Admin"}
@@ -199,91 +277,6 @@ export default function Home() {
             result={"R$150,00"}
           />
           <ProgressBarAntd percentProgress={75} meta={100} key={1} />
-        </div>
-        {/* meio */}
-        <div className="w-3/5 h-full flex flex-col py-28 text-white">
-          <div className="flex flex-col gap-5">
-            <h1 className="text-3xl font-bold text-center">
-              Seja Bem Vindo(a) {session.user?.name}
-            </h1>
-
-            <div>
-              <span className="text-2xl">Informações do dia</span>
-              <hr className="border-zinc-400 w-56 border-2" />
-            </div>
-            <div className=" flex justify-between gap-5">
-              <div className="bg-zinc-300/45 w-1/2 h-64"></div>
-              <div className="bg-zinc-300/45 w-1/2 h-64 text-black flex flex-col items-center justify-start overflow-y-auto">
-                <ViewShippingSummary
-                  idForm="title"
-                  name="Resumo do Frete"
-                  freightPrice="Preço do Frete"
-                  collectCity="cidade de coleta"
-                  deliveryCity="cidade de entrega"
-                  collectDate="data da coleta"
-                  deliveryDate="data da entrega"
-                  product="Produto"
-                  statusItem={true}
-                />
-
-                {FreteListHome.map((frete) => (
-                  <>
-                    <ViewShippingSummary
-                      key={frete.key}
-                      idForm={frete.idForm}
-                      name={frete.name}
-                      freightPrice={frete.freightPrice}
-                      collectCity={frete.collectCity}
-                      deliveryCity={frete.deliveryCity}
-                      collectDate={frete.collectDate}
-                      deliveryDate={frete.deliveryDate}
-                      product={frete.product}
-                      statusItem={frete.statusItem}
-                    />
-                  </>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <span className="text-2xl">Publicidade</span>
-              <hr className="border-zinc-400 w-36 border-2" />
-            </div>
-            <div className=" w-full">
-              <Carousel />
-            </div>
-          </div>
-        </div>
-        {/* direita */}
-        <div className="w-1/5 h-full flex flex-col ">
-          <div className="flex items-center justify-end gap-4 m-4">
-            <UserNotifyBar />
-            <Avatar.Root className="bg-white border inline-flex h-12 w-12 select-none items-center justify-center overflow-hidden rounded-full align-middle ">
-              <Avatar.Image
-                className="h-full w-full rounded object-cover text-black"
-                src={"/img/UsersImage/Maria.png"}
-                alt={`Maria's profile picture`}
-              />
-              <div className="bg-green-600 h-3 w-3 rounded-full absolute -translate-y-4 translate-x-5"></div>
-            </Avatar.Root>
-          </div>
-          <div className=" flex flex-col items-center p-6">
-            <h1 className="text-white text-2xl font-bold text-left">
-              Rankings da Semana
-            </h1>
-            <hr className="w-full items-center" />
-            <div className="flex flex-col w-full items-start">
-              {sortedSellers.map((seller, index) => (
-                <Ranking
-                  key={index}
-                  QtdFretes={seller.QtdFretes}
-                  NameSeller={seller.NameSeller}
-                  photoSeller={seller.photoSeller}
-                  Placing={() => Placing(index)}
-                />
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     );

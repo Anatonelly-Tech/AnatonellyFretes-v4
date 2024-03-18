@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { AuthProvider } from '@/providers/auth-provider';
-const inter = Inter({ subsets: ['latin'] });
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { AuthProvider } from "@/providers/auth-provider";
+const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
-  title: 'Anatonelly Fretes',
+  title: "Anatonelly Fretes",
 };
 
-import { NavBar } from '@/components/NavBar';
+import { NavBar } from "@/components/NavBar";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -14,11 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <AuthProvider>
-      <html lang='en' className={'w-full h-full' + inter.className}>
+      <html lang="en" className={"w-full h-full" + inter.className}>
         <head>
-          <link rel='icon' href='/favicon.png' />
+          <link rel="icon" href="/favicon.png" />
         </head>
-        <body className="bg-anatonelly-bg bg-no-repeat overflow-hidden bg-cover w-screen h-screen relative -z-50">
+        <body className="bg-anatonelly-bg bg-no-repeat bg-gray-900 overflow-hidden bg-cover w-screen h-screen relative -z-50">
           {children}
         </body>
       </html>
