@@ -18,8 +18,12 @@ const page = () => {
   useEffect(() => {
     const getResponsaveis = async () => {
       setResponsaveisFrete([]);
-      const responsaveis = await getUserByEmail(session.user.email);
-      setResponsaveisFrete(responsaveis.data.response.employees);
+      if (session && session.user && session.user.email) {
+        const responsaveis = await getUserByEmail(session.user.email);
+        setResponsaveisFrete(responsaveis.data.response.employees);
+      } else {
+        console.log('No session');
+      }
     };
     getResponsaveis();
   }, [session]);
@@ -104,38 +108,52 @@ const page = () => {
 
             <div className='flex flex-col gap-3'>
               {responsaveisFrete
-                .sort((a, b) =>
+                .sort((a: any, b: any) =>
                   sort === 'Asc'
                     ? a.name.localeCompare(b.name)
                     : b.name.localeCompare(a.name)
                 )
                 .filter(
-                  (resp) =>
+                  (resp: {
+                    phone: string;
+                    name: string;
+                    email: string;
+                    department: string;
+                  }) =>
                     resp.phone.includes(search) ||
                     resp.name.toLowerCase().includes(search.toLowerCase()) ||
                     resp.email.toLowerCase().includes(search.toLowerCase()) ||
                     resp.department.toLowerCase().includes(search.toLowerCase())
                 )
-                .map((resp) => (
-                  <div className='flex w-full max-w-full bg-gray-100 gap-3 p-3 rounded shadow-lg shadow-black'>
-                    <div className='flex w-1/4 flex-col items-center justify-center border-r-gray-300 pr-2 border-r-2'>
-                      <p className='font-bold'>{resp.name}</p>
-                      <p>{resp.email}</p>
+                .map(
+                  (resp: {
+                    phone: string;
+                    name: string;
+                    email: string;
+                    department: string;
+                    role: string;
+                    idResponsible: number;
+                  }) => (
+                    <div className='flex w-full max-w-full bg-gray-100 gap-3 p-3 rounded shadow-lg shadow-black'>
+                      <div className='flex w-1/4 flex-col items-center justify-center border-r-gray-300 pr-2 border-r-2'>
+                        <p className='font-bold'>{resp.name}</p>
+                        <p>{resp.email}</p>
+                      </div>
+                      <div className='flex w-1/4 flex-col items-center justify-center  border-r-gray-300 pr-2 border-r-2'>
+                        <p className='font-bold'>{resp.department}</p>
+                        <p>{resp.phone}</p>
+                      </div>
+                      <div className='flex w-1/4 flex-col items-center justify-center  border-r-gray-300 pr-2 border-r-2'>
+                        <p className='font-bold'>
+                          {resp.role == 'Admin' ? 'Admin' : 'Colaborador'}
+                        </p>
+                      </div>
+                      <div className='w-1/4 flex'>
+                        <ActionResponsible idResponsible={resp.idResponsible} />
+                      </div>
                     </div>
-                    <div className='flex w-1/4 flex-col items-center justify-center  border-r-gray-300 pr-2 border-r-2'>
-                      <p className='font-bold'>{resp.department}</p>
-                      <p>{resp.phone}</p>
-                    </div>
-                    <div className='flex w-1/4 flex-col items-center justify-center  border-r-gray-300 pr-2 border-r-2'>
-                      <p className='font-bold'>
-                        {resp.role == 'Admin' ? 'Admin' : 'Colaborador'}
-                      </p>
-                    </div>
-                    <div className='w-1/4 flex'>
-                      <ActionResponsible idResponsible={resp.idResponsible} />
-                    </div>
-                  </div>
-                ))}
+                  )
+                )}
             </div>
           </div>
         </div>

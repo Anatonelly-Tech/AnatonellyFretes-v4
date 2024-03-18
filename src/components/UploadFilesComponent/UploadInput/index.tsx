@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { IoMdClose } from "react-icons/io";
+import React, { useState } from 'react';
+import { IoMdClose } from 'react-icons/io';
 
 interface UploadInputProps {
   selectedFile: string;
@@ -9,7 +9,7 @@ interface UploadInputProps {
   preview: any;
   setSelectedFile: any;
   setValue: any;
-  getValues: any;
+  getValues?: any;
 }
 
 const UploadInput = ({
@@ -20,24 +20,24 @@ const UploadInput = ({
   getValues,
   setSelectedFile,
 }: UploadInputProps) => {
-  const [nameFile, setNameFile] = useState("");
+  const [nameFile, setNameFile] = useState('');
 
   const HandleOnChange = (e: any) => {
     preview(e);
-    const file = getValues("picture");
+    const file = getValues('picture');
     setNameFile(file[0].name);
   };
   return (
-    <div className="flex items-center justify-center gap-2">
+    <div className='flex items-center justify-center gap-2'>
       <input
-        id="picture"
+        id='picture'
         className={`hidden`}
-        {...register("picture")}
-        name="picture"
-        type="file"
-        accept="image/png, image/gif, image/jpeg"
+        {...register('picture')}
+        name='picture'
+        type='file'
+        accept='image/png, image/gif, image/jpeg'
         onChange={(e) => {
-          register("picture").onChange(e);
+          register('picture').onChange(e);
           HandleOnChange(e);
         }}
       />
@@ -46,9 +46,9 @@ const UploadInput = ({
         size={20}
         className={`${selectedFile} text-white text-center h-6 flex items-center justify-center`}
         onClick={() => {
-          setSelectedFile("hidden");
+          setSelectedFile('hidden');
 
-          setValue("picture", null);
+          setValue('picture', null);
         }}
       />
     </div>

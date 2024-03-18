@@ -21,7 +21,9 @@ const InputLabel = ({
 }: InputLabelProps) => {
   const RegisterWithMask = useHookFormMask(register);
   const fieldRegister = mask
-    ? RegisterWithMask(props.name, mask)
+    ? props.name !== undefined
+      ? RegisterWithMask(props.name, mask)
+      : console.log('props.name is undefined')
     : register(props.name);
 
   if (!isRequired) {

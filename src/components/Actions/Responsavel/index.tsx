@@ -12,7 +12,11 @@ import {
 import { removeRespByUserEmail } from '@/services/user';
 import { useSession } from 'next-auth/react';
 
-const ActionResponsible = ({ idResponsible }: number) => {
+interface resp {
+  idResponsible: number;
+}
+
+const ActionResponsible = ({ idResponsible }: resp) => {
   const customColors = ['#15803d', '#a16207', '#22c55e', '#fbbf24', '#dc2626'];
   const { data: session } = useSession();
 
@@ -80,15 +84,17 @@ const ActionResponsible = ({ idResponsible }: number) => {
                 </AlertDialog.Cancel>
                 <AlertDialog.Action>
                   <button
-                    onClick={
-                      async () => {
+                    onClick={async () => {
+                      if (session && session.user && session.user.email) {
                         await deleteResponsible(idResponsible);
                         await removeRespByUserEmail(
                           session.user.email,
                           idResponsible
                         );
-                      } /* remove freight*/
-                    }
+                      } else {
+                        console.error('Session or user email is null.');
+                      }
+                    }}
                     className='bg-red-500 text-white font-bold w-28 h-8 rounded hover:bg-red-600'
                   >
                     Apagar

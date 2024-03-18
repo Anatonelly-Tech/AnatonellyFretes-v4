@@ -40,7 +40,7 @@ const page = () => {
   const frameRef = useRef<HTMLImageElement | null>(null);
   const router = useRouter();
 
-  const getEndereco = async (cep) => {
+  const getEndereco = async (cep:any) => {
     const NovoEndereco = await getCEP(cep);
 
     setValue('city', NovoEndereco.data.localidade);
