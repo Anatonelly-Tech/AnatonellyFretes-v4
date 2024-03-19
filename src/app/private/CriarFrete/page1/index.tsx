@@ -17,17 +17,25 @@ import { MdDateRange } from 'react-icons/md';
 import { getAllResponsibles } from '@/services/responsibleFreight';
 import LoadingForComponents from '@/components/Loading/LoadingForComponents';
 import { VscAccount } from 'react-icons/vsc';
+import { useSession } from 'next-auth/react';
+import { getUserByEmail } from '@/services/user';
 export default function Page1({ register, error }: Page1Props) {
   const [loaded, setLoaded] = useState(false);
+  const { data: session } = useSession();
 
   const [responsaveisFrete, setResponsaveisFrete] = useState([]);
   useEffect(() => {
     const getResponsaveis = async () => {
-      const responsaveis = await getAllResponsibles();
-      setResponsaveisFrete(responsaveis.data.response);
+      setResponsaveisFrete([]);
+      if (session && session.user && session.user.email) {
+        const responsaveis = await getUserByEmail(session.user.email);
+        setResponsaveisFrete(responsaveis.data.response.employees);
+      } else {
+        console.log('No session');
+      }
     };
     getResponsaveis();
-  }, [responsaveisFrete]);
+  }, [session]);
 
   const WaitLoad = () => {
     setTimeout(() => {
@@ -131,7 +139,10 @@ export default function Page1({ register, error }: Page1Props) {
                 </span>
               </div>
               <div>
-                <ModalComponent setResponsaveisFrete={setResponsaveisFrete} />
+                <ModalComponent
+                  setResponsaveisFrete={setResponsaveisFrete}
+                  session={session}
+                />
               </div>
               <span className='text-sm flex text-red-500 font-bold'>
                 {error.responsibleFreight?.message}
