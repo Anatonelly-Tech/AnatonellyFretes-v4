@@ -1,23 +1,23 @@
-"use client";
+'use client';
 // Libs
-import React, { useState } from "react";
-import { set, useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
-import { yupResolver } from "@hookform/resolvers/yup";
-import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
+import React, { useState } from 'react';
+import { set, useForm } from 'react-hook-form';
+import { DevTool } from '@hookform/devtools';
+import { yupResolver } from '@hookform/resolvers/yup';
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 
 // Components
-import AdvancedPages from "@/components/AdvancedPages";
-import StepperComponent from "@/components/Stepper";
+import AdvancedPages from '@/components/AdvancedPages';
+import StepperComponent from '@/components/Stepper';
 
 // Utils
-import { createFreightValidationSchema } from "@/utils/createFreightValidation";
-import { RandomFormName } from "@/utils/randomFormName";
+import { createFreightValidationSchema } from '@/utils/createFreightValidation';
+import { RandomFormName } from '@/utils/randomFormName';
 // Icons
-import { VscChevronRight } from "react-icons/vsc";
-import { VscChevronLeft } from "react-icons/vsc";
-import { Alert } from "@mui/material";
-import { postFreight } from "@/services/formData";
+import { VscChevronRight } from 'react-icons/vsc';
+import { VscChevronLeft } from 'react-icons/vsc';
+import { Alert } from '@mui/material';
+import { postFreight } from '@/services/formData';
 
 // Interface
 interface State extends SnackbarOrigin {
@@ -33,27 +33,27 @@ const page = () => {
   } = useForm({
     defaultValues: { idResponsible: [], veiculos: [], carrocerias: [] },
     resolver: yupResolver(createFreightValidationSchema),
-    mode: "all",
+    mode: 'all',
   });
 
   const [data, setData] = useState({});
 
   const [state, setState] = useState<State>({
     open: false,
-    vertical: "top",
-    horizontal: "center",
+    vertical: 'top',
+    horizontal: 'center',
   });
 
   const { vertical, horizontal, open } = state;
 
-  const [bgRightButton, setBgRightButton] = useState("bg-violet-600");
+  const [bgRightButton, setBgRightButton] = useState('bg-violet-600');
 
   const [hoverBgRightButton, setHoverBgRightButton] = useState(
-    "hover:bg-violet-800"
+    'hover:bg-violet-800'
   );
 
   const [shadowRightButton, setShadowRightButton] =
-    useState("shadow-violet-950");
+    useState('shadow-violet-950');
 
   const handleClose = () => {
     setState({ ...state, open: false });
@@ -65,9 +65,9 @@ const page = () => {
     const actualStep = activeStep - 1;
 
     if (activeStep == 4) {
-      setBgRightButton("bg-violet-600");
-      setHoverBgRightButton("hover:bg-violet-800");
-      setShadowRightButton("shadow-violet-950");
+      setBgRightButton('bg-violet-600');
+      setHoverBgRightButton('hover:bg-violet-800');
+      setShadowRightButton('shadow-violet-950');
     }
 
     return setActiveStep(actualStep);
@@ -86,7 +86,7 @@ const page = () => {
         touchedFields.deliveryDate == true &&
         touchedFields.radioValueLocalizacao == true
       ) {
-        setState({ vertical: "bottom", horizontal: "left", open: false });
+        setState({ vertical: 'bottom', horizontal: 'left', open: false });
 
         if (
           errors.idResponsible == undefined &&
@@ -99,7 +99,7 @@ const page = () => {
           actualStep = activeStep + 1;
         }
       } else {
-        setState({ vertical: "bottom", horizontal: "left", open: true });
+        setState({ vertical: 'bottom', horizontal: 'left', open: true });
       }
     }
     // page2
@@ -113,7 +113,7 @@ const page = () => {
         touchedFields.radioValueRastreador == true &&
         touchedFields.radioValueLona == true
       ) {
-        setState({ vertical: "bottom", horizontal: "left", open: false });
+        setState({ vertical: 'bottom', horizontal: 'left', open: false });
 
         if (
           errors.product == undefined &&
@@ -127,7 +127,7 @@ const page = () => {
           actualStep = activeStep + 1;
         }
       } else {
-        setState({ vertical: "bottom", horizontal: "left", open: true });
+        setState({ vertical: 'bottom', horizontal: 'left', open: true });
       }
     }
     // page3
@@ -144,7 +144,7 @@ const page = () => {
           actualStep = activeStep + 1;
         }
       } else {
-        setState({ vertical: "bottom", horizontal: "left", open: true });
+        setState({ vertical: 'bottom', horizontal: 'left', open: true });
       }
     }
 
@@ -157,7 +157,7 @@ const page = () => {
         touchedFields.paymentForm == true &&
         touchedFields.radioPacoteEscolhido == true
       ) {
-        setState({ vertical: "bottom", horizontal: "left", open: false });
+        setState({ vertical: 'bottom', horizontal: 'left', open: false });
 
         if (
           errors.radioValueValor == undefined &&
@@ -169,14 +169,14 @@ const page = () => {
         ) {
           actualStep = activeStep + 1;
 
-          setBgRightButton("bg-gray-500");
-          setHoverBgRightButton("hover:bg-gray-700");
-          setShadowRightButton("");
-          setValue("name", await RandomFormName());
+          setBgRightButton('bg-gray-500');
+          setHoverBgRightButton('hover:bg-gray-700');
+          setShadowRightButton('');
+          setValue('name', await RandomFormName());
           setData(getValues());
         }
       } else {
-        setState({ vertical: "bottom", horizontal: "left", open: true });
+        setState({ vertical: 'bottom', horizontal: 'left', open: true });
       }
     }
 
@@ -184,20 +184,22 @@ const page = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-between">
-      <h1 className="bg-gradient-to-br from-purple-600 to-violet-700 inline-block text-transparent bg-clip-text text-6xl font-extrabold break-all">
+    <div className='w-full h-full flex flex-col justify-between'>
+      <h1 className='bg-gradient-to-br from-purple-600 to-violet-700 inline-block text-transparent bg-clip-text text-6xl font-extrabold break-all'>
         Meus <br /> Fretes
       </h1>
 
-      <div className="bg-zinc-400 w-[80%] h-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded p-5">
-        <StepperComponent
-          setActiveStep={setActiveStep}
-          activeStep={activeStep}
-        />
+      <div className='bg-zinc-400 w-[80%] h-auto absolute top-1/2 left-1/2 -translate-x-1/2 lg:-translate-y-1/2 xs:-translate-y-1/3 rounded p-5'>
+        <div className='xxs:hidden md:flex'>
+          <StepperComponent
+            setActiveStep={setActiveStep}
+            activeStep={activeStep}
+          />
+        </div>
         <form
-          action=""
-          id="createFreight"
-          className="w-full h-auto flex items-center justify-center"
+          action=''
+          id='createFreight'
+          className='w-full h-auto flex items-center justify-center'
         >
           <AdvancedPages
             error={errors}
@@ -207,18 +209,18 @@ const page = () => {
           />
         </form>
       </div>
-      <div className="w-full h-15 items-center flex justify-around mb-14">
+      <div className='w-full h-15 items-center flex justify-around mb-14'>
         <button
           onClick={prevStep}
-          className="w-10 h-10 bg-violet-600 shadow-especial shadow-violet-950 hover:bg-violet-800 hover:shadow-zinc-800 justify-center items-center rounded-full flex font-bold"
+          className='w-10 h-10 bg-violet-600 shadow-especial shadow-violet-950 hover:bg-violet-800 hover:shadow-zinc-800 justify-center items-center rounded-full flex font-bold'
         >
-          <VscChevronLeft size={50} className="text-white text-xl" />
+          <VscChevronLeft size={50} className='text-white text-xl' />
         </button>
         <button
           onClick={nextStep}
           className={`w-10 h-10 shadow-especial ${shadowRightButton} ${bgRightButton} ${hoverBgRightButton} hover:shadow-zinc-800 justify-center items-center rounded-full  flex font-bold`}
         >
-          <VscChevronRight size={50} className="text-white text-xl" />
+          <VscChevronRight size={50} className='text-white text-xl' />
         </button>
       </div>
       <Snackbar
@@ -230,9 +232,9 @@ const page = () => {
       >
         <Alert
           onClose={handleClose}
-          severity="error"
-          variant="filled"
-          sx={{ width: "100%" }}
+          severity='error'
+          variant='filled'
+          sx={{ width: '100%' }}
         >
           Preencha todos os campos obrigatórios!
         </Alert>
