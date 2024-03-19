@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import useWindowSize from '@rooks/use-window-size';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Stepper from '@mui/material/Stepper';
@@ -95,7 +95,8 @@ export default function CustomizedSteppers({
     setActiveStep(steps.length);
   }
 
-  return (
+  const { innerWidth, innerHeight, outerHeight, outerWidth } = useWindowSize();
+  return innerWidth != undefined && innerWidth < 768 ? null : (
     <Stack
       className='xxs:hidden md:flex md:w-full'
       sx={{ width: '100%' }}
