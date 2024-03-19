@@ -6,6 +6,8 @@ import { DevTool } from '@hookform/devtools';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 
+
+
 // Components
 import AdvancedPages from '@/components/AdvancedPages';
 import StepperComponent from '@/components/Stepper';
@@ -184,18 +186,18 @@ const page = () => {
   };
 
   return (
-    <div className='w-full h-full flex flex-col justify-between'>
-      <h1 className='bg-gradient-to-br from-purple-600 to-violet-700 inline-block text-transparent bg-clip-text text-6xl font-extrabold break-all'>
-        Meus <br /> Fretes
-      </h1>
+    <div className='w-full h-full flex flex-col items-center justify-between'>
+      <div className='flex items-start justify-start w-full'>
+        <h1 className='bg-gradient-to-br from-purple-600 to-violet-700 inline-block text-transparent bg-clip-text text-6xl font-extrabold break-all'>
+          Meus <br /> Fretes
+        </h1>
+      </div>
 
-      <div className='bg-zinc-400 w-[80%] h-auto absolute top-1/2 left-1/2 -translate-x-1/2 lg:-translate-y-1/2 xs:-translate-y-1/3 rounded p-5'>
-        <div className='xxs:hidden md:flex'>
+      <div className='bg-zinc-400 w-[80%] h-auto flex flex-col items-center justify-center  rounded p-5'>
           <StepperComponent
             setActiveStep={setActiveStep}
             activeStep={activeStep}
           />
-        </div>
         <form
           action=''
           id='createFreight'
