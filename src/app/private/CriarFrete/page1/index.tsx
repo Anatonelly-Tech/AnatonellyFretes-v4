@@ -27,7 +27,7 @@ export default function Page1({ register, error }: Page1Props) {
       setResponsaveisFrete(responsaveis.data.response);
     };
     getResponsaveis();
-  }, []);
+  }, [responsaveisFrete]);
 
   const WaitLoad = () => {
     setTimeout(() => {
@@ -54,8 +54,8 @@ export default function Page1({ register, error }: Page1Props) {
   return (
     <div className='flex w-full h-full flex-col items-start justify-center gap-8 p-5'>
       <div className='w-full h-auto flex flex-col justify-center items-center gap-5'>
-        <div className='flex w-full gap-4  bg-zinc-300 shadow-md p-2 rounded'>
-          <div className='w-2/3'>
+        <div className='flex w-full gap-4 md:flex-row xs:flex-col bg-zinc-300 shadow-md p-2 rounded'>
+          <div className='lg:w-2/3 xs:w-full'>
             <InputLabel
               id='collectCity'
               name='collectCity'
@@ -70,7 +70,7 @@ export default function Page1({ register, error }: Page1Props) {
             </span>
           </div>
 
-          <div className='w-1/3'>
+          <div className='lg:w-1/3 xs:w-full'>
             <InputLabel
               isRequired={true}
               id='collectDate'
@@ -86,8 +86,8 @@ export default function Page1({ register, error }: Page1Props) {
             </span>
           </div>
         </div>
-        <div className='flex w-full gap-4  bg-zinc-300 shadow-md p-2 rounded'>
-          <div className='w-2/3'>
+        <div className='flex w-full gap-4 md:flex-row xs:flex-col  bg-zinc-300 shadow-md p-2 rounded'>
+          <div className='lg:w-2/3 xs:w-full'>
             <InputLabel
               isRequired={true}
               id='deliveryCity'
@@ -101,7 +101,7 @@ export default function Page1({ register, error }: Page1Props) {
               {error.deliveryCity?.message}
             </span>
           </div>
-          <div className='w-1/3'>
+          <div className='lg:w-1/3 xs:w-full'>
             <InputLabel
               id='deliveryDate'
               name='deliveryDate'
@@ -118,7 +118,7 @@ export default function Page1({ register, error }: Page1Props) {
           </div>
         </div>
       </div>
-      <div className='flex w-full gap-5'>
+      <div className='flex md:flex-row xs:flex-col w-full sm:h-auto gap-5'>
         <div className=' w-full h-auto flex flex-col bg-zinc-300 shadow-md p-2 rounded'>
           <div className='w-auto h-auto p-2 flex flex-col gap-2'>
             <div className='w-4/5  flex flex-col gap-2'>
@@ -139,7 +139,7 @@ export default function Page1({ register, error }: Page1Props) {
             </div>
 
             {/* <div className="w-full">lista de responsaveis pelo frete</div> */}
-            <div className='w-full h-auto grid grid-cols-4 p-2 bg-gray-500 shadow-md rounded gap-4'>
+            <div className='w-full h-32 grid xxs:grid-cols-1  overflow-y-auto md:grid-cols-4 p-2 bg-gray-500 shadow-md rounded gap-4'>
               {responsaveisFrete.length > 0 ? (
                 responsaveisFrete.map(
                   (
