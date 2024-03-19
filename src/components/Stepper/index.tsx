@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Stepper from '@mui/material/Stepper';
@@ -75,7 +76,6 @@ function QontoStepIcon(props: StepIconProps) {
   );
 }
 
-
 const steps = [
   'Dados de coleta e entrega',
   'Dados da carga',
@@ -96,7 +96,11 @@ export default function CustomizedSteppers({
   }
 
   return (
-    <Stack sx={{ width: '100%' }} spacing={4}>
+    <Stack
+      className='xxs:hidden md:flex md:w-full'
+      sx={{ width: '100%' }}
+      spacing={4}
+    >
       <Stepper
         alternativeLabel
         activeStep={activeStep}
