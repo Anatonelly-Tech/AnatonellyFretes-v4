@@ -183,72 +183,93 @@ export default function Home() {
   if (session) {
     return (
       <div className="w-full h-full flex ">
-        {/* esquerda */}
-        <div className="mt-10 w-3/4 flex flex-col items-center justify-center ">
-          <div className="flex w-full items-center justify-between pl-10">
-            <div className="w-auto flex flex-row-reverse items-center justify-center gap-4">
-              <UserNotifyBar />
-              <Avatar.Root className="bg-white border inline-flex h-12 w-12 select-none items-center justify-center overflow-hidden rounded-full align-middle ">
-                <Avatar.Image
-                  className="h-full w-full rounded object-cover text-black"
-                  src={"/img/UsersImage/Maria.png"}
-                  alt={`Maria's profile picture`}
+        <div className="w-full h-full flex flex-col items-center justify-center p-10 ">
+          <div className="w-full h-full flex flex-col justify-center text-white">
+            {/* top */}
+            <div className="w-full h-auto flex items-start justify-between gap-5 ">
+              <div className="w-1/3 h-full flex flex-row-reverse items-start justify-end gap-4">
+                <UserNotifyBar />
+                <Avatar.Root className="bg-white border inline-flex h-12 w-12 select-none items-center justify-center overflow-hidden rounded-full align-middle ">
+                  <Avatar.Image
+                    className="h-full w-full rounded object-cover text-black"
+                    src={"/img/UsersImage/Maria.png"}
+                    alt={`Maria's profile picture`}
+                  />
+                  <div className="bg-green-600 h-3 w-3 rounded-full absolute -translate-y-4 translate-x-5"></div>
+                </Avatar.Root>
+              </div>
+
+              <div className="h-full w-1/3 flex items-center">
+                <span className=" w-full flex items-center justify-center ">
+                  <h1 className="text-3xl font-bold text-center p-3 bg-black/70 rounded-lg">
+                    Seja Bem Vindo(a) {session.user?.name}
+                  </h1>
+                </span>
+              </div>
+              {/* perfil */}
+              <div className="w-1/3 flex h-auto items-center justify-center gap-2 ">
+                <UserInfo
+                  username={session.user?.name || "awaitng Server"}
+                  role={"Admin"}
+                  plan={"Prata"}
+                  invoice={150.0}
                 />
-                <div className="bg-green-600 h-3 w-3 rounded-full absolute -translate-y-4 translate-x-5"></div>
-              </Avatar.Root>
+                <div className="flex flex-col items-center justify-between h-full w-auto gap-2">
+                  <AccountInformations
+                    title={"Quantidade Fretes Realizados"}
+                    result={"15 Fretes"}
+                  />
+                  <AccountInformations
+                    title={"Valor Economizado"}
+                    result={"R$150,00"}
+                  />
+                </div>
+                <ProgressBarAntd percentProgress={75} meta={100} key={1} />
+              </div>
+              {/* perfil */}
             </div>
-            <div></div>
-          </div>
-          {/* meio */}
-          <div className="w-full h-full flex flex-col justify-center p-10 text-white">
-            <div className="flex flex-col gap-5">
-              <span className=" w-full flex items-center justify-center ">
-                <h1 className="text-3xl font-bold text-center p-3 bg-black/70 rounded-lg">
-                  Seja Bem Vindo(a) {session.user?.name}
-                </h1>
-              </span>
-              <div className="flex items-center justify-between">
-                <div>
+            {/* end top */}
+            <div className="flex h-auto flex-col gap-5">
+              <div className="flex items-center justify-between gap-5">
+                <div className=" flex flex-col items-start gap-3 w-full">
                   <span className="text-2xl">Informações do dia</span>
                   <hr className="border-zinc-400 w-56 border-2" />
+                  <div className="bg-purple-950 w-full h-64 rounded-lg"></div>
                 </div>
-                <div className=" flex flex-col items-end ">
+                <div className=" flex flex-col items-end gap-3 w-full">
                   <span className="text-2xl">Meus Fretes</span>
                   <hr className="border-zinc-400 w-56 border-2" />
-                </div>
-              </div>
-              <div className=" flex justify-between gap-5">
-                <div className="bg-purple-950 w-1/2 h-64 rounded-lg"></div>
-                <div className="bg-purple-950 w-1/2 h-64 text-black flex flex-col items-center justify-start rounded-lg">
-                  <div className="overflow-y-scroll w-11/12 scrollbar-thin scrollbar-track-purple-700 scrollbar-thumb-purple-800 force-overflow">
-                    <ViewShippingSummary
-                      idForm="title"
-                      name="Resumo do Frete"
-                      freightPrice="Preço do Frete"
-                      collectCity="cidade de coleta"
-                      deliveryCity="cidade de entrega"
-                      collectDate="data da coleta"
-                      deliveryDate="data da entrega"
-                      product="Produto"
-                      statusItem={true}
-                    />
+                  <div className="bg-purple-950 w-full h-64 text-black flex flex-col items-center justify-start rounded-lg">
+                    <div className="overflow-y-scroll w-11/12 scrollbar-thin scrollbar-track-purple-700 scrollbar-thumb-purple-800 force-overflow">
+                      <ViewShippingSummary
+                        idForm="title"
+                        name="Resumo do Frete"
+                        freightPrice="Preço do Frete"
+                        collectCity="cidade de coleta"
+                        deliveryCity="cidade de entrega"
+                        collectDate="data da coleta"
+                        deliveryDate="data da entrega"
+                        product="Produto"
+                        statusItem={true}
+                      />
 
-                    {FreteListHome.map((frete) => (
-                      <>
-                        <ViewShippingSummary
-                          key={frete.key}
-                          idForm={frete.idForm}
-                          name={frete.name}
-                          freightPrice={frete.freightPrice}
-                          collectCity={frete.collectCity}
-                          deliveryCity={frete.deliveryCity}
-                          collectDate={frete.collectDate}
-                          deliveryDate={frete.deliveryDate}
-                          product={frete.product}
-                          statusItem={frete.statusItem}
-                        />
-                      </>
-                    ))}
+                      {FreteListHome.map((frete) => (
+                        <>
+                          <ViewShippingSummary
+                            key={frete.key}
+                            idForm={frete.idForm}
+                            name={frete.name}
+                            freightPrice={frete.freightPrice}
+                            collectCity={frete.collectCity}
+                            deliveryCity={frete.deliveryCity}
+                            collectDate={frete.collectDate}
+                            deliveryDate={frete.deliveryDate}
+                            product={frete.product}
+                            statusItem={frete.statusItem}
+                          />
+                        </>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -261,29 +282,10 @@ export default function Home() {
                 <Carousel />
               </div>
             </div>
+            <div className="flex h-auto items-center justify-between w-full p-2">
+              <SocialMedias />
+            </div>
           </div>
-          <div className="flex items-center justify-between w-full">
-            <SocialMedias />
-            <div></div>
-          </div>
-        </div>
-        {/* direita */}
-        <div className="w-1/4 flex flex-col h-full pt-10 items-center justify-start gap-5 ">
-          <UserInfo
-            username={session.user?.name || "awaitng Server"}
-            role={"Admin"}
-            plan={"Prata"}
-            invoice={150.0}
-          />
-          <AccountInformations
-            title={"Quantidade Fretes Realizados"}
-            result={"15 Fretes"}
-          />
-          <AccountInformations
-            title={"Valor Economizado"}
-            result={"R$150,00"}
-          />
-          <ProgressBarAntd percentProgress={75} meta={100} key={1} />
         </div>
       </div>
     );

@@ -18,7 +18,7 @@ export default function RootLayout({
         <head>
           <link rel="icon" href="/favicon.png" />
         </head>
-        <body className="bg-anatonelly-bg bg-no-repeat bg-gray-800 bg-cover w-screen h-screen relative -z-50">
+        <body className="bg-anatonelly-bg bg-no-repeat bg-gray-800 bg-cover w-full h-full relative -z-50">
           <NavBar />
           {children}
         </body>

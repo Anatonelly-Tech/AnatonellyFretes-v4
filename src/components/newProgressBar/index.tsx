@@ -11,7 +11,7 @@ export default function ProgressBarAntd({
   meta,
 }: ProgressBarAntdProps) {
   return (
-    <div className="w-full h-full flex items-start justify-center">
+    <div className="w-auto h-full flex items-center justify-center">
       <Progress
         className="text-white"
         type="circle"

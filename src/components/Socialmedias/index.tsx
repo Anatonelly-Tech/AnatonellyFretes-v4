@@ -4,7 +4,7 @@ import { RiCustomerService2Line } from "react-icons/ri";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 const SocialMedias = () => {
   return (
-    <div className="p-5 gap-3 w-auto h-auto flex mt-10">
+    <div className="gap-2 w-auto h-auto flex">
       <div
         className="p-2 rounded-full bg-green-700 hover:bg-green-800"
         aria-label="add"
