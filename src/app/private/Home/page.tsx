@@ -17,6 +17,7 @@ import UserNotifyBar from "@/components/UserNotifyBar";
 import * as Avatar from "@radix-ui/react-avatar";
 import DaniedPage from "@/app/denid/page";
 import { useSession } from "next-auth/react";
+import SocialMedias from "@/components/Socialmedias";
 
 export default function Home() {
   const FreteListHome = [
@@ -183,9 +184,9 @@ export default function Home() {
     return (
       <div className="w-full h-full flex ">
         {/* esquerda */}
-        <div className=" w-3/4 flex flex-col items-center justify-center ">
-          <div>
-            <div className="w-full flex flex-row-reverse items-center justify-center gap-4">
+        <div className="mt-10 w-3/4 flex flex-col items-center justify-center ">
+          <div className="flex w-full items-center justify-between pl-10">
+            <div className="w-auto flex flex-row-reverse items-center justify-center gap-4">
               <UserNotifyBar />
               <Avatar.Root className="bg-white border inline-flex h-12 w-12 select-none items-center justify-center overflow-hidden rounded-full align-middle ">
                 <Avatar.Image
@@ -196,7 +197,7 @@ export default function Home() {
                 <div className="bg-green-600 h-3 w-3 rounded-full absolute -translate-y-4 translate-x-5"></div>
               </Avatar.Root>
             </div>
-            
+            <div></div>
           </div>
           {/* meio */}
           <div className="w-full h-full flex flex-col justify-center p-10 text-white">
@@ -256,8 +257,14 @@ export default function Home() {
                 <span className="text-2xl">Publicidade</span>
                 <hr className="border-zinc-400 w-36 border-2" />
               </div>
-              <div className=" w-full">{/* <Carousel /> */}</div>
+              <div className=" w-full">
+                <Carousel />
+              </div>
             </div>
+          </div>
+          <div className="flex items-center justify-between w-full">
+            <SocialMedias />
+            <div></div>
           </div>
         </div>
         {/* direita */}

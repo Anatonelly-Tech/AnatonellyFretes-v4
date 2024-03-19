@@ -1,80 +1,29 @@
 "use client";
 import ViewShippingSummary from "@/components/ViewShippingSummary";
 import "../../styles/main.css";
+import Box from "@mui/material/Box";
+import { RiCustomerService2Line } from "react-icons/ri";
+import Fab from "@mui/material/Fab";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import AddIcon from "@mui/icons-material/Add";
 
 import React, { useState } from "react";
 
 const page = () => {
-  const FreteListHome = [
-    {
-      key: 1,
-      idForm: "123",
-      name: "Frete Expresso",
-      freightPrice: "1500.75",
-      collectCity: "São Paulo",
-      deliveryCity: "Rio de Janeiro",
-      collectDate: "2024-03-15",
-      deliveryDate: "2024-03-18",
-      product: "Eletrônicos",
-      statusItem: true,
-    },
-    // {
-    //   key: 2,
-    //   idForm: "123",
-    //   name: "Frete Expresso",
-    //   freightPrice: "1500.75",
-    //   collectCity: "São Paulo",
-    //   deliveryCity: "Rio de Janeiro",
-    //   collectDate: "2024-03-15",
-    //   deliveryDate: "2024-03-18",
-    //   product: "Eletrônicos",
-    //   statusItem: true,
-    // },
-    // {
-    //   key: 3,
-    //   idForm: "123",
-    //   name: "Frete Expresso",
-    //   freightPrice: "1500.75",
-    //   collectCity: "São Paulo",
-    //   deliveryCity: "Rio de Janeiro",
-    //   collectDate: "2024-03-15",
-    //   deliveryDate: "2024-03-18",
-    //   product: "Eletrônicos",
-    //   statusItem: true,
-    // },
-  ];
   return (
-    <div className="p-5 gap-5 w-full h-full flex ">
-      <div className="bg-zinc-300/45 w-1/2 h-64">
-        <ViewShippingSummary
-          idForm="title"
-          name="Resumo do Frete"
-          freightPrice="Preço do Frete"
-          collectCity="cidade de coleta"
-          deliveryCity="cidade de entrega"
-          collectDate="data da coleta"
-          deliveryDate="data da entrega"
-          product="Produto"
-          statusItem={true}
-        />
-
-        {FreteListHome.map((frete) => (
-          <>
-            <ViewShippingSummary
-              key={frete.key}
-              idForm={frete.idForm}
-              name={frete.name}
-              freightPrice={frete.freightPrice}
-              collectCity={frete.collectCity}
-              deliveryCity={frete.deliveryCity}
-              collectDate={frete.collectDate}
-              deliveryDate={frete.deliveryDate}
-              product={frete.product}
-              statusItem={frete.statusItem}
-            />
-          </>
-        ))}
-      </div>
+    <div className="p-5 gap-3 w-full h-full flex ">
+      <Fab className="bg-green-700 hover:bg-green-800" aria-label="add">
+        <FaWhatsapp className="text-white text-3xl" />
+      </Fab>
+      <Fab
+        className="bg-gradient-to-br from-purple-700 via-pink-600 to-red-500 "
+        aria-label="add"
+      >
+        <FaInstagram className="text-white text-3xl" />
+      </Fab>
+      <Fab className="bg-orange-700 hover:bg-orange-800" aria-label="add">
+        <RiCustomerService2Line className="text-white text-3xl" />
+      </Fab>
     </div>
   );
 };
