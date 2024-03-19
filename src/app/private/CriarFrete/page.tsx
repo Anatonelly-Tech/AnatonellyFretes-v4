@@ -6,8 +6,6 @@ import { DevTool } from '@hookform/devtools';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 
-
-
 // Components
 import AdvancedPages from '@/components/AdvancedPages';
 import StepperComponent from '@/components/Stepper';
@@ -31,7 +29,8 @@ const page = () => {
     register,
     setValue,
     getValues,
-    formState: { errors, touchedFields },
+    control,
+    formState: { errors, touchedFields, dirtyFields },
   } = useForm({
     defaultValues: { idResponsible: [], veiculos: [], carrocerias: [] },
     resolver: yupResolver(createFreightValidationSchema),
@@ -81,12 +80,13 @@ const page = () => {
 
     // page1
     if (activeStep == 0) {
+
       if (
         touchedFields.collectCity == true &&
         touchedFields.collectDate == true &&
         touchedFields.deliveryCity == true &&
         touchedFields.deliveryDate == true &&
-        touchedFields.radioValueLocalizacao == true
+        dirtyFields.radioValueLocalizacao == true
       ) {
         setState({ vertical: 'bottom', horizontal: 'left', open: false });
 
@@ -187,17 +187,17 @@ const page = () => {
 
   return (
     <div className='w-full h-full flex flex-col items-center justify-between'>
+      <DevTool control={control} />;
       <div className='flex items-start justify-start w-full'>
         <h1 className='bg-gradient-to-br from-purple-600 to-violet-700 inline-block text-transparent bg-clip-text text-6xl font-extrabold break-all'>
           Meus <br /> Fretes
         </h1>
       </div>
-
       <div className='bg-zinc-400 w-[80%] h-auto flex flex-col items-center justify-center  rounded p-5'>
-          <StepperComponent
-            setActiveStep={setActiveStep}
-            activeStep={activeStep}
-          />
+        <StepperComponent
+          setActiveStep={setActiveStep}
+          activeStep={activeStep}
+        />
         <form
           action=''
           id='createFreight'
