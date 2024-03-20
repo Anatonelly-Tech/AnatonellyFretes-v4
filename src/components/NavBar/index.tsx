@@ -1,9 +1,12 @@
 'use client';
 // Libs
-import * as NavigationMenu from '@radix-ui/react-navigation-menu';
-import * as Dialog from '@radix-ui/react-dialog';
-import { useState } from 'react';
-import { signOut } from 'next-auth/react';
+
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import * as Dialog from "@radix-ui/react-dialog";
+import { useState } from "react";
+import { signOut } from "next-auth/react";
+import { RxHamburgerMenu } from "react-icons/rx";
+
 // Documentação da lib
 // Dialog: https://www.radix-ui.com/primitives/docs/components/dialog
 // NavigationMenu: https://www.radix-ui.com/primitives/docs/components/navigation-menu
@@ -103,10 +106,15 @@ export function NavBar() {
     <>
       <Dialog.Root>
         <Dialog.Trigger
-          className='fixed top-0 left-1/2 -translate-x-1/2 w-60 h-10 bg-violet-600 text-white font-bold text-3xl rounded-b-xl  shadow-especial shadow-violet-950 hover:shadow-zinc-800 z-50'
+
+          className="flex items-center justify-center fixed top-0 right-0 lg:left-1/2 -translate-x-1/2 lg:w-60 w-14 h-10 bg-violet-600  rounded-b-xl  shadow-especial shadow-violet-950 hover:shadow-zinc-800"
+
           onClick={HadleAddAnimation}
         >
-          MENU
+          <p className="lg:flex hidden text-center items-center justify-center text-white font-bold text-3xl">
+            MENU
+          </p>
+          <RxHamburgerMenu className="lg:hidden flex items-center justify-center text-center text-3xl font-extrabold text-white" />
         </Dialog.Trigger>
         <Dialog.Portal>
           <Dialog.Overlay
@@ -115,6 +123,16 @@ export function NavBar() {
             } z-10`}
             onClick={HadleAddAnimation}
           />
+
+          <button
+            className="flex items-center justify-center fixed top-0 right-0 lg:left-1/2 -translate-x-1/2 lg:w-60 w-14 h-10 bg-violet-600 text-white font-bold text-3xl rounded-b-xl  shadow-especial shadow-violet-950 hover:shadow-zinc-800 z-20"
+            onClick={HadleAddAnimation}
+          >
+            <p className="lg:flex hidden text-center items-center justify-center text-white font-bold text-3xl">
+              MENU
+            </p>
+            <RxHamburgerMenu className="lg:hidden flex items-center justify-center text-center text-3xl font-extrabold text-white" />
+          </button>
 
           <NavigationMenu.Root
             data-state={navBarActive ? true : false}
@@ -125,7 +143,7 @@ export function NavBar() {
             `}
           >
             <NavigationMenu.List
-              className={` flex gap-3 fixed top-16 left-1/2 -translate-x-1/2  items-center justify-center w-auto h-16 `}
+              className={` flex flex-col lg:flex-row gap-3 fixed top-64 lg:top-16 right-0 -translate-x-1/2 lg:left-1/2 lg:-translate-x-1/2  items-center justify-center w-auto h-16 `}
             >
               {PagesNavBar.map((page, index) => (
                 <CreatedPages

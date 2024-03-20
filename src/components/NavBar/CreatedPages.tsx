@@ -20,7 +20,7 @@ export function CreatedPages({ AllPages, icon, HadleAddAnimation }: PageProps) {
   }
   return (
     <NavigationMenu.Item>
-      <NavigationMenu.Trigger className="  text-violet-100 font-bold gap-3 bg-violet-700 hover:bg-violet-800 focus:shadow-violet-700 group flex select-none items-center justify-between rounded-full px-3 py-3 text-[15px] leading-none outline-none shadow-especial shadow-violet-950 hover:shadow-zinc-800  ">
+      <NavigationMenu.Trigger className=" font-bold gap-3 bg-violet-700 hover:bg-violet-800 focus:shadow-violet-700 group flex select-none items-center justify-between rounded-full px-3 py-3 text-[15px] leading-none outline-none shadow-especial shadow-violet-950 hover:shadow-zinc-800  ">
         {icon}{" "}
       </NavigationMenu.Trigger>
 
@@ -30,7 +30,8 @@ export function CreatedPages({ AllPages, icon, HadleAddAnimation }: PageProps) {
             {page.title === "Sair" ? (
               <div
                 onClick={() => signOut()}
-                className="hover:bg-violet-800 p-2 min-w-60 h-full bg-violet-700 rounded-lg shadow-especial shadow-violet-950 hover:shadow-zinc-800">
+                className="hover:bg-violet-800 p-2 min-w-60 h-full bg-violet-700 rounded-lg shadow-especial shadow-violet-950 hover:shadow-zinc-800"
+              >
                 <p className="text-center">{page.title}</p>
                 <NavigationMenu.Link />
               </div>
@@ -42,7 +43,7 @@ export function CreatedPages({ AllPages, icon, HadleAddAnimation }: PageProps) {
                 href={page.path}
                 key={index}
               >
-                <div className="hover:bg-violet-800 p-2 min-w-60 h-full bg-violet-700 rounded-lg shadow-especial shadow-violet-950 hover:shadow-zinc-800">
+                <div className="relative -translate-x-40 lg:-translate-x-0 -top-16 lg:-top-0 hover:bg-violet-800 p-2 min-w-60 h-full bg-violet-700 rounded-lg shadow-especial shadow-violet-950 hover:shadow-zinc-800">
                   <p className="text-center">{page.title}</p>
                   <NavigationMenu.Link />
                 </div>

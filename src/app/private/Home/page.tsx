@@ -1,16 +1,12 @@
 "use client";
 
 // libs
-import { useState } from "react";
 
 // components
 
-import UserInfo from "@/components/UserInfo";
-import AccountInformations from "@/components/AccountInformations";
 import ViewShippingSummary from "@/components/ViewShippingSummary";
 import Ranking from "@/components/Ranking";
 import { Carousel } from "@/components/Carousel";
-import ProgressBarAntd from "@/components/newProgressBar";
 // style
 import "../../../styles/main.css";
 import UserNotifyBar from "@/components/UserNotifyBar";
@@ -18,6 +14,8 @@ import * as Avatar from "@radix-ui/react-avatar";
 import DaniedPage from "@/app/denid/page";
 import { useSession } from "next-auth/react";
 import SocialMedias from "@/components/Socialmedias";
+import UserInformation from "@/components/UserInformations";
+import OpenUserInformations from "@/components/OpenUserInformations";
 
 export default function Home() {
   const FreteListHome = [
@@ -183,11 +181,12 @@ export default function Home() {
   if (session) {
     return (
       <div className="w-full h-full flex ">
-        <div className="w-full h-full flex flex-col items-center justify-center p-10 ">
-          <div className="w-full h-full flex flex-col justify-center text-white">
+        <div className="w-full h-full flex flex-col items-center justify-center  ">
+          <div className="w-full h-full flex flex-col justify-start text-white p-10">
             {/* top */}
-            <div className="w-full h-auto flex items-start justify-between gap-5 ">
-              <div className="w-1/3 h-full flex flex-row-reverse items-start justify-end gap-4">
+            <div className="w-full h-auto flex items-start justify-center xl:items-start xl:justify-between gap-2 ">
+              {/* esquerda */}
+              <div className="w-1/3 h-auto absolute flex left-0 top-0 flex-row-reverse items-start justify-end gap-4 xl:relative">
                 <UserNotifyBar />
                 <Avatar.Root className="bg-white border inline-flex h-12 w-12 select-none items-center justify-center overflow-hidden rounded-full align-middle ">
                   <Avatar.Image
@@ -198,48 +197,35 @@ export default function Home() {
                   <div className="bg-green-600 h-3 w-3 rounded-full absolute -translate-y-4 translate-x-5"></div>
                 </Avatar.Root>
               </div>
-
-              <div className="h-full w-1/3 flex items-center">
-                <span className=" w-full flex items-center justify-center ">
-                  <h1 className="text-3xl font-bold text-center p-3 bg-black/70 rounded-lg">
+              {/* meio */}
+              <div className="h-auto w-1/3  flex items-center justify-center mt-14 sm:mt-10 md:mt-5 ">
+                <span className="h-full w-full flex items-center justify-center ">
+                  <h1 className="text-sm 2xl:text-3xl xl:text-2xl lg:text-xl md:text-lg sm:text-base font-bold text-center p-3 bg-black/70 rounded-lg">
                     Seja Bem Vindo(a) {session.user?.name}
                   </h1>
                 </span>
               </div>
-              {/* perfil */}
-              <div className="w-1/3 flex h-auto items-center justify-center gap-2 ">
-                <UserInfo
-                  username={session.user?.name || "awaitng Server"}
-                  role={"Admin"}
-                  plan={"Prata"}
-                  invoice={150.0}
-                />
-                <div className="flex flex-col items-center justify-between h-full w-auto gap-2">
-                  <AccountInformations
-                    title={"Quantidade Fretes Realizados"}
-                    result={"15 Fretes"}
-                  />
-                  <AccountInformations
-                    title={"Valor Economizado"}
-                    result={"R$150,00"}
-                  />
-                </div>
-                <ProgressBarAntd percentProgress={75} meta={100} key={1} />
+              {/* direita */}
+              <div className="flex xl:hidden w-1/3 items-start justify-end absolute top-0 right-24">
+                <OpenUserInformations />
+              </div>
+              <div className="hidden xl:flex w-1/3 p-5">
+                <UserInformation />
               </div>
               {/* perfil */}
             </div>
             {/* end top */}
-            <div className="flex h-auto flex-col gap-5">
-              <div className="flex items-center justify-between gap-5">
-                <div className=" flex flex-col items-start gap-3 w-full">
-                  <span className="text-2xl">Informações do dia</span>
+            <div className="flex h-auto flex-col">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="flex flex-col items-start gap-2">
+                  <span className="text-xl">Informações do dia</span>
                   <hr className="border-zinc-400 w-56 border-2" />
-                  <div className="bg-purple-950 w-full h-64 rounded-lg"></div>
+                  <div className="bg-purple-950 w-full h-52 rounded-lg"></div>
                 </div>
-                <div className=" flex flex-col items-end gap-3 w-full">
-                  <span className="text-2xl">Meus Fretes</span>
+                <div className="flex flex-col items-start gap-2">
+                  <span className="text-xl">Meus Fretes</span>
                   <hr className="border-zinc-400 w-56 border-2" />
-                  <div className="bg-purple-950 w-full h-64 text-black flex flex-col items-center justify-start rounded-lg">
+                  <div className="bg-purple-950 w-full h-52 text-black flex flex-col items-center justify-start rounded-lg">
                     <div className="overflow-y-scroll w-11/12 scrollbar-thin scrollbar-track-purple-700 scrollbar-thumb-purple-800 force-overflow">
                       <ViewShippingSummary
                         idForm="title"
@@ -274,15 +260,17 @@ export default function Home() {
                 </div>
               </div>
 
-              <div>
+              {/* Publicidade */}
+              <div className="mt-10">
                 <span className="text-2xl">Publicidade</span>
                 <hr className="border-zinc-400 w-36 border-2" />
-              </div>
-              <div className=" w-full">
-                <Carousel />
+                <div className="mt-5">
+                  <Carousel />
+                </div>
               </div>
             </div>
-            <div className="flex h-auto items-center justify-between w-full p-2">
+            {/* Redes Sociais */}
+            <div className="flex justify-center p-5">
               <SocialMedias />
             </div>
           </div>

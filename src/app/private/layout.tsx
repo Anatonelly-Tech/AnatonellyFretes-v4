@@ -14,11 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <AuthProvider>
-      <html lang="en" className={"w-full h-full" + inter.className}>
+      <html lang="en" className={inter.className}>
         <head>
           <link rel="icon" href="/favicon.png" />
         </head>
-        <body className="bg-anatonelly-bg bg-no-repeat bg-gray-800 bg-cover w-full h-full relative -z-50">
+        <body className="bg-anatonelly-bg bg-center bg-no-repeat bg-cover bg-fixed h-screen bg-gray-800 w-screen -z-50">
           <NavBar />
           {children}
         </body>
