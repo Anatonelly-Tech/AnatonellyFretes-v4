@@ -1,4 +1,5 @@
 import * as React from 'react';
+import useWindowSize from '@rooks/use-window-size';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Stepper from '@mui/material/Stepper';
@@ -75,7 +76,6 @@ function QontoStepIcon(props: StepIconProps) {
   );
 }
 
-
 const steps = [
   'Dados de coleta e entrega',
   'Dados da carga',
@@ -95,8 +95,13 @@ export default function CustomizedSteppers({
     setActiveStep(steps.length);
   }
 
-  return (
-    <Stack sx={{ width: '100%' }} spacing={4}>
+  const { innerWidth, innerHeight, outerHeight, outerWidth } = useWindowSize();
+  return innerWidth != undefined && innerWidth < 768 ? null : (
+    <Stack
+      className='xxs:hidden md:flex md:w-full'
+      sx={{ width: '100%' }}
+      spacing={4}
+    >
       <Stepper
         alternativeLabel
         activeStep={activeStep}

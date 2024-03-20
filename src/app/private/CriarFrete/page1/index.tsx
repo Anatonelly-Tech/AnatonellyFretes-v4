@@ -17,17 +17,25 @@ import { MdDateRange } from 'react-icons/md';
 import { getAllResponsibles } from '@/services/responsibleFreight';
 import LoadingForComponents from '@/components/Loading/LoadingForComponents';
 import { VscAccount } from 'react-icons/vsc';
+import { useSession } from 'next-auth/react';
+import { getUserByEmail } from '@/services/user';
 export default function Page1({ register, error }: Page1Props) {
   const [loaded, setLoaded] = useState(false);
+  const { data: session } = useSession();
 
   const [responsaveisFrete, setResponsaveisFrete] = useState([]);
   useEffect(() => {
     const getResponsaveis = async () => {
-      const responsaveis = await getAllResponsibles();
-      setResponsaveisFrete(responsaveis.data.response);
+      setResponsaveisFrete([]);
+      if (session && session.user && session.user.email) {
+        const responsaveis = await getUserByEmail(session.user.email);
+        setResponsaveisFrete(responsaveis.data.response.employees);
+      } else {
+        console.log('No session');
+      }
     };
     getResponsaveis();
-  }, [responsaveisFrete]);
+  }, [session]);
 
   const WaitLoad = () => {
     setTimeout(() => {
@@ -55,7 +63,7 @@ export default function Page1({ register, error }: Page1Props) {
     <div className='flex w-full h-full flex-col items-start justify-center gap-8 p-5'>
       <div className='w-full h-auto flex flex-col justify-center items-center gap-5'>
         <div className='flex w-full gap-4 md:flex-row xs:flex-col bg-zinc-300 shadow-md p-2 rounded'>
-          <div className='lg:w-2/3 xs:w-full'>
+          <div className='lg:w-2/3 xxs:w-full'>
             <InputLabel
               id='collectCity'
               name='collectCity'
@@ -70,7 +78,7 @@ export default function Page1({ register, error }: Page1Props) {
             </span>
           </div>
 
-          <div className='lg:w-1/3 xs:w-full'>
+          <div className='lg:w-1/3 xxs:w-full'>
             <InputLabel
               isRequired={true}
               id='collectDate'
@@ -87,7 +95,7 @@ export default function Page1({ register, error }: Page1Props) {
           </div>
         </div>
         <div className='flex w-full gap-4 md:flex-row xs:flex-col  bg-zinc-300 shadow-md p-2 rounded'>
-          <div className='lg:w-2/3 xs:w-full'>
+          <div className='lg:w-2/3 xxs:w-full'>
             <InputLabel
               isRequired={true}
               id='deliveryCity'
@@ -101,7 +109,7 @@ export default function Page1({ register, error }: Page1Props) {
               {error.deliveryCity?.message}
             </span>
           </div>
-          <div className='lg:w-1/3 xs:w-full'>
+          <div className='lg:w-1/3 xxs:w-full'>
             <InputLabel
               id='deliveryDate'
               name='deliveryDate'
@@ -131,7 +139,10 @@ export default function Page1({ register, error }: Page1Props) {
                 </span>
               </div>
               <div>
-                <ModalComponent setResponsaveisFrete={setResponsaveisFrete} />
+                <ModalComponent
+                  setResponsaveisFrete={setResponsaveisFrete}
+                  session={session}
+                />
               </div>
               <span className='text-sm flex text-red-500 font-bold'>
                 {error.responsibleFreight?.message}
@@ -139,7 +150,7 @@ export default function Page1({ register, error }: Page1Props) {
             </div>
 
             {/* <div className="w-full">lista de responsaveis pelo frete</div> */}
-            <div className='w-full h-32 grid xxs:grid-cols-1  overflow-y-auto md:grid-cols-4 p-2 bg-gray-500 shadow-md rounded gap-4'>
+            <div className='w-full h-32 grid xxs:grid-cols-1 overflow-y-auto  md:grid-cols-4 p-2 bg-gray-500 shadow-md rounded gap-4'>
               {responsaveisFrete.length > 0 ? (
                 responsaveisFrete.map(
                   (
