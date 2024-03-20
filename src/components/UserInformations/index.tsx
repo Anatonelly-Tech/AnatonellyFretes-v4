@@ -10,14 +10,14 @@ const UserInformation = () => {
   console.log(session);
   if (session) {
     return (
-      <div className="w-full md:w-auto flex flex-col md:flex-row h-auto items-center justify-center gap-6 lg:gap-2 ">
+      <div className="w-full md:w-auto flex flex-col md:flex-row h-auto items-center justify-center gap-4 ">
         <UserInfo
           username={session.user?.name || "awaitng Server"}
           role={"Admin"}
           plan={"Prata"}
           invoice={150.0}
         />
-        <div className="md:w-auto flex flex-col items-center justify-between h-full gap-2 lg:gap-6">
+        <div className="md:w-auto flex flex-col items-center justify-center h-full ">
           <AccountInformations
             title={"Quantidade Fretes Realizados"}
             result={"15 Fretes"}
