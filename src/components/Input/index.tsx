@@ -39,7 +39,7 @@ const InputLabel = ({
           <input
             {...fieldRegister}
             {...props}
-            className='bg-zinc-900 p-2 rounded-r w-full text-sm placeholder:text-zinc-500 text-zinc-300 dark:[color-scheme:dark]'
+            className='bg-zinc-900 min-w-44 p-2 rounded-r rounded-l-none  w-full text-sm placeholder:text-zinc-500 text-zinc-300 dark:[color-scheme:dark]'
           />
         </div>
       </div>
@@ -57,7 +57,7 @@ const InputLabel = ({
           <input
             {...fieldRegister}
             {...props}
-            className='bg-zinc-900 p-2 rounded-r w-full text-sm placeholder:text-zinc-500 text-zinc-300 dark:[color-scheme:dark]'
+            className='bg-zinc-900 p-2 rounded-r  rounded-l-none w-full min-w-44 text-sm placeholder:text-zinc-500 text-zinc-300 dark:[color-scheme:dark]'
           />
         </div>
       </div>
