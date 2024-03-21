@@ -1,35 +1,35 @@
-import { getUserByEmail } from "@/services/user";
+import { getDriverByCPF } from "@/services/driver";
 import NextAuth from "next-auth";
 import { NextAuthOptions } from "next-auth";
 import CredentialProvider from "next-auth/providers/credentials";
 
-const getUser = async (email: any) => {
-  const User = (await getUserByEmail(email)).data.response;
-  console.log(User);
-  return User;
+const getDriver = async (cpf: any) => {
+  const Driver = (await getDriverByCPF(cpf)).data.response;
+  console.log(Driver);
+  return Driver;
 };
 
 const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialProvider({
-      name: "Credentials",
+      name: "driver",
       type: "credentials",
       credentials: {
-        email: { label: "Email", type: "email" },
+        cpf: { label: "CPF", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const User = await getUser(credentials?.email);
+        const Driver = await getDriver(credentials?.cpf);
 
-        const isValidEmail = credentials?.email === User.email;
-        const isValidPassword = credentials?.password === User.password;
+        const isValidcpf = credentials?.cpf === Driver.cpf;
+        const isValidPassword = credentials?.password === Driver.password;
 
-        if (!isValidEmail || !isValidPassword) {
-          console.log("Invalid Email or Password");
+        if (!isValidcpf || !isValidPassword) {
+          console.log("Invalid CPF or Password");
           return null;
         } else {
-          return User;
+          return Driver;
         }
       },
     }),
@@ -66,8 +66,8 @@ const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/auth/login",
-    signOut: "/auth/login",
+    signIn: "/auth/loginDriver",
+    signOut: "/auth/loginDriver",
   },
 };
 

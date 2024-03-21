@@ -21,26 +21,27 @@ const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [email, setEmail] = useState("");
+  const [cpf, setCpf] = useState("");
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [password, setPassword] = useState("");
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [error, setError] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();  
+    e.preventDefault();
     try {
-      const response = await signIn("credentials", {
-        redirect: false,
-        email,
+      const response = await signIn("driver", {
+        cpf,
         password,
+        redirect: false,
       });
+
       if (!response?.error) {
         console.log(session);
         router.refresh();
-        router.push("/private/Home");
+        router.push("/public/CadastroMotorista");
       } else {
-        setError("email ou senha incorretos");
+        setError("cpf ou senha incorretos");
       }
     } catch (error) {
       console.log("[LOGIN_ERROR]", error);
@@ -49,12 +50,6 @@ const page = () => {
 
   return (
     <div className="w-screen h-screen flex items-center justify-center relative -z-10">
-      {/* <img
-        draggable={false}
-        className="w-full h-full absolute -z-10"
-        src="/bgLogin.png"
-        alt=""
-      /> */}
       <div className="flex flex-col items-center justify-between gap-5 h-3/4 sm:h-auto md:h-auto sm:w-auto md:w-auto lg:w-1/4 bg-gradient-to-t from-purple-200 via-[rgba(60,7,100,0.82)] to-purple-950 p-10 rounded-lg shadow-lg shadow-black">
         <img
           draggable={false}
@@ -68,12 +63,12 @@ const page = () => {
         >
           <div className="w-full">
             <InputLogin
-              id="Email"
+              id="CPF"
               register={register}
-              name="Email"
+              name="cpf"
               type="text"
-              label="Email"
-              onChange={(e) => setEmail(e.target.value)}
+              label="CPF"
+              onChange={(e) => setCpf(e.target.value)}
               required
             />
             <InputLogin
