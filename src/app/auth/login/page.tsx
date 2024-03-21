@@ -28,7 +28,7 @@ const page = () => {
   const [error, setError] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault();  
     try {
       const response = await signIn("credentials", {
         redirect: false,
