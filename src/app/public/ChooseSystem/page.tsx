@@ -11,7 +11,7 @@ const Page = () => {
 
   return (
     <div className="w-screen h-screen flex flex-col items-center justify-center ">
-      <h1 className="text-4xl font-bold text-center mt-10 bg-white/20">
+      <h1 className="text-4xl font-bold text-center mt-10 ">
         <span className="bg-clip-text text-transparent bg-gradient-to-tr from-purple-950 to-purple-200">
           Seja Bem vindo a <br /> Anatonelly Fretes
         </span>
