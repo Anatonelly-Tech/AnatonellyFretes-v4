@@ -30,7 +30,7 @@ const page = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await signIn("driver", {
+      const response = await signIn("credetials", {
         cpf,
         password,
         redirect: false,
