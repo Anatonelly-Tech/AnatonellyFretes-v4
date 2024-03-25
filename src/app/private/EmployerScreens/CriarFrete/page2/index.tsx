@@ -17,7 +17,7 @@ const Page2 = ({ register, error }: Page2Props) => {
       <div className='flex items-center justify-between h-auto w-full gap-5'>
         <div className='w-full h-auto flex flex-col bg-zinc-300 shadow-md p-2 rounded'>
           <InputRadio
-            id={['radioValueTipoCarga']}
+            id={['Completa', 'Complemento']}
             label={['Completa', 'Complemento']}
             subLabel={['frete completo', 'frete complemento']}
             register={register}
@@ -32,13 +32,13 @@ const Page2 = ({ register, error }: Page2Props) => {
         </div>
         <div className='w-full h-auto flex flex-col bg-zinc-300 shadow-md p-2 rounded'>
           <InputRadio
-            id={['radioValueLona']}
+            id={['needCover', 'dontNeedCover']}
             label={['Sim', 'Não']}
             subLabel={['Frete precisa de lona', 'frete não precisa de lona']}
             isRequired={true}
             register={register}
             name={'radioValueLona'}
-            value={['Sim', 'Não']}
+            value={['needCover', 'dontNeedCover']}
             title={'Precisa de lona?'}
           />
           <span className='text-sm flex text-red-500 font-bold'>
@@ -47,7 +47,7 @@ const Page2 = ({ register, error }: Page2Props) => {
         </div>
         <div className='w-full h-auto flex flex-col bg-zinc-300 shadow-md p-2 rounded'>
           <InputRadio
-            id={['radioValueRastreador']}
+            id={['needTracker', 'dontNeedTracker']}
             label={['Sim', 'Não']}
             isRequired={true}
             subLabel={[
@@ -56,7 +56,7 @@ const Page2 = ({ register, error }: Page2Props) => {
             ]}
             register={register}
             name={'radioValueRastreador'}
-            value={['Sim', 'Não']}
+            value={['needTracker', 'dontNeedTracker']}
             title={'Precisa de Rastreador?'}
           />
           <span className='text-sm flex text-red-500 font-bold'>

@@ -14,7 +14,6 @@ import InputRadio from '@/components/Radio';
 
 import { FaCity } from 'react-icons/fa';
 import { MdDateRange } from 'react-icons/md';
-import { getAllResponsibles } from '@/services/responsibleFreight';
 import LoadingForComponents from '@/components/Loading/LoadingForComponents';
 import { VscAccount } from 'react-icons/vsc';
 import { useSession } from 'next-auth/react';

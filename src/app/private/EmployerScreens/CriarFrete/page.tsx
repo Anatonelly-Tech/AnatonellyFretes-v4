@@ -80,7 +80,6 @@ const page = () => {
 
     // page1
     if (activeStep == 0) {
-
       if (
         touchedFields.collectCity == true &&
         touchedFields.collectDate == true &&
@@ -136,12 +135,7 @@ const page = () => {
     // page3
 
     if (activeStep == 2) {
-      if (
-        touchedFields.veiculos &&
-        touchedFields.veiculos.length > 0 &&
-        touchedFields.carrocerias &&
-        touchedFields.carrocerias.length > 0
-      ) {
+      if (touchedFields.veiculos && touchedFields.carrocerias) {
         if (errors.veiculos == undefined && errors.carrocerias == undefined) {
           actualStep = activeStep + 1;
         }
