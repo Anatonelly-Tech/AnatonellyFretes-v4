@@ -51,12 +51,9 @@ const page = () => {
   return (
     <div className="w-screen h-screen flex items-center justify-center relative -z-10">
       <div className="flex flex-col items-center justify-between gap-5 h-3/4 sm:h-auto md:h-auto sm:w-auto md:w-auto lg:w-1/4 bg-gradient-to-t from-purple-200 via-[rgba(60,7,100,0.82)] to-purple-950 p-10 rounded-lg shadow-lg shadow-black">
-        <img
-          draggable={false}
-          className="xxs:hidden sm:flex w-52"
-          src="/AnatonellyPc.png"
-          alt=""
-        />
+        <p className="text-white font-bold text-lg ">
+          Insira as informações de login
+        </p>
         <form
           className="flex flex-col items-center justify-around h-full w-full gap-5"
           onSubmit={handleLogin}
