@@ -28,7 +28,7 @@ const page = () => {
   const [error, setError] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();  
+    e.preventDefault();
     try {
       const response = await signIn("credentials", {
         redirect: false,
@@ -38,7 +38,7 @@ const page = () => {
       if (!response?.error) {
         console.log(session);
         router.refresh();
-        router.push("/private/Home");
+        router.push("/private/EmployerScreens/Home");
       } else {
         setError("email ou senha incorretos");
       }
@@ -103,6 +103,14 @@ const page = () => {
             Entrar
           </button>
           {/* </a> */}
+          <a href="/public/ChooseSystem">
+            <button
+              type="button"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-5 py-1 text-base rounded-lg shadow-especial shadow-purple-800"
+            >
+              Voltar
+            </button>
+          </a>
         </form>
         <a
           className="text-purple-500 hover:text-purple-600 font-bold underline"
