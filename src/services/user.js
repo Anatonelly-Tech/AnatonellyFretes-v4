@@ -47,7 +47,7 @@ export const putUser = async (
   });
   window.location.reload(true);
 };
-export const putUserByEmail = async (email, employeesID) => {
+export const putUserByEmailEmployees = async (email, employeesID) => {
   api.put(`${BASE_URL}Att/${email}`, {
     employeesID,
   });
@@ -56,6 +56,18 @@ export const putUserByEmail = async (email, employeesID) => {
 export const removeRespByUserEmail = async (email, employeesID) => {
   api.put(`${BASE_URL}Rem/${[email]}`, {
     employeesID,
+  });
+};
+
+export const putUserByEmailFreights = async (email, freightsID) => {
+  api.put(`${BASE_URL}Att/${email}`, {
+    freightsID,
+  });
+};
+
+export const removeFreightByUserEmail = async (email, freightsID) => {
+  api.put(`${BASE_URL}Rem/${[email]}`, {
+    freightsID,
   });
 };
 

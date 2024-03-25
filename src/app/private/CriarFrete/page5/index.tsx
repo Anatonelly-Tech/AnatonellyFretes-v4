@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { DiaFormatado } from '@/utils/formatDateFunction';
 import { arrayOfResponsibles } from '@/utils/responsibleName';
 import { postFreight } from '@/services/formData';
+import { putUserByEmailFreights } from '@/services/user';
+import { useSession } from 'next-auth/react';
 
 const Page5 = async ({ data }: any) => {
+  const { data: session } = useSession();
   const responsibles = await arrayOfResponsibles(data);
   return (
     <div className='w-full flex gap-2 h-full flex-col p-5'>
@@ -81,7 +84,9 @@ const Page5 = async ({ data }: any) => {
               </span>
               <span className='font-medium'>
                 Precisa de Lona:
-                <span className='font-normal pl-1'>{data.radioValueLona}</span>
+                <span className='font-normal pl-1'>
+                  {data.radioValueLona == 'needCover' ? 'Sim' : 'Não'}
+                </span>
               </span>
             </div>
           </div>
@@ -99,7 +104,10 @@ const Page5 = async ({ data }: any) => {
                 Veiculos:
                 <div className='flex flex-wrap pl-1 gap-1'>
                   {data.veiculos.map((veiculo: string) => (
-                    <span key={veiculo} className='bg-zinc-100 font-normal rounded-lg p-1 '>
+                    <span
+                      key={veiculo}
+                      className='bg-zinc-100 font-normal rounded-lg p-1 '
+                    >
                       {veiculo}
                     </span>
                   ))}
@@ -111,7 +119,10 @@ const Page5 = async ({ data }: any) => {
                 Carrocerias:
                 <div className='flex flex-wrap pl-1 gap-1'>
                   {data.carrocerias.map((carroceria: string) => (
-                    <span key={carroceria} className='bg-zinc-100 font-normal rounded-lg p-1 '>
+                    <span
+                      key={carroceria}
+                      className='bg-zinc-100 font-normal rounded-lg p-1 '
+                    >
                       {carroceria}
                     </span>
                   ))}
@@ -168,7 +179,9 @@ const Page5 = async ({ data }: any) => {
             <span className='font-medium'>
               Responsável pelo Frete:
               {responsibles.map((responsible: string) => (
-                <span key={responsible} className='font-normal pl-1'>{responsible}; </span>
+                <span key={responsible} className='font-normal pl-1'>
+                  {responsible};{' '}
+                </span>
               ))}
             </span>
           </div>
@@ -179,7 +192,11 @@ const Page5 = async ({ data }: any) => {
         type='submit'
         form='createFreight'
         onClick={async () => {
-          await postFreight(data);
+          const newFreight = await postFreight(data);
+          await putUserByEmailFreights(
+            session?.user?.email,
+            newFreight.data.response.idForm
+          );
           console.log('Formulario enviado com sucesso!');
         }}
       >

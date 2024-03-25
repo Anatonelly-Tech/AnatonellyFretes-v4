@@ -17,10 +17,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import {
   postResponsibleFreight,
-  getAllResponsibles,
 } from '@/services/responsibleFreight';
 
-import { getUserByEmail, putUserByEmail } from '@/services/user';
+import { getUserByEmail, putUserByEmailEmployees } from '@/services/user';
 
 // Utils
 import { responsibleValidationSchema } from '@/utils/responsibleValidation';
@@ -66,7 +65,9 @@ const ModalComponentInside = ({ setResponsaveisFrete, session }: any) => {
       setState({ vertical: 'bottom', horizontal: 'left', open: true });
 
       const actualresp = await postResponsibleFreight(data);
-      await putUserByEmail(
+      console.log(actualresp);
+      
+      await putUserByEmailEmployees(
         session.user.email,
         actualresp.data.response.idResponsible
       );
