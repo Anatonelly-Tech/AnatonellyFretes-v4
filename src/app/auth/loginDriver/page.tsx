@@ -49,11 +49,11 @@ const page = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center relative -z-10">
-      <div className="flex flex-col items-center justify-between gap-5 h-3/4 sm:h-auto md:h-auto sm:w-auto md:w-auto lg:w-1/4 bg-gradient-to-t from-purple-200 via-[rgba(60,7,100,0.82)] to-purple-950 p-10 rounded-lg shadow-lg shadow-black">
-        <p className="text-white font-bold text-lg ">
-          Insira as informações de login
-        </p>
+
+      <div className="flex flex-col items-center justify-between gap-5 h-3/4 sm:h-auto md:h-auto sm:w-auto md:w-auto lg:w-1/4 bg-gradient-to-t from-purple-200 via-[rgba(60,7,100,0.82)] to-purple-950 p-10 rounded-lg shadow-lg shadow-black ">
+        <span className="text-white text-2xl">
+          <h1>Insira as informações de login</h1>
+        </span>
         <form
           className="flex flex-col items-center justify-around h-full w-full gap-5"
           onSubmit={handleLogin}
@@ -87,18 +87,24 @@ const page = () => {
           {error && (
             <span className="text-red-400 text-sm block mt-2">{error}</span>
           )}
-          {/* <a href="/private/Home"> */}
           <button
             type="submit"
             className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-10 py-2 text-xl rounded-lg shadow-especial shadow-purple-800"
           >
             Entrar
           </button>
-          {/* </a> */}
+          <a href="/public/ChooseSystem">
+            <button
+              type="button"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-5 py-1 text-base rounded-lg shadow-especial shadow-purple-800"
+            >
+              Voltar
+            </button>
+          </a>
         </form>
         <a
           className="text-purple-500 hover:text-purple-600 font-bold underline"
-          href=".././public/Cadastro"
+          href=".././public/CadastroMotorista"
         >
           Ainda não tem uma conta?
         </a>
