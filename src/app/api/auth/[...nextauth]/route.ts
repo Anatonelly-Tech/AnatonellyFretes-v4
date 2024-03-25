@@ -1,7 +1,7 @@
-import { getUserByEmail } from '@/services/user';
-import NextAuth from 'next-auth';
-import { NextAuthOptions } from 'next-auth';
-import CredentialProvider from 'next-auth/providers/credentials';
+import { getUserByEmail } from "@/services/user";
+import NextAuth from "next-auth";
+import { NextAuthOptions } from "next-auth";
+import CredentialProvider from "next-auth/providers/credentials";
 
 const getUser = async (email: any) => {
   const User = (await getUserByEmail(email)).data.response;
@@ -13,11 +13,11 @@ const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialProvider({
-      name: 'Credentials',
-      type: 'credentials',
+      name: "Credentials",
+      type: "credentials",
       credentials: {
-        email: { label: 'Email', type: 'email' },
-        password: { label: 'Password', type: 'password' },
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         const User = await getUser(credentials?.email);
@@ -26,7 +26,7 @@ const authOptions: NextAuthOptions = {
         const isValidPassword = credentials?.password === User.password;
 
         if (!isValidEmail || !isValidPassword) {
-          console.log('Invalid Email or Password');
+          console.log("Invalid Email or Password");
           return null;
         } else {
           return User;
@@ -59,12 +59,13 @@ const authOptions: NextAuthOptions = {
       };
     },
     redirect: async ({ baseUrl }) => {
+      
       return `${baseUrl}/auth/login`;
     },
   },
   pages: {
-    signIn: '/auth/login',
-    signOut: '/auth/login',
+    signIn: "/auth/login",
+    signOut: "/auth/login",
   },
 };
 
