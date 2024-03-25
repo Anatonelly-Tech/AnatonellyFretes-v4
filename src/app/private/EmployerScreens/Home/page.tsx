@@ -8,7 +8,7 @@ import ViewShippingSummary from "@/components/ViewShippingSummary";
 import Ranking from "@/components/Ranking";
 import { Carousel } from "@/components/Carousel";
 // style
-import "../../../styles/main.css";
+import "../../../../styles/main.css";
 import UserNotifyBar from "@/components/UserNotifyBar";
 import * as Avatar from "@radix-ui/react-avatar";
 import DaniedPage from "@/app/denid/page";

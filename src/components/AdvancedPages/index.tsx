@@ -1,8 +1,8 @@
-import Page1 from "@/app/private/CriarFrete/page1";
-import Page2 from "@/app/private/CriarFrete/page2";
-import Page3 from "@/app/private/CriarFrete/page3";
-import Page4 from "@/app/private/CriarFrete/page4";
-import Page5 from "@/app/private/CriarFrete/page5";
+import Page1 from "@/app/private/EmployerScreens/CriarFrete/page1";
+import Page2 from "@/app/private/EmployerScreens/CriarFrete/page2";
+import Page3 from "@/app/private/EmployerScreens/CriarFrete/page3";
+import Page4 from "@/app/private/EmployerScreens/CriarFrete/page4";
+import Page5 from "@/app/private/EmployerScreens/CriarFrete/page5";
 import Loading from "@/components/Loading";
 
 interface AdvancedPagesProps {

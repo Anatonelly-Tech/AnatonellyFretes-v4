@@ -38,7 +38,7 @@ const page = () => {
       if (!response?.error) {
         console.log(session);
         router.refresh();
-        router.push("/private/Home");
+        router.push("/private/EmployerScreens/Home");
       } else {
         setError("email ou senha incorretos");
       }
