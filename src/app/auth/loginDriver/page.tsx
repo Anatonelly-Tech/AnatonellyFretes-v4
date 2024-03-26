@@ -39,7 +39,7 @@ const page = () => {
       if (!response?.error) {
         console.log(session);
         router.refresh();
-        router.push("/public/CadastroMotorista");
+        router.push("/private/DriverPages/Home");
       } else {
         setError("cpf ou senha incorretos");
       }
@@ -97,6 +97,9 @@ const page = () => {
             <button
               type="button"
               className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-5 py-1 text-base rounded-lg shadow-especial shadow-purple-800"
+              onClick={() => {
+                router.push("/private/DriverPages/Home");
+              }}
             >
               Voltar
             </button>
