@@ -1,7 +1,7 @@
 "use client";
 
 import UserNotifyBar from "@/components/UserNotifyBar";
-import "../../styles/main.css";
+import "../../../../styles/main.css";
 
 import React from "react";
 import * as Avatar from "@radix-ui/react-avatar";
@@ -29,12 +29,8 @@ const page = () => {
             </Avatar.Root>
             <UserNotifyBar />
           </div>
-          <div className="hidden lg:flex">
-            <NavBar />
-          </div>
-          <div className="flex lg:hidden">
-            <NavBarMobile />
-          </div>
+
+          <NavBarMobile />
         </div>
         {/* main */}
         <div className="w-full h-full flex flex-col items-center justify-around sm:p-20 xs:p-10 p-5">

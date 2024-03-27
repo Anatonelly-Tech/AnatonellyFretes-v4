@@ -39,7 +39,7 @@ const page = () => {
       if (!response?.error) {
         console.log(session);
         router.refresh();
-        router.push("/public/CadastroMotorista");
+        router.push("/private/DriverPages/Home");
       } else {
         setError("cpf ou senha incorretos");
       }
@@ -49,64 +49,69 @@ const page = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-between gap-5 h-3/4 sm:h-auto md:h-auto sm:w-auto md:w-auto lg:w-1/4 bg-gradient-to-t from-purple-200 via-[rgba(60,7,100,0.82)] to-purple-950 p-10 rounded-lg shadow-lg shadow-black ">
-      <span className="text-white text-2xl">
-        <h1>Insira as informações de login</h1>
-      </span>
-      <form
-        className="flex flex-col items-center justify-around h-full w-full gap-5"
-        onSubmit={handleLogin}
-      >
-        <div className="w-full">
-          <InputLogin
-            id="CPF"
-            register={register}
-            name="cpf"
-            type="text"
-            label="CPF"
-            onChange={(e) => setCpf(e.target.value)}
-            required
-          />
-          <InputLogin
-            id="Senha"
-            register={register}
-            type="password"
-            name="Senha"
-            label="Senha"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <a
-          className="text-zinc-300 hover:text-zinc-500 font-bold underline text-center"
-          href=""
+    <div className="h-screen w-screen items-center justify-center flex ">
+      <div className="flex flex-col items-center justify-between gap-5 h-3/4 sm:h-auto md:h-auto sm:w-auto md:w-auto lg:w-1/4 bg-gradient-to-t from-purple-200 via-[rgba(60,7,100,0.82)] to-purple-950 p-10 rounded-lg shadow-lg shadow-black ">
+        <span className="text-white text-2xl">
+          <h1>Insira as informações de login</h1>
+        </span>
+        <form
+          className="flex flex-col items-center justify-around h-full w-full gap-5"
+          onSubmit={handleLogin}
         >
-          Esqueci minha senha
-        </a>
-        {error && (
-          <span className="text-red-400 text-sm block mt-2">{error}</span>
-        )}
-        <button
-          type="submit"
-          className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-10 py-2 text-xl rounded-lg shadow-especial shadow-purple-800"
-        >
-          Entrar
-        </button>
-        <a href="/public/ChooseSystem">
-          <button
-            type="button"
-            className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-5 py-1 text-base rounded-lg shadow-especial shadow-purple-800"
+          <div className="w-full">
+            <InputLogin
+              id="CPF"
+              register={register}
+              name="cpf"
+              type="text"
+              label="CPF"
+              onChange={(e) => setCpf(e.target.value)}
+              required
+            />
+            <InputLogin
+              id="Senha"
+              register={register}
+              type="password"
+              name="Senha"
+              label="Senha"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <a
+            className="text-zinc-300 hover:text-zinc-500 font-bold underline text-center"
+            href=""
           >
-            Voltar
+            Esqueci minha senha
+          </a>
+          {error && (
+            <span className="text-red-400 text-sm block mt-2">{error}</span>
+          )}
+          <button
+            type="submit"
+            className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-10 py-2 text-xl rounded-lg shadow-especial shadow-purple-800"
+          >
+            Entrar
           </button>
+          <a href="/public/ChooseSystem">
+            <button
+              type="button"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-5 py-1 text-base rounded-lg shadow-especial shadow-purple-800"
+              onClick={() => {
+                router.push("/private/DriverPages/Home");
+              }}
+            >
+              Voltar
+            </button>
+          </a>
+        </form>
+        <a
+          className="text-purple-500 hover:text-purple-600 font-bold underline"
+          href=".././public/CadastroMotorista"
+        >
+          Ainda não tem uma conta?
         </a>
-      </form>
-      <a
-        className="text-purple-500 hover:text-purple-600 font-bold underline"
-        href=".././public/CadastroMotorista"
-      >
-        Ainda não tem uma conta?
-      </a>
+      </div>
     </div>
   );
 };
