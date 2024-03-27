@@ -18,6 +18,7 @@ import { VscChevronRight } from 'react-icons/vsc';
 import { VscChevronLeft } from 'react-icons/vsc';
 import { Alert } from '@mui/material';
 import { postFreight } from '@/services/formData';
+import { useSession } from 'next-auth/react';
 
 // Interface
 interface State extends SnackbarOrigin {
@@ -36,6 +37,8 @@ const page = () => {
     resolver: yupResolver(createFreightValidationSchema),
     mode: 'all',
   });
+
+  const { data: session } = useSession();
 
   const [data, setData] = useState({});
 
@@ -170,6 +173,7 @@ const page = () => {
           setShadowRightButton('');
           setValue('name', await RandomFormName());
           setData(getValues());
+          console.log(data);
         }
       } else {
         setState({ vertical: 'bottom', horizontal: 'left', open: true });
@@ -202,6 +206,7 @@ const page = () => {
             register={register}
             activeStep={activeStep}
             data={data}
+            session={session}
           />
         </form>
       </div>

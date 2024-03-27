@@ -1,15 +1,16 @@
-import Page1 from "@/app/private/EmployerScreens/CriarFrete/page1";
-import Page2 from "@/app/private/EmployerScreens/CriarFrete/page2";
-import Page3 from "@/app/private/EmployerScreens/CriarFrete/page3";
-import Page4 from "@/app/private/EmployerScreens/CriarFrete/page4";
-import Page5 from "@/app/private/EmployerScreens/CriarFrete/page5";
-import Loading from "@/components/Loading";
+import Page1 from '@/app/private/EmployerScreens/CriarFrete/page1';
+import Page2 from '@/app/private/EmployerScreens/CriarFrete/page2';
+import Page3 from '@/app/private/EmployerScreens/CriarFrete/page3';
+import Page4 from '@/app/private/EmployerScreens/CriarFrete/page4';
+import Page5 from '@/app/private/EmployerScreens/CriarFrete/page5';
+import Loading from '@/components/Loading';
 
 interface AdvancedPagesProps {
   activeStep: number;
   register: any;
   error: any;
   data: any;
+  session: any;
 }
 
 export default function AdvancedPages({
@@ -17,6 +18,7 @@ export default function AdvancedPages({
   register,
   error,
   data,
+  session,
 }: AdvancedPagesProps) {
   switch (activeStep) {
     case 0:

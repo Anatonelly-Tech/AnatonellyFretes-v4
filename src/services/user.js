@@ -63,6 +63,7 @@ export const putUserByEmailFreights = async (email, freightsID) => {
   api.put(`${BASE_URL}Att/${email}`, {
     freightsID,
   });
+  return window.location.reload(true);
 };
 
 export const removeFreightByUserEmail = async (email, freightsID) => {

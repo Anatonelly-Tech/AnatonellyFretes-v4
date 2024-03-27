@@ -1,17 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { DiaFormatado } from '@/utils/formatDateFunction';
 import { arrayOfResponsibles } from '@/utils/responsibleName';
-import { postFreight } from '@/services/formData';
-import { putUserByEmailFreights } from '@/services/user';
 import { useSession } from 'next-auth/react';
+import { getFreightByName, postFreight, putFreight } from '@/services/formData';
+import { putUserByEmailFreights } from '@/services/user';
 
-const Page5 = async ({ data }: any) => {
+const Page5 = ({ data }) => {
+  const [responsibles, setResponsibles] = useState([]);
+  const fetchData = async () => {
+    const responsiblesData = await arrayOfResponsibles(data);
+    setResponsibles(responsiblesData);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const { data: session } = useSession();
-  const responsibles = await arrayOfResponsibles(data);
+
+  const handleSubmit = async () => {
+    await postFreight(data);
+    const newFreight = (await getFreightByName(data.name)).data.response;
+    console.log('newFreight: ', newFreight);
+    console.log('newFreightID: ', newFreight.idForm);
+    await putUserByEmailFreights(session?.user?.email, newFreight.idForm)
+  };
+
   return (
     <div className='w-full flex gap-2 h-full flex-col p-5'>
-      <span className='text-xl font-semibold'>Pedido #001</span>
+      <span className='text-xl font-semibold'>Pedido {data.name}</span>
       <div className='flex gap-2'>
         <div className='w-1/2 h-full p-5 bg-zinc-300 shadow-xl'>
           <span className='text-xl font-semibold'>Informações de Entrega:</span>
@@ -103,7 +121,7 @@ const Page5 = async ({ data }: any) => {
               <span className='font-medium flex'>
                 Veiculos:
                 <div className='flex flex-wrap pl-1 gap-1'>
-                  {data.veiculos.map((veiculo: string) => (
+                  {data.veiculos.map((veiculo) => (
                     <span
                       key={veiculo}
                       className='bg-zinc-100 font-normal rounded-lg p-1 '
@@ -118,7 +136,7 @@ const Page5 = async ({ data }: any) => {
               <span className='font-medium flex'>
                 Carrocerias:
                 <div className='flex flex-wrap pl-1 gap-1'>
-                  {data.carrocerias.map((carroceria: string) => (
+                  {data.carrocerias.map((carroceria) => (
                     <span
                       key={carroceria}
                       className='bg-zinc-100 font-normal rounded-lg p-1 '
@@ -178,7 +196,7 @@ const Page5 = async ({ data }: any) => {
             </div>
             <span className='font-medium'>
               Responsável pelo Frete:
-              {responsibles.map((responsible: string) => (
+              {responsibles.map((responsible) => (
                 <span key={responsible} className='font-normal pl-1'>
                   {responsible};{' '}
                 </span>
@@ -189,16 +207,16 @@ const Page5 = async ({ data }: any) => {
       </div>
       <button
         className='w-36 h-10 bg-green-500 font-black text-white rounded shadow-lg hover:bg-green-600'
+        type='button'
+        onClick={handleSubmit}
+      >
+        test
+      </button>
+      <button
+        className='w-36 h-10 bg-green-500 font-black text-white rounded shadow-lg hover:bg-green-600'
         type='submit'
         form='createFreight'
-        onClick={async () => {
-          const newFreight = await postFreight(data);
-          await putUserByEmailFreights(
-            session?.user?.email,
-            newFreight.data.response.idForm
-          );
-          console.log('Formulario enviado com sucesso!');
-        }}
+        onClick={handleSubmit}
       >
         Confirmar
       </button>

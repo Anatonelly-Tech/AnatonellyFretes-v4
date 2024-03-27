@@ -23,6 +23,9 @@ export const deleteFreight = async (idForm) => {
 export const getFreightById = async (idForm) =>
   api.get(`${BASE_URL}/${idForm}`);
 
+export const getFreightByName = async (name) =>
+  api.get(`${BASE_URL}Name/${name}`);
+
 export const postFreight = async ({
   name,
   collectCity,
